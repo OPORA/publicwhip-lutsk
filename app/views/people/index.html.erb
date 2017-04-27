@@ -8,4 +8,15 @@
 </div>
 <div class="container">
 
+  <ul>
+    <% @mps.each do |m| %>
+    <li>
+      <%= link_to show_people_path(m.url_name) do %>
+        <h2><%=  full_name(m.first_name, m.middle_name, m.last_name)  %></h2>
+        <p><%= member_role(m.faction, m.okrug) %></p>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+
 </div>
