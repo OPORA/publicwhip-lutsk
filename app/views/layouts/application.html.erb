@@ -1,14 +1,92 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PublicwhipLviv</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= yield(:title) %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag  'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', media: 'all', integrity: "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u", crossorigin: "anonymous" %>
+  <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css", media: 'all', integrity: "sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp", crossorigin: "anonymous" %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= body_class %>">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Розгорнути меню</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "Вони голосують для тебе", root_path, class: "navbar-brand" %>
+    </div>
 
-<%= yield %>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><%= link_to "Депутати", people_path %></li>
+        <li><%= link_to "Голосування", divisions_path %></li>
+        <li><%= link_to "Сумісні голосування" %></li>
+        <li><%= link_to "Про проект", about_path, class: "navlink-about"  %></li>
+      </ul>
+      <!--<ul class="nav navbar-nav navbar-right">-->
+        <!--&lt;!&ndash;<li><a href="#">Link</a></li>&ndash;&gt;-->
+      <!--</ul>-->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="content">
+  <%= yield %>
+</div>
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <p class="lead">
+          Проект Громадянської мережі
+          <%= link_to "ОПОРА", "http://oporaua.org", target: "_blank"  %>
+        </p>
+      </div>
+      <div class="col-xs-6">
+        <ul class="nav navbar-nav">
+          <li><%= link_to "Про проект", about_path, class: "btn btn-link" %></li>
+          <li><%= link_to "Допомога/FAQ", help_faq_path, class: "btn btn-link" %></li>
+          <li><%= link_to "API", help_data_path, class: "btn btn-link" %></li>
+        </ul>
+      </div>
+    </div>
+    <ul class="author-media list-inline">
+      <li class="email">
+        <a href="mailto:info@opora.org.ua"><i class="fi-mail"></i>
+          Контакти
+        </a></li>
+      <li class="twitter">
+        <a href="https://twitter.com/rada4you"><i class="fi-social-twitter"></i>
+          Twitter
+        </a></li>
+      <li class="facebook">
+        <a href="https://facebook.com/DorogiDeputaty"><i class="fi-social-facebook"></i>
+          facebook
+        </a></li>
+    </ul>
+    <ul class="list-inline">
+      <li>Усі дані та програмне забезпечення надаються з <%= link_to  "відкритим вихідним кодом та є вільними для поширення", help_licencing_path %></li>
+      <li>
+       <a href="https://github.com/OPORA/publicwhip-lviv/issues/" title="Повідомити про проблему чи запропонувати ідею">Повідомити про проблему</a>
+      </li>
+    </ul>
+    <p class="small">
 
+
+    </p>
+  </div>
+</div>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', integrity: "sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa", crossorigin: "anonymous" %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 </body>
 </html>

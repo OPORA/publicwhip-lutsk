@@ -13,3 +13,33 @@
  *= require_tree .
  *= require_self
  */
+.content {
+    min-height: 900px;
+}
+.jumbotron {
+    margin-bottom: 0 !important;
+}
+.about .navlink-about
+{
+    color:#fff;
+    cursor:default;
+    background-color:#eee;
+    border:1px solid #ddd;
+    border-bottom-color:transparent
+}
+
+.about .navlink-about :hover,
+.about .navlink-about :focus
+{
+    color:#fff;
+    cursor:default;
+    background-color:#eee;
+    border:1px solid #ddd;
+    border-bottom-color:transparent
+}
+nav.navbar {
+    margin-bottom: 0 !important;
+}
+p.lead {
+    margin: 10px 0 10px !important;
+}

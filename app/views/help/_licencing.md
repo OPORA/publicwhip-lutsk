@@ -1,0 +1,1 @@
+**текст про проект правити в /app/views/help/_licencing.md**
