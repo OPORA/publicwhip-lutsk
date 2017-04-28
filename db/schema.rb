@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170427004538) do
+ActiveRecord::Schema.define(version: 20170428213909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "divisions", force: :cascade do |t|
+    t.date     "date"
+    t.integer  "number"
+    t.text     "name"
+    t.string   "clock_time"
+    t.string   "result"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "mps", force: :cascade do |t|
     t.integer  "deputy_id"
@@ -29,4 +39,16 @@ ActiveRecord::Schema.define(version: 20170427004538) do
     t.datetime "updated_at",  null: false
   end
 
+  add_index "mps", ["deputy_id"], name: "index_mps_on_deputy_id", unique: true, using: :btree
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "division_id"
+    t.integer  "deputy_id"
+    t.string   "vote"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_foreign_key "votes", "divisions"
+  add_foreign_key "votes", "mps", column: "deputy_id", primary_key: "deputy_id"
 end

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2017-04-29
+  number: 1
+  name: MyText
+  clock_time: MyString
+  result: MyString
+
+two:
+  date: 2017-04-29
+  number: 1
+  name: MyText
+  clock_time: MyString
+  result: MyString
