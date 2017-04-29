@@ -7,5 +7,10 @@
   </div>
 </div>
 <div class="container">
+  <ul>
+  <% @divisions.each do |d| %>
+        <li><%= d.name %></li>
 
+  <% end %>
+  </ul>
 </div>
