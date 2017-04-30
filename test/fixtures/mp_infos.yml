@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  deputy_id: 1
+  rebellions: 1
+  not_voted: 1
+  absent: 1
+  against: 1
+  aye_voted: 1
+  abstain: 1
+
+two:
+  deputy_id: 1
+  rebellions: 1
+  not_voted: 1
+  absent: 1
+  against: 1
+  aye_voted: 1
+  abstain: 1

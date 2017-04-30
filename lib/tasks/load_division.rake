@@ -12,7 +12,7 @@ namespace :load_division do
             clock_time: DateTime.parse(d[0]["date_vote"]).strftime("%T"),
             result: d[0]["option"]
         )
-        division.votes.delete_all
+        division.votes.destroy_all
         d[1]["votes"].each do |v|
           division.votes.create(deputy_id: v["voter_id"], vote: v["result"] )
         end

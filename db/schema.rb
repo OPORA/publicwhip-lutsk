@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170430172211) do
+ActiveRecord::Schema.define(version: 20170430211237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,20 @@ ActiveRecord::Schema.define(version: 20170430172211) do
     t.string   "result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "mp_infos", force: :cascade do |t|
+    t.integer  "deputy_id"
+    t.integer  "rebellions"
+    t.integer  "not_voted"
+    t.integer  "absent"
+    t.integer  "against"
+    t.integer  "aye_voted"
+    t.integer  "abstain"
+    t.integer  "votes_possible"
+    t.integer  "votes_attended"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "mps", force: :cascade do |t|
@@ -77,6 +91,7 @@ ActiveRecord::Schema.define(version: 20170430172211) do
   end
 
   add_foreign_key "division_infos", "divisions"
+  add_foreign_key "mp_infos", "mps", column: "deputy_id", primary_key: "deputy_id"
   add_foreign_key "votes", "divisions"
   add_foreign_key "votes", "mps", column: "deputy_id", primary_key: "deputy_id"
   add_foreign_key "whips", "divisions"
