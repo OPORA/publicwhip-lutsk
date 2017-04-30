@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170428213909) do
+ActiveRecord::Schema.define(version: 20170430172211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "division_infos", force: :cascade do |t|
+    t.integer  "division_id"
+    t.integer  "aye_votes"
+    t.integer  "no_votes"
+    t.integer  "absent"
+    t.integer  "against"
+    t.integer  "abstain"
+    t.integer  "possible_turnout"
+    t.integer  "turnout"
+    t.integer  "rebellions"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "divisions", force: :cascade do |t|
     t.date     "date"
@@ -49,6 +63,21 @@ ActiveRecord::Schema.define(version: 20170428213909) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "whips", force: :cascade do |t|
+    t.integer  "division_id"
+    t.string   "party"
+    t.integer  "aye_votes"
+    t.integer  "no_votes"
+    t.integer  "absent"
+    t.integer  "against"
+    t.integer  "abstain"
+    t.string   "whip_guess"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_foreign_key "division_infos", "divisions"
   add_foreign_key "votes", "divisions"
   add_foreign_key "votes", "mps", column: "deputy_id", primary_key: "deputy_id"
+  add_foreign_key "whips", "divisions"
 end

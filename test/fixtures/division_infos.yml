@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  division_id: 1
+  aye_votes: 1
+  no_votes: 1
+  absent: 1
+  against: 1
+  abstain: 1
+  possible_turnout: 1
+  turnout: 1
+  rebellions: 1
+
+two:
+  division_id: 1
+  aye_votes: 1
+  no_votes: 1
+  absent: 1
+  against: 1
+  abstain: 1
+  possible_turnout: 1
+  turnout: 1
+  rebellions: 1
