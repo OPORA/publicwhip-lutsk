@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170430211237) do
+ActiveRecord::Schema.define(version: 20170501095231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 20170430211237) do
     t.string   "result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "mp_friends", force: :cascade do |t|
+    t.integer  "deputy_id"
+    t.integer  "friend_deputy_id"
+    t.integer  "count"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "mp_infos", force: :cascade do |t|
@@ -91,6 +99,8 @@ ActiveRecord::Schema.define(version: 20170430211237) do
   end
 
   add_foreign_key "division_infos", "divisions"
+  add_foreign_key "mp_friends", "mps", column: "deputy_id", primary_key: "deputy_id"
+  add_foreign_key "mp_friends", "mps", column: "friend_deputy_id", primary_key: "deputy_id"
   add_foreign_key "mp_infos", "mps", column: "deputy_id", primary_key: "deputy_id"
   add_foreign_key "votes", "divisions"
   add_foreign_key "votes", "mps", column: "deputy_id", primary_key: "deputy_id"

@@ -26,5 +26,26 @@ namespace :deputi_cashe do
       mp_info.save
     end
   end
-
+  desc "Update mp friend cashe"
+  task friends: :environment do
+    Mp.all.find_each do |m1|
+     sql = %Q{
+     SELECT
+      votes2.deputy_id, count(*)
+     FROM
+      public.votes AS votes1
+     LEFT JOIN
+      public.votes AS votes2 ON votes1.division_id = votes2.division_id AND votes1.vote = votes2.vote AND votes1.deputy_id != votes2.deputy_id
+     WHERE
+      votes1.deputy_id = #{m1.deputy_id} AND votes2.deputy_id is not null
+     GROUP BY
+      votes2.deputy_id
+      }
+      ActiveRecord::Base.connection.execute(sql).each do |q|
+        friend = MpFriend.find_or_initialize_by(deputy_id:  m1.deputy_id, friend_deputy_id: q["deputy_id"])
+        friend.count = q["count"]
+        friend.save
+      end
+    end
+  end
 end
