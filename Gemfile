@@ -45,3 +45,4 @@ group :development do
   gem 'spring'
 end
 gem 'markdown-rails'
+gem "mini_magick"
