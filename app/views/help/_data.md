@@ -1,1 +1,1 @@
-**текст про проект правити в /app/views/help/_data.md**
+**текст про API правити в /app/views/help/_data.md**
