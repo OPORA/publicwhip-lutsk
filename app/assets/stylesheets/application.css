@@ -16,7 +16,22 @@
 .content {
     min-height: 900px;
 }
-.jumbotron {
+.list-filters {
+    margin-bottom: 2em;
+}
+.list-sorter {
+    float: right;
+    clear: right;
+}
+.object-secondary {
+    text-transform: uppercase;
+    float: right;
+    clear: right;
+}
+.member-attendance {
+    padding-left: 1em;
+}
+.jumbotron.footer{
     margin-bottom: 0 !important;
 }
 .about .navlink-about
@@ -42,4 +57,8 @@ nav.navbar {
 }
 p.lead {
     margin: 10px 0 10px !important;
+}
+.list-group-item {
+    border: none !important;
+    border-top: 1px solid #ddd !important;
 }

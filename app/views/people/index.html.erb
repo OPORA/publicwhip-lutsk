@@ -7,16 +7,36 @@
   </div>
 </div>
 <div class="container">
-
-  <ul>
+  <div class="list-filters clearfix">
+    <div class="dropdown clearfix list-sorter">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Сортувати за <%= sort_text %>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li <%= params[:sort].nil? ? "class=disabled": "" %> ><%= link_to "Ім'ям", people_path() %></li>
+        <li <%= params[:sort] == "faction" ? "class=disabled": "" %> ><%= link_to "Фракцією", people_path(sort: :faction) %></li>
+        <li <%= params[:sort] == "distric" ? "class=disabled": "" %> ><%= link_to "Округом", people_path(sort: :distric) %></li>
+        <li <%= params[:sort] == "rebellions" ? "class=disabled": "" %> ><%= link_to "Дотриманням фракційної дисципліни", people_path(sort: :rebellions) %></li>
+        <li <%= params[:sort] == "attendance" ? "class=disabled": "" %> ><%= link_to "Присутністю", people_path(sort: :attendance) %></li>
+      </ul>
+    </div>
+  </div>
+  <div class="list-group">
     <% @mps.each do |m| %>
-    <li>
-      <%= link_to show_people_path(m.url_name) do %>
-        <h2><%=  full_name(m.first_name, m.middle_name, m.last_name)  %></h2>
-        <p><%= member_role(m.faction, m.okrug) %></p>
-      <% end %>
-    </li>
+        <%= link_to show_people_path(m.url_name), class: "list-group-item" do %>
+        <div class="media">
+          <div class="media-left media-middle">
+              <img class="media-object " src="/image/<%= m.deputy_id %>.png" alt="<%=  full_name(m.first_name, m.middle_name, m.last_name)  %>" height="115">
+          </div>
+          <div class="media-body">
+            <h2 class="media-heading"><%=  full_name(m.first_name, m.middle_name, m.last_name)  %></h2>
+            <p><%= member_role(m.faction, m.okrug) %></p>
+            <p class="object-secondary"><span>Проти фракції у <%= fraction_to_percentage_display(m.mp_info.rebellions_fraction) %> випадків</span>
+            <span class="member-attendance"><%= fraction_to_percentage_display(m.mp_info.attendance_fraction) %> Присутність</span></p>
+          </div>
+        </div>
+        <% end %>
     <% end %>
-  </ul>
-
+  </div>
 </div>

@@ -46,3 +46,4 @@ group :development do
 end
 gem 'markdown-rails'
 gem "mini_magick"
+
