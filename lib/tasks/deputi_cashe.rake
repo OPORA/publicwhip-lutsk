@@ -2,7 +2,7 @@ namespace :deputi_cashe do
   desc "Update mp cashe"
   task mp: :environment do
     Mp.all.each do |d|
-      rebellions = Division.joins(:whips, :votes).where('votes.deputy_id = ?', d.deputy_id ).where('whips.party = ?', d.faction).where('votes.vote != whips.whip_guess').count
+      rebellions = Division.joins(:whips, :votes).where('votes.deputy_id = ?', d.deputy_id ).where('whips.party = ?', d.faction).where("votes.vote != 'absent'").where('votes.vote != whips.whip_guess').count
 
       v =  Vote.where(deputy_id: d.deputy_id).map {|v| v}
       hash = {
