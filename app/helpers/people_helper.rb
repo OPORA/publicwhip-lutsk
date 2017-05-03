@@ -1,7 +1,4 @@
 module PeopleHelper
-  def full_name(first_name, middle_name, last_name)
-    last_name + " " + first_name + " " + middle_name
-  end
 
   def member_role(faction, okrug)
     first ='Член фракції політичної партії "' + faction +'"'
@@ -30,6 +27,20 @@ module PeopleHelper
       number_to_percentage(percentage, options)
     else
       'n/a'
+    end
+  end
+  def result_voted(res)
+    case res
+      when "not_voted"
+        "не голосував"
+      when "absent"
+        "був відсутній"
+      when "against"
+        "голосував проти"
+      when "aye"
+        "голосував за"
+      when "abstain"
+        "утримався"
     end
   end
 end

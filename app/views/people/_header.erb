@@ -1,0 +1,18 @@
+<div class="media head-mp">
+  <div class="media-left media-middle">
+    <img class="media-object " src="/image/<%= mp.deputy_id %>.png" alt="<%=  mp.full_name %>" height="115">
+  </div>
+  <div class="media-body">
+    <h2 class="media-heading"><%=  controller.params[:action] != "show" ? link_to(mp.full_name, show_people_path(mp.url_name)) : mp.full_name  %></h2>
+    <p><%= member_role(mp.faction, mp.okrug) %></p>
+    <p class="object-secondary"><span>Проти фракції у <%= fraction_to_percentage_display(mp.mp_info.rebellions_fraction) %> випадків <%= link_to "що таке голосування проти фракції" %></span>
+     <span class="member-attendance"><%= fraction_to_percentage_display(mp.mp_info.attendance_fraction) %> Присутність <%= link_to "Що таке Присутність" %></span>
+    </p>
+    <p class="object-secondary"><span>Голосувань ЗА <%= mp.mp_info.aye_voted %></span>
+      <span class="member-attendance">Проти <%= mp.mp_info.against %></span>
+      <span class="member-attendance">Не голосував <%= mp.mp_info.not_voted %></span>
+      <span class="member-attendance">Відсутній <%= mp.mp_info.absent %></span>
+      <span class="member-attendance">Утримався <%= mp.mp_info.abstain %></span>
+    </p>
+  </div>
+</div>

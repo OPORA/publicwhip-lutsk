@@ -1,4 +1,24 @@
-<% content_for :title, "Депутати — Як Голосує Твій Депутат?" %>
+<% content_for :title,  "#{ @mp.full_name } — Як Голосує Твій Депутат?" %>
 <div class="container">
-  g
+  <%= render "header", mp: @mp %>
+
+  <h2>Останні голосування проти фракції</h2>
+  <p>
+    <%= @mp.short_name %> голосував проти фракції <%= @mp.mp_info.rebellions %> разів <%= link_to 'що таке “голосування проти фракції”' %>
+  </p>
+  <%= render "voted", division: @division_rebilions, mp: @mp %>
+  <%= link_to "Дивитись всі голосування проти фракції", people_divisions_path(@mp.url_name, filter: :rebellions ), class: "btn btn-default btn-sm" %>
+
+  <h2>Останні голосування</h2>
+  <p>Останні голосування у парламенті, в яких депутат міг взяти участь.</p>
+  <%= render "voted", division: @division, mp: @mp  %>
+  <%= link_to "Дивитись всі голосування", people_divisions_path(@mp.url_name), class: "btn btn-default btn-sm" %>
+  <h2>Друзі по голосуванню</h2>
+  <p>Тут перераховані депутати, що голосують подібно, або ну відвідують засідання. Вимірюється від 0% (ніколи так не голосував) до 100% (завжди
+    голосував так само). Таким чином, можна виявити неочікуваний зв’язок між політичними позиціями депутатів.</p>
+  <%= render "friends", friends: @friends, mp: @mp  %>
+  <%= link_to "Більше друзів по голосуванню", people_friends_path(@mp.url_name), class: "btn btn-default btn-sm" %>
+  <div class="bottom">
+
+  </div>
 </div>

@@ -1,0 +1,22 @@
+<div class="list-group">
+  <% division.each do |d| %>
+      <%= link_to divisions_show_path(d.date, d.number), class: "list-group-item" do %>
+          <div class="media">
+            <div class="media-body">
+              <p><%= d.date.strftime('%d.%m.%Y') %>, <%= Time.parse(d.clock_time).strftime('%H:%M') %> </p>
+              <h3 class="media-heading"><%=  d.name  %></h3>
+              <ul>
+                <li><%= mp.short_name %> <%= result_voted(d.votes.find_mp(mp.deputy_id )) %>,
+                  <% if d.votes.find_mp(mp.deputy_id) != d.whips.find_by(party: mp.faction).whip_guess and d.votes.find_mp(mp.deputy_id) != "absent"  %>
+                      та виступив цим проти лінії своєї фракції <%= mp.faction %>
+                  <% end %>
+                </li>
+              </ul>
+              <p class="division-outcome object-primary"><%= d.result %></p>
+              <p class="object-secondary"><span>Проти фракції <%= d.division_info.rebellions %> голосувань</span>
+                <span class="member-attendance"><%= fraction_to_percentage_display(d.division_info.attendance_division) %> Присутність</span></p>
+            </div>
+          </div>
+      <% end %>
+  <% end %>
+</div>

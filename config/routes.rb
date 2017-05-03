@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get 'people' => 'people#index', as: :people
   get 'people/:mp' => 'people#show', as: :show_people
+  get 'people/:mp/divisions' => 'people#divisions', as: :people_divisions
+  get 'people/:mp/friends' => 'people#friends', as: :people_friends
 
   get 'about' => 'about#index', as: :about
   get 'search_mp' => 'home#search_mp', as: :search_mp
