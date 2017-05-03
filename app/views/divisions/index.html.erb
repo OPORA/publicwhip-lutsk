@@ -7,11 +7,22 @@
   </div>
 </div>
 <div class="container">
-  <%=  %>
-  <ul>
-  <% @divisions.each do |d| %>
-        <li><%= d.name %></li>
-
-  <% end %>
-  </ul>
+  <div class="list-filters clearfix">
+    <div class="dropdown clearfix list-sorter">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        Сортувати за <%= sort_division %>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li <%= params[:sort] == "attendance" ? "class=disabled": "" %> ><%= link_to "Присутністю", divisions_path(sort: :attendance) %></li>
+        <li <%= params[:sort] == "rebellions" ? "class=disabled": "" %> ><%= link_to "Дотриманням фракційної дисципліни", divisions_path(sort: :rebellions) %></li>
+        <li <%= params[:sort] == "subject" ? "class=disabled": "" %> ><%= link_to "Алфавітом", divisions_path(sort: :subject) %></li>
+        <li <%= params[:sort].nil? ? "class=disabled": "" %> ><%= link_to "Датою", divisions_path() %></li>
+      </ul>
+    </div>
+  </div>
+  <%= render "voted", division: @divisions  %>
+  <div class="index-pagination">
+    <%= paginate @divisions %>
+  </div>
 </div>
