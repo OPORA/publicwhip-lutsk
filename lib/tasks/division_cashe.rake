@@ -42,7 +42,7 @@ namespace :division_cashe do
       rebellions = []
       v.group_by{|m| m.mp.faction}.each do |f|
         whip_guess = Whip.find_by(party: f[0], division_id: division).whip_guess
-        rebellions << f[1].count{|v| v.vote != whip_guess}
+        rebellions << f[1].count{|v| v.vote != whip_guess and v.vote != "absent"}
       end
       division_info = DivisionInfo.find_or_initialize_by(division_id: division)
       division_info.aye_votes = hash[:aye]
