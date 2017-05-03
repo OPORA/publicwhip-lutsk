@@ -3,7 +3,7 @@ module PeopleHelper
   def member_role(faction, okrug)
     first ='Член фракції політичної партії "' + faction +'"'
     unless okrug.nil?
-      first + " обрано по окрогу номер #{okrug}"
+      first + " обрано по округу номер #{okrug}"
     else
       first
     end
