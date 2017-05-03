@@ -80,3 +80,12 @@ p.lead {
 .bottom {
     min-height: 5em;
 }
+.rebel, .no_passed {
+    color: #c64e39;
+}
+.passed {
+   color: #308a28;
+}
+.cell-vote {
+    text-align: center;
+}

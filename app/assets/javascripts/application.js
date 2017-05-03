@@ -13,3 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+$('button.btn.glyphicon').click(function () {
+    if($(this).hasClass('glyphicon-chevron-down'))
+    {
+        $(this).removeClass('btn glyphicon glyphicon-chevron-down');
+        $(this).addClass('btn glyphicon glyphicon-chevron-up');
+    }
+    else {
+        $(this).removeClass('btn glyphicon glyphicon-chevron-up');
+        $(this).addClass('btn glyphicon glyphicon-chevron-down');
+    }
+});

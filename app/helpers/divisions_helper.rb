@@ -10,4 +10,26 @@ module DivisionsHelper
       "Датою"
     end
   end
+  def class_division(result)
+    case result
+      when "Прийнято"
+        "passed"
+      else
+        "no_passed"
+    end
+  end
+  def result_voted_mp(res)
+    case res
+      when "not_voted"
+        "Не голосував"
+      when "absent"
+        "Відсутній"
+      when "against"
+        "Ні"
+      when "aye"
+        "Так"
+      when "abstain"
+        "Утримався"
+    end
+  end
 end
