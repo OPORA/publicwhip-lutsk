@@ -7,7 +7,7 @@
   </tr>
   <% friends.each do |f| %>
   <tr>
-    <td><%= f.count %> (<%= fraction_to_percentage_display((f.count.to_f/mp.mp_info.votes_attended))%>) </td>
+    <td><%= f.count %> (<%= fraction_to_percentage_display((f.count.to_f/mp.mp_info.votes_possible))%>) </td>
     <td><%= f.mp2.full_name %></td>
     <td><%= f.mp2.okrug %></td>
     <td><%= f.mp2.faction %></td>
