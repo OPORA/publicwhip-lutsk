@@ -14,7 +14,7 @@
       <div class="col-xs-6 col-xs-offset-3">
         <%= form_tag(search_mp_path, method: "get", ) do  %>
             <div class="input-group">
-              <%= select_tag(:mp, options_for_select(@mps), :include_blank => 'наприклад: Андрій Садовий Іванович', "data-live-search": true , "data-width":"auto", class: "selectpicker") %>
+              <%= select_tag(:mp, options_for_select(@mps), :include_blank => 'наприклад: Садовий Андрій Іванович', "data-live-search": true , "data-width":"auto", class: "selectpicker") %>
               <span class="input-group-btn">
                   <%= submit_tag("Пошук", class: "btn btn-primary") %>
               </span>
