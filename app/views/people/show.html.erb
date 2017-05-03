@@ -10,7 +10,7 @@
   <%= link_to "Дивитись всі голосування проти фракції", people_divisions_path(@mp.url_name, filter: :rebellions ), class: "btn btn-default btn-sm" %>
 
   <h2>Останні голосування</h2>
-  <p>Останні голосування у парламенті, в яких депутат міг взяти участь.</p>
+  <p>Останні голосування у міській раді, в яких депутат міг взяти участь.</p>
   <%= render "voted", division: @division, mp: @mp  %>
   <%= link_to "Дивитись всі голосування", people_divisions_path(@mp.url_name), class: "btn btn-default btn-sm" %>
   <h2>Друзі по голосуванню</h2>
