@@ -1,3 +1,4 @@
+{<img alt='Stories in Ready' src='https://badge.waffle.io/OPORA/publicwhip-lviv.png?label=ready&title=Ready' />}[https://waffle.io/OPORA/publicwhip-lviv]
 == README
 
 This README would normally document whatever steps are necessary to get the
