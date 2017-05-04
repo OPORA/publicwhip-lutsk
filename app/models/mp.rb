@@ -1,4 +1,4 @@
-class Mp < ActiveRecord::Base
+class Mp < ApplicationRecord
   has_many :votes
   has_many :divisions, through: :votes
   has_many :mp_friends, primary_key: :deputy_id, foreign_key: :deputy_id

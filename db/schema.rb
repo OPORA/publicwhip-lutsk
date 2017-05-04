@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -16,86 +15,85 @@ ActiveRecord::Schema.define(version: 20170501095231) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "division_infos", force: :cascade do |t|
-    t.integer  "division_id"
-    t.integer  "aye_votes"
-    t.integer  "no_votes"
-    t.integer  "absent"
-    t.integer  "against"
-    t.integer  "abstain"
-    t.integer  "possible_turnout"
-    t.integer  "turnout"
-    t.integer  "rebellions"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-  end
-
-  create_table "divisions", force: :cascade do |t|
-    t.date     "date"
-    t.integer  "number"
-    t.text     "name"
-    t.string   "clock_time"
-    t.string   "result"
+  create_table "division_infos", id: :serial, force: :cascade do |t|
+    t.integer "division_id"
+    t.integer "aye_votes"
+    t.integer "no_votes"
+    t.integer "absent"
+    t.integer "against"
+    t.integer "abstain"
+    t.integer "possible_turnout"
+    t.integer "turnout"
+    t.integer "rebellions"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "mp_friends", force: :cascade do |t|
-    t.integer  "deputy_id"
-    t.integer  "friend_deputy_id"
-    t.integer  "count"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+  create_table "divisions", id: :serial, force: :cascade do |t|
+    t.date "date"
+    t.integer "number"
+    t.text "name"
+    t.string "clock_time"
+    t.string "result"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "mp_infos", force: :cascade do |t|
-    t.integer  "deputy_id"
-    t.integer  "rebellions"
-    t.integer  "not_voted"
-    t.integer  "absent"
-    t.integer  "against"
-    t.integer  "aye_voted"
-    t.integer  "abstain"
-    t.integer  "votes_possible"
-    t.integer  "votes_attended"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+  create_table "mp_friends", id: :serial, force: :cascade do |t|
+    t.integer "deputy_id"
+    t.integer "friend_deputy_id"
+    t.integer "count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "mps", force: :cascade do |t|
-    t.integer  "deputy_id"
-    t.string   "first_name"
-    t.string   "middle_name"
-    t.string   "last_name"
-    t.string   "faction"
-    t.integer  "okrug"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+  create_table "mp_infos", id: :serial, force: :cascade do |t|
+    t.integer "deputy_id"
+    t.integer "rebellions"
+    t.integer "not_voted"
+    t.integer "absent"
+    t.integer "against"
+    t.integer "aye_voted"
+    t.integer "abstain"
+    t.integer "votes_possible"
+    t.integer "votes_attended"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "mps", ["deputy_id"], name: "index_mps_on_deputy_id", unique: true, using: :btree
-
-  create_table "votes", force: :cascade do |t|
-    t.integer  "division_id"
-    t.integer  "deputy_id"
-    t.string   "vote"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+  create_table "mps", id: :serial, force: :cascade do |t|
+    t.integer "deputy_id"
+    t.string "first_name"
+    t.string "middle_name"
+    t.string "last_name"
+    t.string "faction"
+    t.integer "okrug"
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deputy_id"], name: "index_mps_on_deputy_id", unique: true
   end
 
-  create_table "whips", force: :cascade do |t|
-    t.integer  "division_id"
-    t.string   "party"
-    t.integer  "aye_votes"
-    t.integer  "no_votes"
-    t.integer  "absent"
-    t.integer  "against"
-    t.integer  "abstain"
-    t.string   "whip_guess"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+  create_table "votes", id: :serial, force: :cascade do |t|
+    t.integer "division_id"
+    t.integer "deputy_id"
+    t.string "vote"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "whips", id: :serial, force: :cascade do |t|
+    t.integer "division_id"
+    t.string "party"
+    t.integer "aye_votes"
+    t.integer "no_votes"
+    t.integer "absent"
+    t.integer "against"
+    t.integer "abstain"
+    t.string "whip_guess"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "division_infos", "divisions"

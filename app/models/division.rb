@@ -1,4 +1,4 @@
-class Division < ActiveRecord::Base
+class Division < ApplicationRecord
   paginates_per 50
   has_many :votes
   has_many :mps, through: :votes
