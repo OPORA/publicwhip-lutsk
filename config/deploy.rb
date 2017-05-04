@@ -1,4 +1,3 @@
-require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 # require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
@@ -26,7 +25,7 @@ set :user, 'root'          # Username in the server to SSH to.
 # shared dirs and files will be symlinked into the app-folder by the 'deploy:link_shared_paths' step.
 set :shared_dirs, fetch(:shared_dirs, []).push('log', 'public/image')
 set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/secrets.yml')
-
+invoke :'rvm:use', 'ruby-2.2.5@default'
 # This task is the environment that is loaded for all remote run commands, such as
 # `mina deploy` or `mina rake`.
 task :environment do
@@ -35,7 +34,7 @@ task :environment do
   # invoke :'rbenv:load'
 
   # For those using RVM, use this to load an RVM version@gemset.
-  invoke :'rvm:use', 'ruby-2.2.5@default'
+
 end
 
 # Put any custom commands you need to run at setup
