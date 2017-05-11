@@ -2,7 +2,7 @@ class CreateDivisions < ActiveRecord::Migration
   def change
     create_table :divisions do |t|
       t.date :date
-      t.integer :number
+      t.string :number
       t.text :name
       t.string :clock_time
       t.string :result
