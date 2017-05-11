@@ -56,5 +56,31 @@ namespace :division_cashe do
       division_info.save
     end
   end
-
+  desc "Cache party voted aye 50%+1"
+  task party_voted: :environment do
+    party = {}
+    Whip.all.find_each do |w|
+      size = (w.aye_votes + w.no_votes + w.absent + w.against + w.abstain)/2+1
+      if w.aye_votes >= size
+       if party.has_key?("#{w.party}")
+         if party["#{w.party}"].has_key?("#{w.division.date.strftime("%Y-%m")}")
+           party["#{w.party}"]["#{w.division.date.strftime("%Y-%m")}"] << 1
+         else
+           party["#{w.party}"]["#{w.division.date.strftime("%Y-%m")}"] = [1]
+         end
+       else
+         party["#{w.party}"] = {
+             w.division.date.strftime("%Y-%m") => [1]
+         }
+       end
+      end
+    end
+    party.each do |p|
+      p p[0]
+      p[1].each do |d|
+        p d[0]
+        p d[1].size
+      end
+    end
+  end
 end
