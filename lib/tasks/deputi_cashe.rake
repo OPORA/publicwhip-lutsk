@@ -37,7 +37,7 @@ namespace :deputi_cashe do
      LEFT JOIN
       public.votes AS votes2 ON votes1.division_id = votes2.division_id AND votes1.vote = votes2.vote AND votes1.deputy_id != votes2.deputy_id
      WHERE
-      votes1.deputy_id = #{m1.deputy_id} AND votes2.deputy_id is not null
+      votes1.deputy_id = #{m1.deputy_id} AND votes2.deputy_id is not null AND votes1.vote != 'absent'
      GROUP BY
       votes2.deputy_id
       }
