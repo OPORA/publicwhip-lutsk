@@ -1,4 +1,4 @@
-class CreateDivisionInfos < ActiveRecord::Migration
+class CreateDivisionInfos < ActiveRecord::Migration[5.1]
   def change
     create_table :division_infos do |t|
       t.integer :division_id

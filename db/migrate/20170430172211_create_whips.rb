@@ -1,4 +1,4 @@
-class CreateWhips < ActiveRecord::Migration
+class CreateWhips < ActiveRecord::Migration[5.1]
   def change
     create_table :whips do |t|
       t.integer :division_id

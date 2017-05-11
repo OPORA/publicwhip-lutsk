@@ -1,4 +1,4 @@
-class CreateMpInfos < ActiveRecord::Migration
+class CreateMpInfos < ActiveRecord::Migration[5.1]
   def change
     create_table :mp_infos do |t|
       t.integer :deputy_id

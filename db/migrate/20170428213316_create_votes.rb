@@ -1,4 +1,4 @@
-class CreateVotes < ActiveRecord::Migration
+class CreateVotes < ActiveRecord::Migration[5.1]
   def change
     create_table :votes do |t|
       t.integer :division_id

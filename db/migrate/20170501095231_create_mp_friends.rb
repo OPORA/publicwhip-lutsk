@@ -1,4 +1,4 @@
-class CreateMpFriends < ActiveRecord::Migration
+class CreateMpFriends < ActiveRecord::Migration[5.1]
   def change
     create_table :mp_friends do |t|
       t.integer :deputy_id
