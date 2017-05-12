@@ -76,10 +76,13 @@ namespace :division_cashe do
       end
     end
     party.each do |p|
-      p p[0]
+      faction = p[0]
       p[1].each do |d|
-        p d[0]
-        p d[1].size
+        date = d[0]
+        vote_aye = d[1].size
+        vote_sum = VoteFaction.find_or_initialize_by(faction: faction, date: Date.strptime(date, '%Y-%m'))
+        vote_sum.vote_aye = vote_aye
+        vote_sum.save
       end
     end
   end

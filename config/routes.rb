@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'sumisne-holosuvannia' => 'sumisne_holosuvannia#init', as: :sumisne_holosuvannia
+  get 'sumisne-holosuvannia/api' => 'sumisne_holosuvannia#api', as: :sumisne_holosuvannia_api
+
   get 'help/faq'
 
   get 'help/data'

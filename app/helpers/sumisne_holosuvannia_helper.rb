@@ -1,0 +1,2 @@
+module SumisneHolosuvanniaHelper
+end

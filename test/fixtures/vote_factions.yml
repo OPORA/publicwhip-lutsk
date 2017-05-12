@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fraction: MyString
+  date: 2017-05-12
+  vote_aye: 1
+
+two:
+  fraction: MyString
+  date: 2017-05-12
+  vote_aye: 1
