@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   get 'about' => 'about#index', as: :about
   get 'search_mp' => 'home#search_mp', as: :search_mp
+  get 'search' => 'home#search', as: :search
   get 'home/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

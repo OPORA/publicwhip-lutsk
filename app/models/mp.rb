@@ -13,4 +13,7 @@ class Mp < ApplicationRecord
   def short_name
     self.first_name + " " + self.last_name
   end
+  def self.find_by_search_query(query)
+    where("UPPER(CONCAT (Last_name, ' ', first_name, ' ', middle_name)) like :query or UPPER(faction) like :query ", query: "%#{query.gsub(/(\s|\.)/,'%').upcase}%" )
+  end
 end

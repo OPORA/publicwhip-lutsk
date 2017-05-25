@@ -33,9 +33,22 @@
         <li><%= link_to "Сумісні голосування", sumisne_holosuvannia_path, class: "sumisne-holosuvannia" %></li>
         <li><%= link_to "Про проект", about_path, class: "navlink-about"  %></li>
       </ul>
-      <!--<ul class="nav navbar-nav navbar-right">-->
+      <%= form_tag(search_path, method: "get", class: "navbar-form navbar-right" ) do  %>
+        <div class="input-group">
+          <%= label_tag(:query, "Пошук Вони голосують для тебе", class: "sr-only") %>
+          <%= text_field_tag(:query, params[:query] , class: "form-control input-sm" , placeholder: "Пошук" ) %>
+          <div class="input-group-btn">
+            <button class="btn btn-default input-sm" name="button" type="submit" value="Submit">
+              <span class="sr-only">Відправити</span>
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </div>
+        </div>
+      <% end %>
+      <ul class="nav navbar-nav navbar-right">
+
         <!--&lt;!&ndash;<li><a href="#">Link</a></li>&ndash;&gt;-->
-      <!--</ul>-->
+      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
