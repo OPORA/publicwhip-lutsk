@@ -1,4 +1,5 @@
 <% content_for :title, "Сумісне Голосуванн — Як Голосує Твій Депутат?" %>
+<script src="http://d3js.org/d3.v4.min.js"></script>
 <div class="jumbotron">
   <div class="container">
     <div class="row">
@@ -8,7 +9,133 @@
 </div>
 <div class="container">
   <div class="row">
-    <p>Find me in app/views/sumisne_holosuvannia/init.html.erb</p>
-    <%= link_to 'API', sumisne_holosuvannia_api_path %>
+    <div id="graf"></div>
+    <svg width="700" height="500"></svg>
+    <!--<div id="slider" style="width: 960px;"></div>-->
+    <%#= link_to 'API', sumisne_holosuvannia_api_path %>
   </div>
+  <script>
+      var parseTime = d3.timeParse("%Y-%m");
+      var parseDate = d3.timeFormat("%m %y");
+      var time_yeaar = d3.timeFormat("%y");
+
+      d3.json("<%= sumisne_holosuvannia_api_path %>", function (data) {
+
+          data.forEach(function (d) {
+              d.date=parseTime(d.date)
+          });
+          var date_min = d3.min(data, function (d) { return d.date});
+          var date_max = d3.max(data, function (d) { return d.date});
+          $( function() {
+              $("#slider").slider({
+                  range: true,
+                  min: Number(time_yeaar(date_min)),
+                  max: Number(time_yeaar(date_max)),
+                  step: 1,
+                  values: [Number(time_yeaar(date_min)), Number(time_yeaar(date_max))],
+                  slide: function (event, ui) {
+                      console.log( ui.values[ 0 ] + " - " +  ui.values[ 1 ]);
+                  }
+
+              }).each(function () {
+                      // Add labels to slider whose values
+                      // are specified by min, max
+
+                      // Get the options for this slider (specified above)
+                      var opt = $(this).data().uiSlider.options;
+
+                      // Get the number of possible values
+                      var vals = opt.max - opt.min;
+
+                      // Position the labels
+                      for (var i = 0; i <= vals; i++) {
+
+                          // Create a new element and position it with percentages
+                          var el = $('<label>' + (i + opt.min) + '</label>').css('left', (i / vals * 100) + '%');
+
+                          // Add the element inside #slider
+                          $("#slider").append(el);
+                      }
+
+                  }
+
+              );
+          });
+          createGrafic(data);
+          function createGrafic(Data) {
+              var nested_data =  d3.nest().key(function (d) {
+                  return d.faction; })
+              .rollup( function (vote) {
+                  return d3.sum(vote, function (d) {
+                      return d.vote_aye;
+                  })
+              }).entries(Data)
+                  .map(function(d){
+//                      console.log(d);
+                      return { Party: d.key, Value: d.value};
+
+                  });
+              var party = [];
+              nested_data.forEach(function(d, index) {
+
+                  nested_data.forEach(function (p, i) {
+                      if (i > index) {
+                          party.push({party1: d.Party, value1: d.Value, party2: p.Party, value2: p.Value })
+                      }
+                  });
+
+              });
+              var result = party.map(function (d) {
+                  return {party_first: d.party1, party_second: d.party2, present: Math.round((d.value2/d.value1)*100)  }
+              });
+              result = result.sort(function (a,b) {
+                  return b.present - a.present;
+              })
+              console.log(result)
+              var svg = d3.select("svg"),
+                  margin = {top: 20, right: 0, bottom: 30, left: 40},
+                  width = +svg.attr("width") - margin.left - margin.right,
+                  height = +svg.attr("height") - margin.top - margin.bottom;
+              var x = d3.scaleBand().rangeRound([0, height]).padding(0.1),
+                  y = d3.scaleLinear().rangeRound([0, width ]);
+              var g = svg.append("g")
+                  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+              x.domain(result.map(function(d) { return d.present; }));
+              y.domain([0, d3.max(result, function(d) { return d.present; })]);
+
+              g.append("g")
+                  .attr("class", "axis axis--y")
+                  .call(d3.axisLeft(x).tickFormat(function (d){return d + "%"}).tickSize(0));
+              d3.selectAll(".tick text")
+                  .attr("style", "fill:black; font-size:14");
+              d3.select('.domain')
+                  .attr("stroke","none");
+              var bar = g.selectAll(".bar")
+                  .data(result)
+                  .enter().append("g");
+
+
+              bar.append("rect")
+                  .attr("class", "bar")
+                  .attr("x", 0)
+                  .attr("y", function(d) {return x(d.present); })
+                  .attr("width", function( d) { return y(d.present);})
+                  .attr("height",  20 )
+                  .attr("fill", "#000080");
+              bar.append("rect")
+                  .attr("class", "bar")
+                  .attr("x", function( d) { return y(d.present);})
+                  .attr("y", function(d) {return x(d.present); })
+                  .attr("width", width)
+                  .attr("height",  20 )
+                  .attr("fill", "#8B0000");
+              bar.append("text")
+                  .attr("x", function(d) {return width/5; })
+                  .attr("y", function(d) {return x(d.present); })
+                  .attr("dy", ".95em")
+                  .attr("style", "fill:white; font-size:14")
+                  .text(function (d) {return d.party_first + " - " +  d.party_second})
+          }
+      })
+  </script>
 </div>
