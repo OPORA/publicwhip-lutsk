@@ -75,6 +75,9 @@
                       return { Party: d.key, Value: d.value};
 
                   });
+              nested_data = nested_data.sort(function (a,b) {
+                  return b.Value - a.Value;
+              });
               var party = [];
               nested_data.forEach(function(d, index) {
 
@@ -90,7 +93,7 @@
               });
               result = result.sort(function (a,b) {
                   return b.present - a.present;
-              })
+              });
               console.log(result)
               var svg = d3.select("svg"),
                   margin = {top: 20, right: 0, bottom: 30, left: 40},
