@@ -1,0 +1,283 @@
+@font-face { font-family: GothaProBla; src: url(GothaProBla.otf);}
+/*700*/
+@font-face { font-family: GothaProBlaIta; src: url(GothaProBlaIta.otf);  }
+@font-face { font-family: GothaProBol; src: url(GothaProBol.otf);}
+@font-face { font-family: GothaProBolIta; src: url(GothaProBolIta.otf);}
+@font-face { font-family: GothaProIta; src: url(GothaProIta.otf);}
+@font-face { font-family: GothaProLig; src: url(GothaProLig.otf);}
+@font-face { font-family: GothaProLigIta; src: url(GothaProLigIta.otf);}
+@font-face { font-family: GothaProMed; src: url(GothaProMed.otf);}
+/*500*/
+@font-face { font-family: GothaProMedIta; src: url(GothaProMedIta.otf);}
+@font-face { font-family: GothaProNarBol; src: url(GothaProNarBol.otf);}
+@font-face { font-family: GothaProNarMed; src: url(GothaProNarMed.otf);}
+@font-face { font-family: GothaProReg; src: url(GothaProReg.otf);}
+
+body{
+    font-family: GothaProReg;
+}
+header{
+    background: url(fon_home.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 600px;
+    /*background-color: rgba(40,40,40,0.6);*/
+    color:#fff;
+    margin-bottom: 75px;
+}
+.logo {
+    height: 20px;
+    /*width: 230px;*/
+    color: #009FE2;
+    font-family: GothaProBol;
+    font-size: 20px;
+    line-height: 20px;
+}
+.logo .first-word, .logo i, #search-main .fa.fa-circle, #info .fa.fa-circle, .fa.fa-arrow-circle-right{
+    color: #009FE2;
+}
+.logo i{
+    position: relative;
+    width: 30px;
+}
+/*#navbarCollapse{
+    padding-top: .25rem;
+}*/
+.navbar-inverse .navbar-nav .nav-link{
+    padding-left: 4.5rem;
+    line-height: 21px;
+    font-size: 1em;
+    color: #fff;
+}
+.navbar-inverse .navbar-nav .nav-link:hover{
+    font-weight: bold;
+    color: #fff;
+}
+.navbar{
+    padding: 1.5rem 1rem;
+}
+#info{
+    padding-bottom: 4.5rem;
+}
+#info p{
+    margin-bottom: 5px;
+}
+#info .update-data, #info .rada-date{
+    font-family: GothaProReg;
+    font-size: 0.7em;
+    line-height: 1em;
+}
+#info  .fa-stack {
+    float: left;
+    padding-bottom: 20px;
+    /*margin-bottom: 40px;*/
+    margin-right: 10px;
+}
+
+#info div > div :nth-child(3){
+    font-family: GothaProBla;
+    /*font-size: 0.8em;*/
+    font-weight: 700;
+    line-height: 12px;
+}
+.text-q{
+    font-family: GothaProBla;
+    font-size: 2em;
+    margin-bottom: 2em;
+}
+#search-main input[type="text"] {
+    border: none;
+    font: italic 1em GothaProIta;
+    color: #bebebe;
+    width: 100%;
+    padding: 6px 15px 6px 65px;
+
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+
+    line-height: 50px;
+}
+
+#search-main .arrow-icon{
+    color:#000;
+    position: absolute;
+    right: 40px;
+    top:20px;
+}
+#search-main .fa-stack{
+    position: absolute;
+    margin-left: 10px;
+}
+
+#search-top input[type="text"]{
+    background: transparent;
+    color: #fff;
+    border: none;
+    padding: 6px 15px 6px 35px;
+    font-size: 1em;
+}
+#search-top input::placeholder{
+    color: #fff;
+}
+#search-top .fa.fa-search{
+    color: #fff;
+    position: absolute;
+    padding: 15px;
+}
+.fa.fa-check-circle{
+color:#88B04B;
+}
+
+.fa.fa-times-circle{
+color:#FE6162;
+}
+.no-padding > [class*="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+#first-block{
+    margin-bottom: 50px;
+}
+#first-block h3, #second-block h3{
+    color: #282828;
+    font-family: GothaProMed;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 18px;
+    margin-bottom: 5rem;
+}
+#first-block h4, #second-block h4{
+    color: #4A4A4A;
+    font-family: GothaProMed;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 18px;
+    padding-top: 50px;
+}
+h3.background-line {
+    position: relative;
+    z-index: 1;
+}
+h3.background-line:before {
+    border-top: 4px solid #000;
+    content:"";
+    margin: 0 auto;
+    position: absolute;
+    top: 180%; left: 0; right: 0; bottom: 0;
+    width: 10%;
+    z-index: -1;
+}
+#first-block [class*="row"] + [class*="row"], #second-block [class*="row"] + [class*="row"]{
+    margin-top: 25px;
+}
+#first-block .card{
+    min-height: 279px;
+    padding: 25px;
+}
+.border-active {
+    border: 3px solid #009FE2;
+    border-radius: 4px;
+}
+.check {
+    padding: 15px;
+}
+.approve {
+    color: #282828;
+    font-family: GothaProMed;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 10px;
+}
+.card-date {
+    color: #949393;
+    font-family: GothaProReg;
+    font-size: 12px;
+    line-height: 12px;
+}
+.card-text {
+    color: #282828;
+    font-family: GothaProMed;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+}
+.checkin {
+    color: #949393;
+    font-family: GothaProReg;
+    font-size: 10px;
+    line-height: 10px;
+}
+.card-percent {
+    color: #252525;
+    font-family: GothaProMed;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 12px;
+}
+#second-block{
+    padding-top: 50px;
+    padding-bottom: 85px;
+    background-color: #F5F5F5;
+}
+#second-block .check{
+    padding-left: 0;
+}
+.card-person{
+
+}
+.card-name{
+    color: #282828;
+    font-family: GothaProMed;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+    padding-top: 40px;
+}
+.card-photo{
+    height: 100px;
+    width: 100px;
+    margin: 35px 0;
+}
+.card-fraction {
+
+    color: #4A4A4A;
+    font-family: GothaProReg;
+    font-size: 14px;
+    line-height: 16px;
+}
+.card-elected {
+
+    color: #4A4A4A;
+    font-family: GothaProReg;
+    font-size: 10px;
+    font-weight: 300;
+    line-height: 12px;
+}
+footer{
+    background-color: #000;
+    color:#D4D6D9;
+    height: 190px;
+}
+footer {
+    border-top: 15px solid #949393;
+}
+footer .title{
+    font-family: GothaProReg;
+    font-size: 14px;
+    line-height: 20px;
+    padding-top: 16px;
+    color:#fff;
+}
+footer a{
+    color: #D4D6D9;
+}
+footer > div [class*="row"]{
+    padding-top: 40px;
+}
+footer span+span{
+    margin-left: 16.666667%;
+}

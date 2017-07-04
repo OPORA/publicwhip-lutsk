@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
   def index
     @mps = Mp.order(last_name: :asc).map{|m| m.last_name + " " + m.first_name + " " + m.middle_name}
+    @last_division = Division.includes(:division_info).last(4)
+    @top_mp_rebellions = Mp.includes(:mp_info).where(end_date: nil).to_a.sort_by{ |m| [-(m.mp_info.attendance_fraction || -1), m.last_name, m.first_name, m.middle_name, m.faction, m.okrug ]}.reverse[0 .. 3]
   end
   def search_mp
     mp = params[:mp].gsub(" ", "_")

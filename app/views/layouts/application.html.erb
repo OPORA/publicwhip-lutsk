@@ -2,107 +2,127 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><%= yield(:title) %></title>
+  <base href="" />
+  <meta name="description" content="" />
+  <meta name="keywords" content= "" />
+  <meta property="og:title" content="<%= yield(:title) %>" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://" />
+  <meta property="og:image" content="http://logo" />
+  <meta property="og:site_name" content="" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag  'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', media: 'all', integrity: "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u", crossorigin: "anonymous" %>
-  <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css", media: 'all', integrity: "sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp", crossorigin: "anonymous" %>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
   <%= csrf_meta_tags %>
 </head>
-<body class="<%= body_class %>">
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Розгорнути меню</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to "Вони голосують для тебе", root_path, class: "navbar-brand" %>
-    </div>
+<body>
+    <header class="container-fluid">
+      <nav class="navbar navbar-toggleable-md navbar-inverse mb-4">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+         <%= link_to "<p><i class='fa fa-circle fa-stack-1x'></i><span class='first-word'>Lviv</span>.Rada4You.org</p>".html_safe, root_path, class: "navbar-brand text-uppercase logo" %>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <%= link_to "Депутати", people_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Голосування", divisions_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Сумісні голосування", sumisne_holosuvannia_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Про проект", about_path, class: "nav-link"  %>
+            </li>
+          </ul>
+          <%= form_tag(search_path, method: "get", class: "form-inline mt-2 mt-md-0", id: "search-top" ) do  %>
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <%= text_field_tag(:query, params[:query] , class: "form-control mr-sm-2" , placeholder: "Пошук" ) %>
+          <% end %>
+        </div>
+      </nav>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><%= link_to "Депутати", people_path %></li>
-        <li><%= link_to "Голосування", divisions_path %></li>
-        <li><%= link_to "Сумісні голосування", sumisne_holosuvannia_path, class: "sumisne-holosuvannia" %></li>
-        <li><%= link_to "Про проект", about_path, class: "navlink-about"  %></li>
-      </ul>
-      <%= form_tag(search_path, method: "get", class: "navbar-form navbar-right" ) do  %>
-        <div class="input-group">
-          <%= label_tag(:query, "Пошук Вони голосують для тебе", class: "sr-only") %>
-          <%= text_field_tag(:query, params[:query] , class: "form-control input-sm" , placeholder: "Пошук" ) %>
-          <div class="input-group-btn">
-            <button class="btn btn-default input-sm" name="button" type="submit" value="Submit">
-              <span class="sr-only">Відправити</span>
-              <span class="glyphicon glyphicon-search"></span>
-            </button>
+      <div id="info" class="row">
+        <div class="col-12">
+          <div class="col-2 update-data pull-right pull-2">
+                        <span class="fa-stack">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                        </span>
+            <p class="text-uppercase">Оновлення даних</p>
+            <p><%= last_update_rada %></p>
+          </div>
+          <div class="col-2 rada-date pull-right push-2">
+                        <span class="fa-stack">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                        </span>
+            <p class="text-uppercase">Засідання облради</p>
+            <p><%= last_sessions_rada() %></p>
           </div>
         </div>
-      <% end %>
-      <ul class="nav navbar-nav navbar-right">
-
-        <!--&lt;!&ndash;<li><a href="#">Link</a></li>&ndash;&gt;-->
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-<div class="content">
-  <%= yield %>
-</div>
-<div class="jumbotron footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-6">
-        <p class="lead">
-          Проект Громадянської мережі
-          <%= link_to "ОПОРА", "http://oporaua.org", target: "_blank"  %>
-        </p>
       </div>
-      <div class="col-xs-6">
-        <ul class="nav navbar-nav">
-          <li><%= link_to "Про проект", about_path, class: "btn btn-link" %></li>
-          <li><%= link_to "Допомога/FAQ", help_faq_path, class: "btn btn-link" %></li>
-          <li><%= link_to "API", help_data_path, class: "btn btn-link" %></li>
-        </ul>
+      <div style="clear: both;"></div>
+      <div class="col-8 offset-2">
+        <div class="col-12">
+          <p class="text-uppercase text-center text-q">Як депутати голосують за питання, які важливі для тебе?</p>
+        </div>
+        <div class="col-12">
+          <%= form_tag(search_path, method: "get", class: "form-inline mt-2 mt-md-0", id: "search-main" ) do  %>
+                        <span class="fa-stack">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-search fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                        </span>
+            <%= text_field_tag(:query, params[:query] , class: "form-control mr-sm-2" , placeholder: "напр., Адамик Петро Михайлович" ) %>
+            <i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i>
+          <% end %>
+        </div>
+      </div>
+
+    </header>
+
+  <%= yield %>
+<footer>
+  <div class="container">
+    <div class="col-12"><p class="text-uppercase text-center title">Проект Громадянської мережі <%= link_to "ОПОРА", "http://oporaua.org", target: "_blank"  %></p></div>
+    <div class="row">
+      <div class="col-md-4 col-lg-4 col-xs-4">Усі дані та програмне забезпечення надаються з <%= link_to  "відкритим вихідним кодом та є вільними для поширення", help_licencing_path %></div>
+      <div class="col-md-4 col-lg-4 col-xs-4">
+                    <span class="fa-stack fa-2x">
+                        <a href="https://facebook.com/DorogiDeputaty"><i class="fa fa-circle-thin fa-stack-2x"></i>
+                          <i class="fa fa-facebook fa-stack-1x fa-inverse" aria-hidden="true"></i></a>
+                    </span>
+        <span class="fa-stack fa-2x">
+                        <a href="https://twitter.com/rada4you"><i class="fa fa-circle-thin fa-stack-2x"></i>
+                          <i class="fa fa-twitter fa-stack-1x fa-inverse" aria-hidden="true"></i></a>
+                    </span>
+        <span class="fa-stack fa-2x">
+                        <a href="mailto:info@opora.org.ua"><i class="fa fa-circle-thin fa-stack-2x"></i>
+                          <i class="fa fa-envelope fa-stack-1x fa-inverse" aria-hidden="true"></i></a>
+                    </span>
+
+      </div>
+      <div class="col-md-4 col-lg-4 col-xs-4 text-uppercase">
+        <p><%= link_to "API", help_data_path, rel: "nofollow"  %></p>
+        <p><%= link_to "Поширені питання", help_faq_path, rel: "nofollow" %></p>
       </div>
     </div>
-    <ul class="author-media list-inline">
-      <li class="email">
-        <a href="mailto:info@opora.org.ua"><i class="fi-mail"></i>
-          Контакти
-        </a></li>
-      <li class="twitter">
-        <a href="https://twitter.com/rada4you"><i class="fi-social-twitter"></i>
-          Twitter
-        </a></li>
-      <li class="facebook">
-        <a href="https://facebook.com/DorogiDeputaty"><i class="fi-social-facebook"></i>
-          facebook
-        </a></li>
-    </ul>
-    <ul class="list-inline">
-      <li>Усі дані та програмне забезпечення надаються з <%= link_to  "відкритим вихідним кодом та є вільними для поширення", help_licencing_path %></li>
-      <li>
-       <a href="https://github.com/OPORA/publicwhip-lviv/issues/" title="Повідомити про проблему чи запропонувати ідею">Повідомити про проблему</a>
-      </li>
-    </ul>
-    <p class="small">
-
-
-    </p>
   </div>
-</div>
 
-<%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', integrity: "sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa", crossorigin: "anonymous" %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -1,29 +1,72 @@
 <% content_for :title, "Вони голосують для тебе — Як Голосує Твій Депутат?" %>
-<div class="jumbotron">
-  <div class="container">
+<div id="first-block" class="container">
+  <div class="col-12"><h3 class="text-uppercase text-center background-line">Останні голосування обради</h3></div>
+  <% @last_division.each_with_index do |d, i| %>
+    <% if i == 0 or i == 2  %>
     <div class="row">
-      <h1 class="banner-heading">
-        Як депутати голосують за питання, які важливі для тебе?
-      </h1>
-    </div>
-
-    <div class="row">
-      <p class="text-center">Знайди свого депутата за ім’ям</p>
-    </div>
-    <div class="row">
-      <div class="col-xs-6 col-xs-offset-3">
-        <%= form_tag(search_mp_path, method: "get", ) do  %>
-            <div class="input-group">
-              <%= select_tag(:mp, options_for_select(@mps), :include_blank => 'наприклад: Садовий Андрій Іванович', "data-live-search": true , "data-width":"auto", class: "selectpicker") %>
-              <span class="input-group-btn">
-                  <%= submit_tag("Пошук", class: "btn btn-primary") %>
-              </span>
-            </div>
+    <% end %>
+      <div class="col-6">
+        <%= link_to divisions_show_path(d.date, d.number), class: "" do %>
+        <div class="col-12 card <%= i == 0 ? "border-active" : "" %>">
+          <div class="col-4 text-uppercase">
+            <p class="approve"><i class="fa <%=  d.result == "Прийнято" ? "fa-check-circle" : "fa-times-circle"  %>" aria-hidden="true"></i> <%= d.result %></p>
+            <p class="card-date"><%= d.date.strftime('%d.%m.%Y') %> / <%= Time.parse(d.clock_time).strftime('%H:%M') %></p>
+          </div>
+          <div class="col-12 card-text">
+            <p><%=  d.name  %></p>
+          </div>
+          <div class="row check">
+            <div class="col-4 text-uppercase float-left">
+              <p class="checkin">присутність</p>
+              <p class="card-percent"><%= fraction_to_percentage_display(d.division_info.attendance_division) %></p></div>
+            <div class="col-4 text-uppercase">
+              <p class="checkin">проти фракції</p>
+              <p class="card-percent"><%= d.division_info.rebellions %>  голосувань</p></div>
+          </div>
+        </div>
         <% end %>
       </div>
+    <% if i == 1 or i == 3  %>
     </div>
-  </div>
+    <% end %>
+  <% end %>
+  <div class="col-12"><%= link_to "<h4 class='text-uppercase text-center'>До всіх голосувань <i class='fa fa-arrow-circle-right' aria-hidden='true'></i></h4>".html_safe, divisions_path  %></div>
 </div>
-<div class="container">
 
+<div id="second-block" class="container-fluid">
+  <div class="container">
+    <div class="col-12"><h3 class="text-uppercase text-center background-line">Прогульники засідань</h3></div>
+    <% @top_mp_rebellions.each_with_index do |mp, i| %>
+      <% if i == 0 or i == 2  %>
+      <div class="row">
+      <% end %>
+        <div class="col-6">
+          <div class="col-12 card card-person <%= i == 0 ? "border-active" : "" %>">
+            <div class="row">
+              <div class="col-3">
+                <img class="card-photo" src="/image/<%= mp.deputy_id %>.png">
+              </div>
+              <div class="col-9">
+                <p class="card-name"><%= mp.full_name %></p>
+                <p class="card-fraction">Фракція "<%= mp.faction %>"</p>
+                <p class="card-elected">Обрано за списком партії з 10.2014</p>
+
+                <div class="row check">
+                  <div class="col-6 text-uppercase float-left">
+                    <p class="checkin">присутність</p>
+                    <p class="card-percent"><%= fraction_to_percentage_display(mp.mp_info.attendance_fraction) %> засідань</p></div>
+                  <div class="col-6 text-uppercase">
+                    <p class="checkin">проти фракції</p>
+                    <p class="card-percent"><%= fraction_to_percentage_display(mp.mp_info.rebellions_fraction) %> голосувань</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% if i == 1 or i == 3  %>
+      </div>
+      <% end %>
+    <% end %>
+    <div class="col-12"><%= link_to  '<h4 class="text-uppercase text-center">До відвідування засідань <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h4>'.html_safe, people_path(sort: :attendance) %></div>
+  </div>
 </div>
