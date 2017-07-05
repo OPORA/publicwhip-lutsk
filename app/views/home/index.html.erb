@@ -41,6 +41,7 @@
       <div class="row">
       <% end %>
         <div class="col-6">
+          <%= link_to show_people_path(mp.url_name), class: "" do %>
           <div class="col-12 card card-person <%= i == 0 ? "border-active" : "" %>">
             <div class="row">
               <div class="col-3">
@@ -62,6 +63,7 @@
               </div>
             </div>
           </div>
+          <% end %>
         </div>
       <% if i == 1 or i == 3  %>
       </div>
