@@ -18,10 +18,12 @@
           <div class="row check">
             <div class="col-4 text-uppercase float-left">
               <p class="checkin">присутність</p>
-              <p class="card-percent"><%= fraction_to_percentage_display(d.division_info.attendance_division) %></p></div>
+              <p class="card-percent"><%= fraction_to_percentage_display(d.division_info.attendance_division) %></p>
+            </div>
             <div class="col-4 text-uppercase">
               <p class="checkin">проти фракції</p>
-              <p class="card-percent"><%= d.division_info.rebellions %>  голосувань</p></div>
+              <p class="card-percent"><%= d.division_info.rebellions %>  голосувань</p>
+            </div>
           </div>
         </div>
         <% end %>
