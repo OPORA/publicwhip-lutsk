@@ -13,7 +13,7 @@
   <meta property="og:site_name" content="" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- Bootstrap CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
@@ -43,21 +43,12 @@
               <%= link_to "Про проект", about_path, class: "nav-link"  %>
             </li>
           </ul>
-
-            <!--
-            <%= form_tag(search_path, method: "get", class: "form-inline mt-2 mt-md-0", id: "search-top" ) do  %>
-            <i class="fa fa-search" aria-hidden="true"></i>
-            <%= text_field_tag(:query, params[:query] , class: "form-control mr-sm-2" , placeholder: "Пошук" ) %>
-          <% end %>
--->
-            <div class="button-search">
-                <i class="fa fa-search" aria-hidden="true"></i>
-                <input type="button" value="Пошук" onClick="document.location.reload(true)">
-            </div>
-
+          <div class="button-search">
+              <i class="fa fa-search" aria-hidden="true"></i>
+              <input type="button" value="Пошук" onClick="document.location.reload(true)">
+          </div>
         </div>
       </nav>
-
       <div id="info" class="row">
         <div class="col-12">
           <div class="col-2 update-data pull-right pull-2">

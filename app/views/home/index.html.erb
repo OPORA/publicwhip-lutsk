@@ -7,8 +7,7 @@
     <% end %>
       <div class="col-6">
         <%= link_to divisions_show_path(d.date, d.number), class: "" do %>
-        <!-- Вирізай <%= i == 0 ? "border-active" : "" %>" -->
-        <div class="col-12 pull-right card <%= i == 0 ? "border-active" : "" %>">
+        <div class="col-12 pull-right card">
           <div class="col-4 text-uppercase">
             <p class="approve"><i class="fa <%=  d.result == "Прийнято" ? "fa-check-circle" : "fa-times-circle"  %>" aria-hidden="true"></i> <%= d.result %></p>
             <p class="card-date"><%= d.date.strftime('%d.%m.%Y') %> / <%= Time.parse(d.clock_time).strftime('%H:%M') %></p>
