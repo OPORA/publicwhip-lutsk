@@ -20,6 +20,49 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
   <%= csrf_meta_tags %>
+  <% if controller.controller_path != "home" %>
+      <style>
+        header{
+          background: none;
+          background-color: #000;
+          height: 42px;
+          min-height: auto;
+        }
+        #logo p{
+          color: #000;
+        }
+        #logo .first-word{
+          color: #009FE2;
+        }
+        #navbarCollapse{
+          background-color: #000;
+        }
+        .navbar-inverse .navbar-nav .nav-link{
+
+          line-height: 28px;
+          font-size: 14px;
+          height: 3.51%;
+        }
+        .navbar {
+          padding: 0 0 0 15rem;
+        =        }
+        #first-block .notfound h1{
+          color: #252525;
+          font-size:24px;
+          line-height: 24px;
+        }
+        #first-block .notfound p{
+          color: #009FE2;
+          font-size:72px;
+          line-height: 150px;
+        }
+        .center-justified {
+          text-align: justify;
+          -moz-text-align-last: center;
+          text-align-last: center;
+        }
+      </style>
+  <% end %>
 </head>
 <body>
     <header class="container-fluid">
@@ -27,7 +70,9 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-         <%= link_to "<p><i class='fa fa-circle fa-stack-1x'></i><span class='first-word'>Lviv</span>.Rada4You.org</p>".html_safe, root_path, class: "navbar-brand text-uppercase logo" %>
+        <% if controller.controller_path == "home" %>
+          <%= link_to "<p><i class='fa fa-circle fa-stack-1x'></i><span class='first-word'>Lviv</span>.Rada4You.org</p>".html_safe, root_path, class: "navbar-brand text-uppercase logo" %>
+        <% end %>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
@@ -49,6 +94,7 @@
           </div>
         </div>
       </nav>
+      <% if controller.controller_path == "home" %>
       <div id="info" class="row">
         <div class="col-12">
           <div class="col-2 update-data pull-right pull-2">
@@ -70,6 +116,7 @@
         </div>
       </div>
       <div style="clear: both;"></div>
+
       <div class="col-8 offset-2">
         <div class="col-12">
           <p class="text-uppercase text-center text-q">Як депутати голосують за питання, які важливі для тебе?</p>
@@ -85,9 +132,33 @@
           <% end %>
         </div>
       </div>
+      <% end %>
 
     </header>
+    <% if controller.controller_path != "home" %>
+    <%= link_to "<p><i class='fa fa-circle fa-stack-1x'></i><span class='first-word'>Lviv</span>.Rada4You.org</p>".html_safe, root_path, class: "navbar-brand text-uppercase logo", id: "logo" %>
 
+    <div id="info" class="row">
+      <div class="col-12">
+        <div class="col-2 update-data pull-right pull-2">
+                        <span class="fa-stack">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                        </span>
+          <p class="text-uppercase">Оновлення даних</p>
+          <p><%= last_update_rada %></p>
+        </div>
+        <div class="col-2 rada-date pull-right push-2">
+                        <span class="fa-stack">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                        </span>
+          <p class="text-uppercase">Засідання облради</p>
+          <p><%= last_sessions_rada() %></p>
+        </div>
+      </div>
+    </div>
+    <% end %>
   <%= yield %>
 <footer>
   <div class="container">
