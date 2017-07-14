@@ -111,7 +111,25 @@ header{
     position: absolute;
     margin-left: 10px;
 }
+.button-search input[type=button] {
+    font-family: GothaProReg;
+    font-size: 1em;
+    padding: 6px 15px 6px 35px;
 
+    background-color: Transparent;
+    border:none;
+    cursor:pointer;
+    color: #fff;
+
+   /* overflow: hidden;
+    outline:none;*/
+}
+.button-search .fa.fa-search{
+    color: #fff;
+    position: absolute;
+    padding: 10px;
+}
+/*
 #search-top input[type="text"]{
     background: transparent;
     color: #fff;
@@ -126,7 +144,7 @@ header{
     color: #fff;
     position: absolute;
     padding: 15px;
-}
+}*/
 .fa.fa-check-circle{
 color:#88B04B;
 }
@@ -178,9 +196,12 @@ h3.background-line:before {
     min-height: 279px;
     padding: 25px;
 }
-.border-active {
+.card:hover {
     border: 3px solid #009FE2;
     border-radius: 4px;
+}
+.card a{
+    text-decoration: unset;
 }
 .check {
     padding: 15px;
@@ -226,9 +247,6 @@ h3.background-line:before {
 #second-block .check{
     padding-left: 0;
 }
-.card-person{
-
-}
 .card-name{
     color: #282828;
     font-family: GothaProMed;
@@ -241,16 +259,15 @@ h3.background-line:before {
     height: 100px;
     width: 100px;
     margin: 35px 0;
+    clip-path: circle(50px at center);
 }
 .card-fraction {
-
     color: #4A4A4A;
     font-family: GothaProReg;
     font-size: 14px;
     line-height: 16px;
 }
 .card-elected {
-
     color: #4A4A4A;
     font-family: GothaProReg;
     font-size: 10px;

@@ -43,10 +43,18 @@
               <%= link_to "Про проект", about_path, class: "nav-link"  %>
             </li>
           </ul>
-          <%= form_tag(search_path, method: "get", class: "form-inline mt-2 mt-md-0", id: "search-top" ) do  %>
+
+            <!--
+            <%= form_tag(search_path, method: "get", class: "form-inline mt-2 mt-md-0", id: "search-top" ) do  %>
             <i class="fa fa-search" aria-hidden="true"></i>
             <%= text_field_tag(:query, params[:query] , class: "form-control mr-sm-2" , placeholder: "Пошук" ) %>
           <% end %>
+-->
+            <div class="button-search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input type="button" value="Пошук" onClick="document.location.reload(true)">
+            </div>
+
         </div>
       </nav>
 

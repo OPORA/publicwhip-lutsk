@@ -7,7 +7,8 @@
     <% end %>
       <div class="col-6">
         <%= link_to divisions_show_path(d.date, d.number), class: "" do %>
-        <div class="col-12 card <%= i == 0 ? "border-active" : "" %>">
+        <!-- Вирізай <%= i == 0 ? "border-active" : "" %>" -->
+        <div class="col-12 pull-right card <%= i == 0 ? "border-active" : "" %>">
           <div class="col-4 text-uppercase">
             <p class="approve"><i class="fa <%=  d.result == "Прийнято" ? "fa-check-circle" : "fa-times-circle"  %>" aria-hidden="true"></i> <%= d.result %></p>
             <p class="card-date"><%= d.date.strftime('%d.%m.%Y') %> / <%= Time.parse(d.clock_time).strftime('%H:%M') %></p>
@@ -43,11 +44,12 @@
       <div class="row">
       <% end %>
         <div class="col-6">
-          <%= link_to show_people_path(mp.url_name), class: "" do %>
+         
           <div class="col-12 card card-person <%= i == 0 ? "border-active" : "" %>">
+          <%= link_to show_people_path(mp.url_name), class: "" do %>
             <div class="row">
               <div class="col-3">
-                <img class="card-photo" src="/image/<%= mp.deputy_id %>.png">
+                <img class="card-photo" src="/image/<%= mp.deputy_id %>.png" alt="">
               </div>
               <div class="col-9">
                 <p class="card-name"><%= mp.full_name %></p>
