@@ -326,6 +326,8 @@ h3.background-line:before {
     height: 100px;
     width: 100px;
     margin: 35px 0;
+    clip-path: circle(50px at center);
+}
 }
 .card-fraction {
     color: #4A4A4A;
