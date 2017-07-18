@@ -1,24 +1,24 @@
 /*700 bold*/
 @font-face {
     font-family: GothaProBol;
-    src: url(../fonts/GothaProBol.otf);
+    src: url(GothaProBol.otf);
     font-weight: bold;
     font-style: normal;}
 @font-face {
     font-family: GothaProIta;
-    src: url(../fonts/GothaProIta.otf);
+    src: url(GothaProIta.otf);
     font-weight: 300;
     font-style: italic;}
 /*500 medium*/
 @font-face {
     font-family: GothaProMed;
-    src: url(../fonts/GothaProMed.otf);
+    src: url(GothaProMed.otf);
     font-weight: 500;
     font-style: normal;}
 /*300 normal*/
 @font-face {
     font-family: GothaProReg;
-    src: url(../fonts/GothaProReg.otf);
+    src: url(GothaProReg.otf);
     font-weight: 300;
     font-style: normal;}
 
@@ -43,7 +43,7 @@ body{
     font-family: GothaProReg;
 }
 header{
-    background: url(../images/fon_home.png) no-repeat center center fixed;
+    background: url(fon_home.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
