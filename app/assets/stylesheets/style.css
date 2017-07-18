@@ -1,23 +1,49 @@
-@font-face { font-family: GothaProBla; src: url(GothaProBla.otf);}
-/*700*/
-@font-face { font-family: GothaProBlaIta; src: url(GothaProBlaIta.otf);  }
-@font-face { font-family: GothaProBol; src: url(GothaProBol.otf);}
-@font-face { font-family: GothaProBolIta; src: url(GothaProBolIta.otf);}
-@font-face { font-family: GothaProIta; src: url(GothaProIta.otf);}
-@font-face { font-family: GothaProLig; src: url(GothaProLig.otf);}
-@font-face { font-family: GothaProLigIta; src: url(GothaProLigIta.otf);}
-@font-face { font-family: GothaProMed; src: url(GothaProMed.otf);}
-/*500*/
-@font-face { font-family: GothaProMedIta; src: url(GothaProMedIta.otf);}
-@font-face { font-family: GothaProNarBol; src: url(GothaProNarBol.otf);}
-@font-face { font-family: GothaProNarMed; src: url(GothaProNarMed.otf);}
-@font-face { font-family: GothaProReg; src: url(GothaProReg.otf);}
+/*700 bold*/
+@font-face {
+    font-family: GothaProBol;
+    src: url(../fonts/GothaProBol.otf);
+    font-weight: bold;
+    font-style: normal;}
+@font-face {
+    font-family: GothaProIta;
+    src: url(../fonts/GothaProIta.otf);
+    font-weight: 300;
+    font-style: italic;}
+/*500 medium*/
+@font-face {
+    font-family: GothaProMed;
+    src: url(../fonts/GothaProMed.otf);
+    font-weight: 500;
+    font-style: normal;}
+/*300 normal*/
+@font-face {
+    font-family: GothaProReg;
+    src: url(../fonts/GothaProReg.otf);
+    font-weight: 300;
+    font-style: normal;}
+
+
+/*@font-face { font-family: GothaProBla; src: url(../fonts/GothaProBla.otf);}
+@font-face { font-family: GothaProBlaIta; src: url(../fonts/GothaProBlaIta.otf);  }
+@font-face { font-family: GothaProBolIta; src: url(../fonts/GothaProBolIta.otf);}
+@font-face {    font-family: GothaProLig;
+    src: url(../fonts/GothaProLig.otf);
+    font-weight: 300;
+    font-style: normal;}
+@font-face {
+    font-family: GothaProLigIta;
+    src: url(../fonts/GothaProLigIta.otf);
+    font-weight: 300;
+    font-style: normal;}
+@font-face { font-family: GothaProMedIta; src: url(../fonts/GothaProMedIta.otf);}
+@font-face { font-family: GothaProNarBol; src: url(../fonts/GothaProNarBol.otf);}
+@font-face { font-family: GothaProNarMed; src: url(../fonts/GothaProNarMed.otf);}*/
 
 body{
     font-family: GothaProReg;
 }
 header{
-    background: url(fon_home.png) no-repeat center center fixed;
+    background: url(../images/fon_home.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -27,13 +53,13 @@ header{
     color:#fff;
     margin-bottom: 75px;
 }
-.logo {
+.logo p{
     height: 20px;
-    /*width: 230px;*/
-    color: #009FE2;
+    color: #fff;
     font-family: GothaProBol;
     font-size: 20px;
     line-height: 20px;
+    padding-top: 7px;
 }
 .logo .first-word, .logo i, #search-main .fa.fa-circle, #info .fa.fa-circle, .fa.fa-arrow-circle-right{
     color: #009FE2;
@@ -45,15 +71,11 @@ header{
 /*#navbarCollapse{
     padding-top: .25rem;
 }*/
-.navbar-inverse .navbar-nav .nav-link{
-    padding-left: 4.5rem;
-    line-height: 21px;
-    font-size: 1em;
-    color: #fff;
-}
-.navbar-inverse .navbar-nav .nav-link:hover{
-    font-weight: bold;
-    color: #fff;
+.navbar-nav > li > a{
+    padding-left: 49px !important;
+    line-height: 28px;
+    font-size: 14px;
+    color: #fff!important;
 }
 .navbar{
     padding: 1.5rem 1rem;
@@ -66,8 +88,11 @@ header{
 }
 #info .update-data, #info .rada-date{
     font-family: GothaProReg;
-    font-size: 0.7em;
-    line-height: 1em;
+    font-size: 10px;
+    line-height: 10px;
+    /*width: 110px;*/
+    height: 10px;
+
 }
 #info  .fa-stack {
     float: left;
@@ -77,28 +102,41 @@ header{
 }
 
 #info div > div :nth-child(3){
-    font-family: GothaProBla;
-    /*font-size: 0.8em;*/
-    font-weight: 700;
+
+    font-family: GothaProMed;
+    height: 12px;
+    width: 117px;
+    font-size: 12px;
+    font-weight: 500;
     line-height: 12px;
+
 }
 .text-q{
-    font-family: GothaProBla;
-    font-size: 2em;
+    font-family: GothaProBol;
     margin-bottom: 2em;
+    height: 68px;
+    width: 598px;
+    color: #FFFFFF;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 34px;
+    text-align: center;
 }
 #search-main input[type="text"] {
     border: none;
-    font: italic 1em GothaProIta;
-    color: #bebebe;
-    width: 100%;
-    padding: 6px 15px 6px 65px;
+    padding: 11px 15px 10px 65px;
 
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px;
 
-    line-height: 50px;
+    width: 723px;
+    color: #282828;
+    font-family: GothaProIta;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 28px;
 }
 
 #search-main .arrow-icon{
@@ -113,7 +151,9 @@ header{
 }
 .button-search input[type=button] {
     font-family: GothaProReg;
-    font-size: 1em;
+    font-size: 14px;
+    line-height: 21px;
+
     padding: 6px 15px 6px 35px;
 
     background-color: Transparent;
@@ -121,13 +161,14 @@ header{
     cursor:pointer;
     color: #fff;
 
-   /* overflow: hidden;
-    outline:none;*/
+    /* overflow: hidden;
+     outline:none;*/
 }
 .button-search .fa.fa-search{
     color: #fff;
     position: absolute;
     padding: 10px;
+    font-size: 13px;
 }
 /*
 #search-top input[type="text"]{
@@ -135,7 +176,9 @@ header{
     color: #fff;
     border: none;
     padding: 6px 15px 6px 35px;
-    font-size: 1em;
+    font-size: 14px;
+    line-height: 21px;
+    font-family: GothaProReg;
 }
 #search-top input::placeholder{
     color: #fff;
@@ -144,7 +187,9 @@ header{
     color: #fff;
     position: absolute;
     padding: 15px;
-}*/
+    font-size: 13px;
+}
+*/
 .fa.fa-check-circle{
 color:#88B04B;
 }
@@ -169,12 +214,17 @@ color:#FE6162;
     margin-bottom: 5rem;
 }
 #first-block h4, #second-block h4{
+    height: 18px;
     color: #4A4A4A;
     font-family: GothaProMed;
     font-size: 11px;
     font-weight: 500;
     line-height: 18px;
     padding-top: 50px;
+}
+#first-block h4 > i , #second-block h4 > i{
+    font-size: 18px;
+    margin-left: 11px;
 }
 h3.background-line {
     position: relative;
@@ -206,6 +256,9 @@ h3.background-line:before {
 .check {
     padding: 15px;
 }
+.check > div:nth-child(2){
+    border-left: 1px solid #D8D8D8;
+}
 .approve {
     color: #282828;
     font-family: GothaProMed;
@@ -213,11 +266,22 @@ h3.background-line:before {
     font-weight: 500;
     line-height: 10px;
 }
+.card p{
+    margin: 0;
+}
+.card i{
+    float: left;
+    margin-right: 14px;
+    margin-bottom: 20px;
+
+}
 .card-date {
     color: #949393;
     font-family: GothaProReg;
     font-size: 12px;
     line-height: 12px;
+    width: 108px;
+    margin-bottom: 20px !important;
 }
 .card-text {
     color: #282828;
@@ -225,7 +289,9 @@ h3.background-line:before {
     font-size: 16px;
     font-weight: 500;
     line-height: 22px;
+    margin-bottom: 37px;
 }
+.card-text p::first-letter { text-transform: capitalize !important; }
 .checkin {
     color: #949393;
     font-family: GothaProReg;
@@ -238,6 +304,7 @@ h3.background-line:before {
     font-size: 12px;
     font-weight: 500;
     line-height: 12px;
+    width: 106px;
 }
 #second-block{
     padding-top: 50px;
@@ -259,7 +326,6 @@ h3.background-line:before {
     height: 100px;
     width: 100px;
     margin: 35px 0;
-    clip-path: circle(50px at center);
 }
 .card-fraction {
     color: #4A4A4A;
@@ -283,17 +349,34 @@ footer {
     border-top: 15px solid #949393;
 }
 footer .title{
+    text-transform: capitalize;
     font-family: GothaProReg;
     font-size: 14px;
     line-height: 20px;
     padding-top: 16px;
     color:#fff;
 }
-footer a{
+footer div [class*="row"] p a{
     color: #D4D6D9;
+    font-size: 11px;
+    line-height: 11px;
+    height: 11px;
+    width: 20px;
 }
 footer > div [class*="row"]{
     padding-top: 40px;
+}
+footer > div [class*="row"] p{
+    height: 42px;
+    width: 228px;
+    color: #D4D6D9;
+    font-family: GothaProReg;
+    font-size: 12px;
+    line-height: 14px;
+}
+footer > div [class*="row"] span {
+    height: 40px;
+    width: 40px;
 }
 footer span+span{
     margin-left: 16.666667%;
