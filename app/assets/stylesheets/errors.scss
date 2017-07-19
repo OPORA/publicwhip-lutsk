@@ -1,0 +1,54 @@
+// Place all the styles related to the errors controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+//header{
+//  background: none;
+//  background-color: #000;
+//  height: 42px;
+//  min-height: auto;
+//}
+//#logo p{
+//  color: #282828;
+//}
+//#logo .first-word{
+//  color: #009FE2;
+//}
+//#navbarCollapse{
+//  background-color: #000;
+//}
+//.navbar-inverse .navbar-nav .nav-link{
+//  line-height: 28px;
+//  font-size: 14px;
+//  height: 3.51%;
+//}
+//.navbar {
+//  padding: 0 0 0 15rem;
+//}
+#first-block .notfound h1{
+  color: #252525;
+  font-size:24px;
+  line-height: 24px;
+  font-family: GothaProBol;
+}
+#first-block .notfound p{
+  color: #009FE2;
+  font-size:72px;
+  line-height: 150px;
+  font-family: GothaProMed;
+}
+#first-block .errors h1{
+  color: #252525;
+  font-size:24px;
+  line-height: 24px;
+  font-family: GothaProBol;
+  padding-top: 80px;
+  padding-bottom: 35px;
+}
+#first-block .errors p{
+  font-size:18px;
+  line-height: 28px;
+  font-family: GothaProMed;
+}
+#first-block.container.center-justified {
+  padding-top: 150px;
+}
