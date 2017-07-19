@@ -45,21 +45,27 @@
         }
         .navbar {
           padding: 0 0 0 15rem;
+        =
         }
         #first-block .notfound h1{
+
           color: #252525;
           font-size:24px;
           line-height: 24px;
+          font-family: GothaProBol;
         }
-        #first-block .notfound p{
-          color: #009FE2;
-          font-size:72px;
-          line-height: 150px;
+        .fa-inverse {
+          color: #E5E5E5;
+          font-size: 12px;
+        }
+        .update-data p:nth-child(2), .rada-date p:nth-child(2){
+          color: #949393;
         }
       </style>
   <% end %>
 </head>
 <body>
+    <% unless request.path == "/500" %>
     <header class="container-fluid">
       <nav class="navbar navbar-toggleable-md navbar-light mb-4">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -131,30 +137,31 @@
 
     </header>
     <% if controller.controller_path != "home" %>
-    <%= link_to "<p><i class='fa fa-circle fa-stack-1x'></i><span class='first-word'>Lviv</span>.Rada4You.org</p>".html_safe, root_path, class: "navbar-brand text-uppercase logo", id: "logo" %>
-
-    <div id="info" class="row">
-      <div class="col-12">
-        <div class="col-2 update-data pull-right pull-2">
+        <div id="info" class="row">
+          <div class="col-12">
+            <%= link_to "<p><i class='fa fa-circle fa-stack-1x'></i><span class='first-word'>Lviv</span>.Rada4You.org</p>".html_safe, root_path, class: "col-4 navbar-brand text-uppercase logo", id: "logo" %>
+            <% if controller.controller_path != "errors" %>
+            <div class="col-3 update-data pull-right pull-3">
                         <span class="fa-stack">
-                            <i class="fa fa-circle fa-stack-2x"></i>
                             <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
                         </span>
-          <p class="text-uppercase">Оновлення даних</p>
-          <p><%= last_update_rada %></p>
-        </div>
-        <div class="col-2 rada-date pull-right push-2">
+              <p class="text-uppercase">Оновлення даних</p>
+              <p><%= last_update_rada %></p>
+            </div>
+            <div class="col-3 rada-date pull-right push-3">
                         <span class="fa-stack">
-                            <i class="fa fa-circle fa-stack-2x"></i>
                             <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
                         </span>
-          <p class="text-uppercase">Засідання облради</p>
-          <p><%= last_sessions_rada() %></p>
+              <p class="text-uppercase">Засідання облради</p>
+              <p><%= last_sessions_rada() %></p>
+            </div>
+            <% end %>
+          </div>
         </div>
-      </div>
-    </div>
+    <% end %>
     <% end %>
   <%= yield %>
+<% unless request.path == "/500" %>
 <footer>
   <div class="container">
     <div class="col-12"><p class="text-uppercase text-center title">Проект Громадянської мережі <%= link_to "ОПОРА", "http://oporaua.org", target: "_blank"  %></p></div>
@@ -183,7 +190,7 @@
   </div>
 
 </footer>
-
+<% end %>
     <!-- Modal search -->
     <div id="ModalSearch" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -210,8 +217,6 @@
             </div>
         </div>
     </div>
-
-
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>

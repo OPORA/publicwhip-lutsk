@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'errors/not_found'
+
+  get 'errors/unacceptable'
+
+  get 'errors/internal_error'
+
   get 'sumisne-holosuvannia' => 'sumisne_holosuvannia#init', as: :sumisne_holosuvannia
   get 'sumisne-holosuvannia/api' => 'sumisne_holosuvannia#api', as: :sumisne_holosuvannia_api
 
@@ -21,6 +27,10 @@ Rails.application.routes.draw do
   get 'search_mp' => 'home#search_mp', as: :search_mp
   get 'search' => 'home#search', as: :search
   get 'home/index'
+  get "/404", :to => "errors#not_found"
+  get "/422", :to => "errors#unacceptable"
+  get "/500", :to => "errors#internal_error"
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
