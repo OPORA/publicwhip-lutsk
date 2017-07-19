@@ -45,7 +45,7 @@
         }
         .navbar {
           padding: 0 0 0 15rem;
-        =        }
+        }
         #first-block .notfound h1{
           color: #252525;
           font-size:24px;
@@ -56,17 +56,12 @@
           font-size:72px;
           line-height: 150px;
         }
-        .center-justified {
-          text-align: justify;
-          -moz-text-align-last: center;
-          text-align-last: center;
-        }
       </style>
   <% end %>
 </head>
 <body>
     <header class="container-fluid">
-      <nav class="navbar navbar-toggleable-md navbar-inverse mb-4">
+      <nav class="navbar navbar-toggleable-md navbar-light mb-4">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -90,7 +85,7 @@
           </ul>
           <div class="button-search">
               <i class="fa fa-search" aria-hidden="true"></i>
-              <input type="button" value="Пошук" onClick="document.location.reload(true)">
+              <input type="button" value="Пошук" class="btn btn-primary" data-toggle="modal" data-target="#ModalSearch" >
           </div>
         </div>
       </nav>
@@ -188,6 +183,37 @@
   </div>
 
 </footer>
+
+    <!-- Modal search -->
+    <div id="ModalSearch" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <a id="logo" class="col-4 navbar-brand text-uppercase logo" href="#">
+                            <p><i class="fa fa-circle fa-stack-1x"></i>
+                                <span class="first-word">Lviv</span>.Rada4You.org</p>
+                        </a>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span>Пошук по сайту</span>
+
+                    <form>
+                        <input type="search" placeholder="Уведіть пошуковий запит">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
