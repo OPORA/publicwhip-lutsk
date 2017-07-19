@@ -1,24 +1,60 @@
 /*700 bold*/
 @font-face {
     font-family: GothaProBol;
-    src: url(GothaProBol.otf);
+    /*src: url(../fonts/GothaProBol.otf);*/
+
+    src: url('GothamProBold/GothamProBold.eot'); /* IE9 Compat Modes */
+    src: url('GothamProBold/GothamProBold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('GothamProBold/GothamProBold.woff') format('woff'), /* Modern Browsers */
+    url('GothamProBold/GothamProBold.ttf')  format('truetype'); /* Safari, Android, iOS */
+
     font-weight: bold;
-    font-style: normal;}
+    font-style: normal;
+}
+@font-face {
+    font-family: GothaProLight;
+    /*src: url(../fonts/GothaProIta.otf);*/
+
+    src: url('GothamProLight/GothamProLight.eot'); /* IE9 Compat Modes */
+    src: url('GothamProLight/GothamProLight.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('GothamProLight/GothamProLight.woff') format('woff'), /* Modern Browsers */
+    url('GothamProLight/GothamProLight.ttf')  format('truetype'); /* Safari, Android, iOS */
+
+    font-weight: 300;
+    font-style: italic;}
 @font-face {
     font-family: GothaProIta;
-    src: url(GothaProIta.otf);
+    /*src: url(../fonts/GothaProIta.otf);*/
+
+    src: url('GothamProLightItalic/GothamProLightItalic.eot'); /* IE9 Compat Modes */
+    src: url('GothamProLightItalic/GothamProLightItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('GothamProLightItalic/GothamProLightItalic.woff') format('woff'), /* Modern Browsers */
+    url('GothamProLightItalic/GothamProLightItalic.ttf')  format('truetype'); /* Safari, Android, iOS */
+
     font-weight: 300;
     font-style: italic;}
 /*500 medium*/
 @font-face {
     font-family: GothaProMed;
-    src: url(GothaProMed.otf);
+    /*src: url(../fonts/GothaProMed.otf);*/
+
+    src: url('GothamProMedium/GothamProMedium.eot'); /* IE9 Compat Modes */
+    src: url('GothamProMedium/GothamProMedium.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('GothamProMedium/GothamProMedium.woff') format('woff'), /* Modern Browsers */
+    url('fonts/GothamProMedium.ttf')  format('truetype'); /* Safari, Android, iOS */
+
     font-weight: 500;
     font-style: normal;}
 /*300 normal*/
 @font-face {
     font-family: GothaProReg;
-    src: url(GothaProReg.otf);
+    /*src: url(../fonts/GothaProReg.otf);*/
+
+    src: url('GothamProRegular/GothamProRegular.eot'); /* IE9 Compat Modes */
+    src: url('GothamProRegular/GothamProRegular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('GothamProRegular/GothamProRegular.woff') format('woff'), /* Modern Browsers */
+    url('GothamProRegular/GothamProRegular.ttf')  format('truetype'); /* Safari, Android, iOS */
+
     font-weight: 300;
     font-style: normal;}
 
@@ -41,6 +77,11 @@
 
 body{
     font-family: GothaProReg;
+}
+.center-justified {
+    text-align: justify;
+    -moz-text-align-last: center;
+    text-align-last: center;
 }
 header{
     background: url(fon_home.png) no-repeat center center fixed;
@@ -102,20 +143,18 @@ header{
 }
 
 #info div > div :nth-child(3){
-
     font-family: GothaProMed;
     height: 12px;
-    width: 117px;
+    /*width: 117px;*/
     font-size: 12px;
     font-weight: 500;
     line-height: 12px;
-
 }
 .text-q{
     font-family: GothaProBol;
     margin-bottom: 2em;
     height: 68px;
-    width: 598px;
+    /*width: 598px;*/
     color: #FFFFFF;
     font-size: 30px;
     font-weight: bold;
@@ -125,12 +164,10 @@ header{
 #search-main input[type="text"] {
     border: none;
     padding: 11px 15px 10px 65px;
-
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px;
-
-    width: 723px;
+    width: 100%;
     color: #282828;
     font-family: GothaProIta;
     font-size: 18px;
@@ -153,14 +190,11 @@ header{
     font-family: GothaProReg;
     font-size: 14px;
     line-height: 21px;
-
     padding: 6px 15px 6px 35px;
-
     background-color: Transparent;
     border:none;
     cursor:pointer;
     color: #fff;
-
     /* overflow: hidden;
      outline:none;*/
 }
@@ -191,11 +225,11 @@ header{
 }
 */
 .fa.fa-check-circle{
-color:#88B04B;
+    color:#88B04B;
 }
 
 .fa.fa-times-circle{
-color:#FE6162;
+    color:#FE6162;
 }
 .no-padding > [class*="col-"] {
     padding-left: 0 !important;
@@ -327,7 +361,6 @@ h3.background-line:before {
     width: 100px;
     margin: 35px 0;
     clip-path: circle(50px at center);
-}
 }
 .card-fraction {
     color: #4A4A4A;
