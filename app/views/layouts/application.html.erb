@@ -16,7 +16,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- Bootstrap CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 
   <%= csrf_meta_tags %>
@@ -96,55 +96,31 @@
         </div>
       </nav>
       <% if controller.controller_path == "home" %>
-      <div id="info" class="row">
-        <div class="col-12">
-          <div class="col-2 update-data pull-right pull-2">
-                        <span class="fa-stack">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
-                        </span>
-            <p class="text-uppercase">Оновлення даних</p>
-            <p><%= last_update_rada %></p>
+        <div id="info" class="row">
+          <div class="col-12">
+            <div class="col-2 update-data pull-right pull-2">
+                          <span class="fa-stack">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                          </span>
+              <p class="text-uppercase">Оновлення даних</p>
+              <p><%= last_update_rada %></p>
+            </div>
+            <div class="col-2 rada-date pull-right push-2">
+                          <span class="fa-stack">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                          </span>
+              <p class="text-uppercase">Засідання облради</p>
+              <p><%= last_sessions_rada() %></p>
+            </div>
           </div>
-          <div class="col-2 rada-date pull-right push-2">
-                        <span class="fa-stack">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
-                        </span>
-            <p class="text-uppercase">Засідання облради</p>
-            <p><%= last_sessions_rada() %></p>
-          </div>
         </div>
-      </div>
-      <div style="clear: both;"></div>
-
-      <div class="col-8 offset-2">
-        <div class="col-12">
-          <p class="text-uppercase text-center text-q">Як депутати голосують за питання, які важливі для тебе?</p>
-        </div>
-        <div class="col-12">
-          <%= form_tag(search_path, method: "get", class: "form-inline mt-2 mt-md-0", id: "search-main" ) do  %>
-                        <span class="fa-stack">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-search fa-stack-1x fa-inverse" aria-hidden="true"></i>
-                        </span>
-            <%= text_field_tag(:query, params[:query] , class: "form-control mr-sm-2" , placeholder: "напр., Адамик Петро Михайлович" ) %>
-            <i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i>
-          <% end %>
-          <%= form_tag(search_mp_path, method: "get", ) do  %>
-              <div class="input-group">
-                <%= select_tag(:mp, options_for_select(@mps), :include_blank => 'наприклад: Садовий Андрій Іванович', "data-live-search": true , "data-width":"auto", class: "selectpicker") %>
-                <span class="input-group-btn">
-                  <%= submit_tag("Пошук", class: "btn btn-primary") %>
-              </span>
-              </div>
-          <% end %>
-        </div>
-      </div>
+        <div style="clear: both;"></div>
       <% end %>
 
-    </header>
     <% if controller.controller_path != "home" %>
+          </header>
         <div id="info" class="row">
           <div class="col-12">
             <%= link_to "<p><i class='fa fa-circle fa-stack-1x'></i><span class='first-word'>Lviv</span>.Rada4You.org</p>".html_safe, root_path, class: "col-4 navbar-brand text-uppercase logo", id: "logo" %>
@@ -226,5 +202,6 @@
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 </body>
 </html>
