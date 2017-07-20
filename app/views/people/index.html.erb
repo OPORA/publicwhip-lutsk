@@ -1,3 +1,18 @@
+<style>
+  /*депутати*/
+  #search-main input[type="text"] {
+    background-color: #F5F5F5;
+    margin: 50px 0 80px 0;
+  }
+  #search-main .fa-inverse{
+    color:#282828;
+    top: -13px;
+  }
+  #search-main .arrow-icon{
+    top: 65px;
+  }
+</style>
+
 <% content_for :title, "Депутати — Як Голосує Твій Депутат?" %>
 
 <div id="first-block" class="container people">
@@ -15,22 +30,6 @@
   </div>
 
   <div class="list-filters clearfix">
-    <!-- Старий код можна делейт
-
-    <div class="dropdown clearfix list-sorter">
-      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        Сортувати за <%= sort_text %>
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <li <%= params[:sort].nil? ? "class=disabled": "" %> ><%= link_to "Ім'ям", people_path() %></li>
-        <li <%= params[:sort] == "faction" ? "class=disabled": "" %> ><%= link_to "Фракцією", people_path(sort: :faction) %></li>
-        <li <%= params[:sort] == "distric" ? "class=disabled": "" %> ><%= link_to "Округом", people_path(sort: :distric) %></li>
-        <li <%= params[:sort] == "rebellions" ? "class=disabled": "" %> ><%= link_to "Дотриманням фракційної дисципліни", people_path(sort: :rebellions) %></li>
-        <li <%= params[:sort] == "attendance" ? "class=disabled": "" %> ><%= link_to "Присутністю", people_path(sort: :attendance) %></li>
-      </ul>
-    </div>-->
-
     <ul class="sort-first text-uppercase">
       <li <%= params[:sort].nil? ? "class=disabled": "" %> ><%= link_to "За прізвищем", people_path() %></li>
       <li <%= params[:sort] == "faction" ? "class=disabled": "" %> ><%= link_to "Фракцією", people_path(sort: :faction) %></li>
@@ -51,7 +50,7 @@
     <% end %>
 
     <% if params[:sort] == "faction" %>
-      <ul class="faction">
+      <ul class="sort-fraction">
         <li class="active-fon-fraction"><a href="">Блок Петра Порошенка</a> </li>
         <li><a href="">фывфывфывфыва</a> </li>
         <li><a href="">фывфывфывфыва</a> </li>
@@ -61,7 +60,14 @@
     <% end %>
 
     <% if params[:sort] == "distric" %>
-    ...
+      <ul class="sort-distric">
+        <li class="active-fon-circle">
+          <a href="">1</a></li>
+        <li class="">
+          <a href="">2</a></li>
+        <li class="">
+          <a href="">3</a></li>
+      </ul>
     <% end %>
 
     <% if params[:sort] == "rebellions" %>
@@ -72,26 +78,6 @@
     ...
     <% end %>
   </div>
-
-<!--
-  <div class="list-group">
-    <% @mps.each do |m| %>
-        <%= link_to show_people_path(m.url_name), class: "list-group-item" do %>
-        <div class="media">
-          <div class="media-left media-middle">
-              <img class="media-object " src="/image/<%= m.deputy_id %>.png" alt="<%=  m.full_name  %>" height="115">
-          </div>
-          <div class="media-body">
-            <h2 class="media-heading"><%=  m.full_name  %></h2>
-            <p><%= member_role(m.faction, m.okrug) %></p>
-            <p class="object-secondary"><span>Проти фракції у <%= fraction_to_percentage_display(m.mp_info.rebellions_fraction) %> випадків</span>
-            <span class="member-attendance"><%= fraction_to_percentage_display(m.mp_info.attendance_fraction) %> Присутність</span></p>
-          </div>
-        </div>
-        <% end %>
-    <% end %>
-  </div>
--->
 
 
   <% @mps.each do |m, i| %>
@@ -133,10 +119,3 @@
 
 
 </div>
-
-
-<style>
-  .card-elected{
-
-  }
-</style>
