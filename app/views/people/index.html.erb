@@ -20,6 +20,7 @@
   }
 </style>
 <script>
+  //slider range
     window.onload = function() {
         $( "#slider-range" ).slider({
             range: true,
@@ -52,6 +53,17 @@
 
         });
     };
+    //search
+    window.onload = function() {
+        var availableTags = [
+            <% @mps.each do |m| %>
+            "<%= m.full_name %>",
+            <% end %>
+        ];
+        $( "#mp" ).autocomplete({
+            source: availableTags
+        });
+    };
 </script>
 
 <% content_for :title, "Депутати — Як Голосує Твій Депутат?" %>
@@ -61,13 +73,20 @@
   <h1 class="text-uppercase center-justified">Депутати львівської облради</h1>
 
   <div class="col-12">
-    <form class="col-8 form-inline mt-2 mt-md-0 push-2" method="get" action="/search" id="search-main" >
-                    <span class="fa-stack">
-                        <i class="fa fa-search fa-stack-1x fa-inverse" aria-hidden="true"></i>
-                    </span>
-      <input class="form-control mr-sm-2" type="text" placeholder="напр., Адамик Петро Михайлович">
-      <i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i>
-    </form>
+    <%= form_tag(search_mp_path, method: "get", class: "col-8 form-inline mt-2 mt-md-0 push-2", id: "search-main" ) do  %>
+                          <span class="fa-stack">
+                            <i class="fa fa-search fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                          </span>
+        <%= text_field_tag(:mp, params[:mp] , class: "form-control mr-sm-2" , placeholder: "напр., Адамик Петро Михайлович" ) %>
+        <i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i>
+    <% end %>
+    <!--<form class="col-8 form-inline mt-2 mt-md-0 push-2" method="get" action="/search" id="search-main" >-->
+                    <!--<span class="fa-stack">-->
+                        <!--<i class="fa fa-search fa-stack-1x fa-inverse" aria-hidden="true"></i>-->
+                    <!--</span>-->
+      <!--<input class="form-control mr-sm-2" type="text" placeholder="напр., Адамик Петро Михайлович">-->
+      <!--<i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i>-->
+    <!--</form>-->
   </div>
 
   <div class="list-filters clearfix">

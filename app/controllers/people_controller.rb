@@ -17,9 +17,13 @@ class PeopleController < ApplicationController
   def show
     mp_find = params[:mp].split("_")
     @mp = Mp.includes(:mp_info).where(last_name: mp_find[0], first_name: mp_find[1], middle_name: mp_find[2]).first
-    @division_rebilions = Division.includes(:division_info).joins(:votes, :whips).where('votes.deputy_id =? and whips.party=?', @mp.deputy_id, @mp.faction ).where('votes.vote != whips.whip_guess and votes.vote != ?', "absent").order(date: :desc, id: :desc).references(:division_info).limit(5)
-    @division = Division.includes(:division_info).joins(:votes, :whips).where('votes.deputy_id =? and whips.party=?', @mp.deputy_id, @mp.faction ).order(date: :desc, id: :desc).references(:division_info).limit(5)
-    @friends = MpFriend.where(deputy_id: @mp.deputy_id).order(count: :desc).limit(5)
+    if @mp
+      @division_rebilions = Division.includes(:division_info).joins(:votes, :whips).where('votes.deputy_id =? and whips.party=?', @mp.deputy_id, @mp.faction ).where('votes.vote != whips.whip_guess and votes.vote != ?', "absent").order(date: :desc, id: :desc).references(:division_info).limit(5)
+      @division = Division.includes(:division_info).joins(:votes, :whips).where('votes.deputy_id =? and whips.party=?', @mp.deputy_id, @mp.faction ).order(date: :desc, id: :desc).references(:division_info).limit(5)
+      @friends = MpFriend.where(deputy_id: @mp.deputy_id).order(count: :desc).limit(5)
+    else
+      redirect_to people_path, :notice => "Не занйдено #{params[:mp]}"
+    end
   end
 
   def divisions
