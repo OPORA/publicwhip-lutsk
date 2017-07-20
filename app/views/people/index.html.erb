@@ -1,5 +1,5 @@
 <style>
-  /*депутати*/
+  /*депутати і голосування*/
   #search-main input[type="text"] {
     background-color: #F5F5F5;
     margin: 50px 0 80px 0;
@@ -10,12 +10,6 @@
   }
   #search-main .arrow-icon{
     top: 65px;
-  }
-  #first-block h1{
-    color: #252525;
-    font-size:24px;
-    line-height: 24px;
-    font-family: GothaProBol;
   }
 </style>
 
@@ -43,6 +37,7 @@
       <li <%= params[:sort] == "rebellions" ? "class=disabled": "" %> ><%= link_to "Дотриманням фракційної дисципліни", people_path(sort: :rebellions) %></li>
       <li <%= params[:sort] == "attendance" ? "class=disabled": "" %> ><%= link_to "Присутністю", people_path(sort: :attendance) %></li>
     </ul>
+
     <% if params[:sort].nil? %>
       <ul class="sort-name">
         <li class="active-fon-circle">
@@ -85,10 +80,11 @@
   </div>
 
 
-  <% @mps.each_with_index do |m, i| %>
-    <% if i % 2 == 0  %>
+  <% @mps.each do |m, i| %>
+    <% if i == 0 or i == 2  %>
     <div class="row">
-    <% end %>
+      <% end %>
+
       <div class="col-6">
         <div class="col-12 card card-person ">
           <%= link_to show_people_path(m.url_name), class: "" do %>
@@ -114,9 +110,12 @@
         </div>
         <% end %>
       </div>
-    <% if i % 2 == 1 %>
+
+      <% if i ==1 or i == 3  %>
     </div>
     <% end %>
+
     <% end %>
-</div>
+
+
 </div>

@@ -1,15 +1,27 @@
-<div class="list-group">
-  <% division.each do |d| %>
-      <%= link_to divisions_show_path(d.date, d.number), class: "list-group-item" do %>
-          <div class="media">
-            <div class="media-body">
-              <p><%= d.date.strftime('%d.%m.%Y') %>, <%= Time.parse(d.clock_time).strftime('%H:%M') %> </p>
-              <h3 class="media-heading"><%=  d.name  %></h3>
-              <p class="division-outcome object-primary"><%= d.result %></p>
-              <p class="object-secondary"><span>Проти фракції <%= d.division_info.rebellions %> голосувань</span>
-                <span class="member-attendance"><%= fraction_to_percentage_display(d.division_info.attendance_division) %> Присутність</span></p>
+<div class="row">
+    <div class="container">
+    <% division.each do |d| %>
+            <%= link_to divisions_show_path(d.date, d.number), class: "" do %>
+            <div class="col-12 pull-right card">
+                <div class="col-4 text-uppercase">
+                    <p class="approve"><i class="fa <%=  d.result == "Прийнято" ? "fa-check-circle" : "fa-times-circle"  %>" aria-hidden="true"></i> <%= d.result %></p>
+                    <p class="card-date"<%= d.date.strftime('%d.%m.%Y') %>, <%= Time.parse(d.clock_time).strftime('%H:%M') %> </p>
+                </div>
+                <div class="col-12 card-text">
+                    <p><%=  d.name  %></p>
+                </div>
+                <div class="row check">
+                    <div class="col-4 text-uppercase float-left">
+                        <p class="checkin">присутність</p>
+                        <p class="card-percent"><%= fraction_to_percentage_display(d.division_info.attendance_division) %></p>
+                    </div>
+                    <div class="col-4 text-uppercase">
+                        <p class="checkin">проти фракції</p>
+                        <p class="card-percent"><%= d.division_info.rebellions %>  голосувань</p>
+                    </div>
+                </div>
             </div>
-          </div>
-      <% end %>
-  <% end %>
+            <% end %>
+    <% end %>
+    </div>
 </div>
