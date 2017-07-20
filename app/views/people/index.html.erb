@@ -80,10 +80,10 @@
   </div>
 
 
-  <% @mps.each do |m, i| %>
-    <% if i == 0 or i == 2  %>
-    <div class="row">
-      <% end %>
+  <% @mps.each_with_index do |m, i| %>
+    <% if i % 2 == 0  %>
+      <div class="row">
+    <% end %>
 
       <div class="col-6">
         <div class="col-12 card card-person ">
@@ -111,11 +111,12 @@
         <% end %>
       </div>
 
-      <% if i ==1 or i == 3  %>
-    </div>
+    <% if i % 2== 1 %>
+      </div>
     <% end %>
 
     <% end %>
 
 
+</div>
 </div>
