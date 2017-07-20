@@ -12,7 +12,9 @@ namespace :load_mp do
   task :image => :environment do
     mps = JSON.load(open('http://lvivmp.oporaua.org/'))
     mps.each do |m|
+      p m["photo_url"]
       photo = MiniMagick::Image.open(URI.encode(m["photo_url"]))
+      photo.resize "200x200"
       photo.format 'png'
       photo.write("#{Rails.root}/public/image/#{m["deputy_id"]}.png")
     end
