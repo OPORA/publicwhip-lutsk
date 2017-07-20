@@ -1,3 +1,109 @@
 // Place all the styles related to the people controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+/*
+header{
+  background: none;
+  background-color: #000;
+  height: 42px;
+  min-height: auto;
+}
+#logo p{
+  color: #282828;
+}
+#logo .first-word{
+  color: #009FE2;
+}
+#navbarCollapse{
+  background-color: #000;
+}
+.navbar-inverse .navbar-nav .nav-link{
+  line-height: 28px;
+  font-size: 14px;
+  height: 3.51%;
+}
+.navbar {
+  padding: 0 0 0 15rem;
+}
+#first-block h1{
+  color: #252525;
+  font-size:24px;
+  line-height: 24px;
+  font-family: GothaProBol;
+}
+.fa-inverse {
+  color: #E5E5E5;
+  font-size: 12px;
+}
+*/
+
+/*депутати*/
+#search-main .people input[type="text"] {
+  background-color: #F5F5F5!important;
+  margin: 50px 0 80px 0!important;
+}
+#search-main  .people .fa-inverse{
+  color:#282828!important;
+  top: -13px!important;
+}
+#search-main .people .arrow-icon{
+  top: 65px!important;
+}
+ul li, ul span li {
+  font-family: GothaProReg;
+}
+ul.sort-first{
+    margin-bottom: 65px;
+
+  }
+  ul.sort-first li{
+    display: inline;
+    list-style: none;
+    margin-right: 40px;
+    font-size: 11px;
+    line-height: 11px;
+    font-weight: 300;
+    padding-bottom: 8px;
+  }
+  ul li a{
+    color: #4A4A4A;
+  }
+  ul.sort-first li.disabled {
+    font-weight: 500;
+    border-bottom: 3px solid #009FE2;
+    font-family: GothaProBol;
+  }
+  ul.sort-name{
+    margin-bottom: 75px;
+  }
+  ul.sort-name li{
+    display: inline;
+    list-style: none;
+    font-size: 14px;
+    line-height: 14px;
+    margin-right: 30px;
+  }
+  .active-fon-circle{
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 11px 13px;
+    font-size: 14px;
+    background: #009FE2;
+    text-align: center;
+  }
+  .active-fon-circle a {
+    color: #fff;
+  }
+  .active-fon-fraction{
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 11px 13px;
+    font-size: 14px;
+    background: #009FE2;
+    text-align: center;
+  }
+.active-fon-fraction a {
+  color: #fff;
+}

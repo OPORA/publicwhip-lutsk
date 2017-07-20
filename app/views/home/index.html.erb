@@ -12,15 +12,16 @@
         <%= text_field_tag(:query, params[:query] , class: "form-control mr-sm-2" , placeholder: "напр., Адамик Петро Михайлович" ) %>
         <i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i>
     <% end %>
-    <%= form_tag(search_mp_path, method: "get", ) do  %>
+
+    <!--<%= form_tag(search_mp_path, method: "get", ) do  %>
         <div class="input-group">
           <%= select_tag(:mp, options_for_select(@mps), :include_blank => 'наприклад: Садовий Андрій Іванович', "data-live-search": true , "data-width":"auto", class: "selectpicker") %>
           <span class="input-group-btn">
                     <%= submit_tag("Пошук", class: "btn btn-primary") %>
                 </span>
         </div>
-    <% end %>
-  <!--</div>-->
+    <% end %>-->
+  </div>
 </div>
 </header>
 <div id="first-block" class="container">
@@ -63,12 +64,13 @@
   <div class="container">
     <div class="col-12"><h3 class="text-uppercase text-center background-line">Прогульники засідань</h3></div>
     <% @top_mp_rebellions.each_with_index do |mp, i| %>
+    
       <% if i == 0 or i == 2  %>
       <div class="row">
       <% end %>
+        
         <div class="col-6">
-         
-          <div class="col-12 card card-person <%= i == 0 ? "border-active" : "" %>">
+          <div class="col-12 card card-person ">
           <%= link_to show_people_path(mp.url_name), class: "" do %>
             <div class="row">
               <div class="col-3">
@@ -92,9 +94,11 @@
           </div>
           <% end %>
         </div>
-      <% if i == 1 or i == 3  %>
+        
+      <% if i ==1 or i == 3  %>
       </div>
       <% end %>
+    
     <% end %>
     <div class="col-12"><%= link_to  '<h4 class="text-uppercase text-center">До відвідування засідань <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h4>'.html_safe, people_path(sort: :attendance) %></div>
   </div>

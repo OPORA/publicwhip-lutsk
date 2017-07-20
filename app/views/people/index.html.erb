@@ -1,13 +1,22 @@
 <% content_for :title, "Депутати — Як Голосує Твій Депутат?" %>
-<div class="jumbotron">
-  <div class="container">
-    <div class="row">
 
-    </div>
+<div id="first-block" class="container people">
+
+  <h1 class="text-uppercase center-justified">Депутати львівської облради</h1>
+
+  <div class="col-12">
+    <form class="col-8 form-inline mt-2 mt-md-0 push-2" method="get" action="/search" id="search-main" >
+                    <span class="fa-stack">
+                        <i class="fa fa-search fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                    </span>
+      <input class="form-control mr-sm-2" type="text" placeholder="напр., Адамик Петро Михайлович">
+      <i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i>
+    </form>
   </div>
-</div>
-<div class="container">
+
   <div class="list-filters clearfix">
+    <!-- Старий код можна делейт
+
     <div class="dropdown clearfix list-sorter">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
         Сортувати за <%= sort_text %>
@@ -20,8 +29,51 @@
         <li <%= params[:sort] == "rebellions" ? "class=disabled": "" %> ><%= link_to "Дотриманням фракційної дисципліни", people_path(sort: :rebellions) %></li>
         <li <%= params[:sort] == "attendance" ? "class=disabled": "" %> ><%= link_to "Присутністю", people_path(sort: :attendance) %></li>
       </ul>
-    </div>
+    </div>-->
+
+    <ul class="sort-first text-uppercase">
+      <li <%= params[:sort].nil? ? "class=disabled": "" %> ><%= link_to "За прізвищем", people_path() %></li>
+      <li <%= params[:sort] == "faction" ? "class=disabled": "" %> ><%= link_to "Фракцією", people_path(sort: :faction) %></li>
+      <li <%= params[:sort] == "distric" ? "class=disabled": "" %> ><%= link_to "Округом", people_path(sort: :distric) %></li>
+      <li <%= params[:sort] == "rebellions" ? "class=disabled": "" %> ><%= link_to "Дотриманням фракційної дисципліни", people_path(sort: :rebellions) %></li>
+      <li <%= params[:sort] == "attendance" ? "class=disabled": "" %> ><%= link_to "Присутністю", people_path(sort: :attendance) %></li>
+    </ul>
+
+    <% if params[:sort].nil? %>
+      <ul class="sort-name">
+        <li class="active-fon-circle">
+          <a href="">А</a></li>
+        <li class="">
+          <a href="">Б</a></li>
+        <li class="">
+          <a href="">Б</a></li>
+      </ul>
+    <% end %>
+
+    <% if params[:sort] == "faction" %>
+      <ul class="faction">
+        <li class="active-fon-fraction"><a href="">Блок Петра Порошенка</a> </li>
+        <li><a href="">фывфывфывфыва</a> </li>
+        <li><a href="">фывфывфывфыва</a> </li>
+        <li><a href="">фывфывфывфыва</a> </li>
+
+      </ul>
+    <% end %>
+
+    <% if params[:sort] == "distric" %>
+    ...
+    <% end %>
+
+    <% if params[:sort] == "rebellions" %>
+    ...
+    <% end %>
+
+    <% if params[:sort] == "attendance" %>
+    ...
+    <% end %>
   </div>
+
+<!--
   <div class="list-group">
     <% @mps.each do |m| %>
         <%= link_to show_people_path(m.url_name), class: "list-group-item" do %>
@@ -39,4 +91,52 @@
         <% end %>
     <% end %>
   </div>
+-->
+
+
+  <% @mps.each do |m, i| %>
+    <% if i == 0 or i == 2  %>
+    <div class="row">
+      <% end %>
+
+      <div class="col-6">
+        <div class="col-12 card card-person ">
+          <%= link_to show_people_path(m.url_name), class: "" do %>
+          <div class="row">
+            <div class="col-3">
+              <img class="card-photo" src="/image/<%= m.deputy_id %>.png" alt="<%=  m.full_name  %>">
+            </div>
+            <div class="col-9">
+              <p class="card-name"><%=  m.full_name  %></p>
+              <p class="card-fraction">Фракція "<%= member_role(m.faction, m.okrug) %>"</p>
+              <p class="card-elected">Обрано за списком партії  XXXX </p>
+
+              <div class="row check">
+                <div class="col-6 text-uppercase float-left">
+                  <p class="checkin">присутність</p>
+                  <p class="card-percent"><%= fraction_to_percentage_display(m.mp_info.attendance_fraction) %> засідань</p></div>
+                <div class="col-6 text-uppercase">
+                  <p class="checkin">проти фракції</p>
+                  <p class="card-percent"><%= fraction_to_percentage_display(m.mp_info.rebellions_fraction) %> голосувань</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+
+      <% if i ==1 or i == 3  %>
+    </div>
+    <% end %>
+
+    <% end %>
+
+
 </div>
+
+
+<style>
+  .card-elected{
+
+  }
+</style>
