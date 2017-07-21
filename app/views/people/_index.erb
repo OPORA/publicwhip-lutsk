@@ -96,9 +96,11 @@
         $( "#slider-range" ).slider({
             range: true,
             min: 0,
-            max: 50,
-            values: [ 5, 30 ],
+            max: 100,
+            step: 10,
+            values: [ 20, 90 ],
             slide: function( event, ui ) {
+                console.log(ui.values);
             }
         }).each(function() {
 
@@ -112,10 +114,10 @@
             var vals = opt.max - opt.min;
 
             // Position the labels
-            for (var i = 0; i <= vals; i++) {
+            for (var i = 0; i <= vals; i = i + opt.step ) {
 
                 // Create a new element and position it with percentages
-                var el = $('<label>' + (i + opt.min) + '</label>').css('left', (i/vals*100) + '%');
+                var el = $('<label></label>').css('left', (i) + '%');
 
                 // Add the element inside #slider
                 $("#slider-range").append(el);
