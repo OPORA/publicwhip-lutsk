@@ -19,11 +19,11 @@
 
   <% if params[:sort] == "faction" %>
       <ul class="sort-fraction">
-        <li class="active-fon-fraction"><a href="">Блок Петра Порошенка</a> </li>
-        <li><a href="">фывфывфывфыва</a> </li>
-        <li><a href="">фывфывфывфыва</a> </li>
-        <li><a href="">фывфывфывфыва</a> </li>
-
+        <% @filter.each do |f| %>
+            <li class="<%= f == params[:filter] ? "active-fon-fraction" : "" %>">
+              <%= link_to(f, people_path(sort: "faction" , filter: f), remote: true)  %>
+            </li>
+        <% end %>
       </ul>
   <% end %>
 

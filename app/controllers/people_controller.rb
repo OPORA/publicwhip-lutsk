@@ -3,7 +3,11 @@ class PeopleController < ApplicationController
     mps = Mp.includes(:mp_info).where(end_date: nil)
     @mp = mps.order(:last_name)
     if params[:sort] == "faction"
-      @mps = mps.order(:faction, :last_name, :first_name, :middle_name, :okrug)
+      @filter = mps.order(:faction).map{|m| m.faction }.uniq
+      if params[:filter].nil?
+        params[:filter] = @filter.first
+      end
+      @mps = mps.where(faction: params[:filter]).order(:faction, :last_name, :first_name, :middle_name, :okrug)
     elsif params[:sort] == "distric"
       @mps = mps.order(:okrug, :last_name, :first_name, :middle_name, :faction)
     elsif params[:sort] == "rebellions"
