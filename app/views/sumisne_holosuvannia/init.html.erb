@@ -1,12 +1,32 @@
 <% content_for :title, "Сумісне Голосуванн — Як Голосує Твій Депутат?" %>
 <script src="//d3js.org/d3.v4.min.js"></script>
-<div class="jumbotron">
-  <div class="container">
-    <div class="row">
-      <h1>Сумісне Голосування</h1>
+
+<div id="first-block" class="container people">
+
+    <h1 class="text-uppercase center-justified">
+        Сумісне Голосування
+    </h1>
+
+    <div class="col-12">
+        <%= form_tag(search_mp_path, method: "get", class: "col-8 form-inline push-2", id: "search-main" ) do  %>
+                          <span class="fa-stack">
+                            <i class="fa fa-search fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                          </span>
+        <%= text_field_tag(:mp, params[:mp] , class: "form-control mr-sm-2" , placeholder: "напр., Адамик Петро Михайлович" ) %>
+        <i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i>
+        <% end %>
     </div>
-  </div>
 </div>
+
+<div class="list-filters clearfix">
+    <ul class="sort-first text-uppercase">
+        <li <%= params[:sort] == "attendance" ? "class=disabled": "" %> ><%= link_to "За весь час", divisions_path(sort: :attendance) %></li>
+        <li <%= params[:sort] == "rebellions" ? "class=disabled": "" %> ><%= link_to "обрати місяць", divisions_path(sort: :rebellions) %></li>
+
+    </ul>
+</div>
+
+
 <div class="container">
   <div class="row">
     <div id="graf"></div>
