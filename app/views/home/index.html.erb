@@ -18,7 +18,7 @@
 <div id="first-block" class="container">
   <div class="col-12"><h3 class="text-uppercase text-center background-line">Останні голосування обради</h3></div>
   <% @last_division.each_with_index do |d, i| %>
-    <% if i == 0 or i == 2  %>
+    <% if i % 2 == 0  %>
     <div class="row">
     <% end %>
       <div class="col-6">
@@ -44,7 +44,7 @@
         </div>
         <% end %>
       </div>
-    <% if i == 1 or i == 3  %>
+    <% if i % 2 == 1 %>
     </div>
     <% end %>
   <% end %>
@@ -56,7 +56,7 @@
     <div class="col-12"><h3 class="text-uppercase text-center background-line">Прогульники засідань</h3></div>
     <% @top_mp_rebellions.each_with_index do |mp, i| %>
     
-      <% if i == 0 or i == 2  %>
+      <% if i % 2 == 0  %>
       <div class="row">
       <% end %>
         
@@ -86,7 +86,7 @@
           <% end %>
         </div>
         
-      <% if i ==1 or i == 3  %>
+      <% if i % 2 == 1  %>
       </div>
       <% end %>
     
