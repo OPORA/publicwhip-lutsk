@@ -1,0 +1,34 @@
+<div class="list-filters clearfix">
+  <ul class="sort-first text-uppercase">
+    <li <%= params[:sort].nil? ? "class=disabled": "" %> ><%= link_to "За Датою", divisions_path(), remote: true %></li>
+    <li <%= params[:sort] == "attendance" ? "class=disabled": "" %> ><%= link_to "За Присутністю", divisions_path(sort: :attendance), remote: true %></li>
+    <li <%= params[:sort] == "rebellions" ? "class=disabled": "" %> ><%= link_to "Дотриманням фракційної дисципліни", divisions_path(sort: :rebellions), remote: true %></li>
+  </ul>
+
+  <% if params[:sort] == "attendance" %>
+
+  <% end %>
+
+  <% if params[:sort] == "rebellions" %>
+
+  <% end %>
+
+  <% if params[:sort].nil? %>
+      <ul class="sort-fraction">
+        <li class="active-fon-fraction"><a href="">За останній тиждень</a> </li>
+        <li><a href="">фывфывфывфыва</a> </li>
+        <li><a href="">фывфывфывфыва</a> </li>
+        <li><a href="">фывфывфывфыва</a> </li>
+      </ul>
+
+  <% end %>
+
+  <%= render "voted", division: divisions  %>
+
+  <div class="index-pagination">
+    <% unless divisions.last_page? %>
+      <%= link_to('<h4 class="text-uppercase text-center">Більше <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h4>'.html_safe, params.merge(:per => (params[:per].to_i + 5)), remote: true ) %>
+    <% end %>
+    <%#= paginate divisions, remote: true %>
+  </div>
+</div>

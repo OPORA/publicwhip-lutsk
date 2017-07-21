@@ -1,5 +1,5 @@
 class Division < ApplicationRecord
-  paginates_per 50
+  #paginates_per 50
   has_many :votes
   has_many :mps, through: :votes
   has_one :division_info

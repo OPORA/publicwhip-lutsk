@@ -1,16 +1,17 @@
 class DivisionsController < ApplicationController
   def index
+    if params[:per].nil?
+      params[:per] = 5
+    end
     divisions = Division.includes(:division_info)
     @divisions =
         case params[:sort]
           when "attendance"
-             divisions.order('division_infos.turnout desc', number: :desc).page params[:page]
+             divisions.order('division_infos.turnout desc', number: :desc).page(params[:page]).per(params[:per])
           when "rebellions"
-             divisions.order('division_infos.rebellions desc', number: :desc).page params[:page]
-          when "subject"
-             divisions.order(name: :asc, number: :desc).page params[:page]
+             divisions.order('division_infos.rebellions desc', number: :desc).page(params[:page]).per(params[:per])
           else
-             divisions.order(date: :desc, number: :desc).page params[:page]
+             divisions.order(date: :desc, number: :desc).page(params[:page]).per(params[:per])
         end
   end
 

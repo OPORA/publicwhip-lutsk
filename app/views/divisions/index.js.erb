@@ -1,0 +1,5 @@
+window.history.pushState("", "", "<%= request.fullpath  %>");
+$("#division").html("<%= escape_javascript(render(:partial => 'index', :locals => {:divisions => @divisions})) %>");
+<% if params[:format] == "js" %>
+window.history.pushState("", "", "<%= request.fullpath.gsub('.js','')  %>");
+<% end %>
