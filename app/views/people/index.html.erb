@@ -23,7 +23,7 @@
     //search
     window.onload = function() {
         var availableTags = [
-            <% @mps.each do |m| %>
+            <% @mp.each do |m| %>
             "<%= m.full_name %>",
             <% end %>
         ];
@@ -32,7 +32,7 @@
         });
         $.ajax({
             type: "GET",
-            url: "<%= people_path(sort: params[:sort], format: :js) %>"
+            url: "<%= people_path(sort: params[:sort], filter: params[:filter], format: :js) %>"
         })  ;
     };
 </script>

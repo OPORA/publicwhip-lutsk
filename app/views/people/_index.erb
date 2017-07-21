@@ -9,12 +9,11 @@
 
   <% if params[:sort].nil? %>
       <ul class="sort-name">
-        <li class="active-fon-circle">
-          <a href="">А</a></li>
-        <li class="">
-          <a href="">Б</a></li>
-        <li class="">
-          <a href="">Б</a></li>
+        <% @filter.each do |f| %>
+            <li class="<%= f == params[:filter] ? "active-fon-circle" : "" %>">
+            <%= link_to(f, people_path(filter: f), remote: true)  %>
+            </li>
+        <% end %>
       </ul>
   <% end %>
 

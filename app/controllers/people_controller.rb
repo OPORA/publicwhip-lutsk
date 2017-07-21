@@ -1,6 +1,7 @@
 class PeopleController < ApplicationController
   def index
     mps = Mp.includes(:mp_info).where(end_date: nil)
+    @mp = mps.order(:last_name)
     if params[:sort] == "faction"
       @mps = mps.order(:faction, :last_name, :first_name, :middle_name, :okrug)
     elsif params[:sort] == "distric"
@@ -10,7 +11,11 @@ class PeopleController < ApplicationController
     elsif params[:sort] == "attendance"
       @mps = mps.to_a.sort_by{ |m| [-(m.mp_info.attendance_fraction || -1), m.last_name, m.first_name, m.middle_name, m.faction, m.okrug ]}
     else
-      @mps = mps.order(:last_name, :first_name, :middle_name, :faction, :okrug)
+      @filter = mps.order(:last_name).map{|m| m.last_name[0] }.uniq
+      if params[:filter].nil?
+        params[:filter] = @filter.first
+      end
+      @mps = mps.where("last_name like ?", params[:filter] + "%" ).order(:last_name, :first_name, :middle_name, :faction, :okrug)
     end
   end
 
