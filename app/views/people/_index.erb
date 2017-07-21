@@ -1,4 +1,93 @@
-<div class="list-filters clearfix">
+<!--
+Можна почистити і об"єднати
+
+Стилі шапки - Депутати і Голосування однакові.
+Стилі сортування дуже схожі -- зафігачити всі стилі в 1 файл, і загрузити на цих обох сторінках, потім його почистити і всьо гуд)
+
+Стилі депутатів і Голосування НЕ можна грузити на Головній сторінці
+-->
+
+<style>
+    /*депутати і голосування*/
+    #search-main input[type="text"] {
+        background-color: #F5F5F5;
+        margin: 50px 0 80px 0;
+    }
+    #search-main .fa-inverse{
+        color:#282828;
+        top: -13px;
+    }
+    #search-main .arrow-icon{
+        top: 65px;
+    }
+    #slider-range label {
+        position: absolute;
+        width: 20px;
+        margin-top: 20px;
+        margin-left: -10px;
+        text-align: center;
+    }
+
+    .list-filters{
+        margin-bottom: 85px;
+    }
+    /*депутати і голосування*/
+    #search-main input[type="text"] {
+        background-color: #F5F5F5;
+        margin: 50px 0 80px 0;
+    }
+    /*#search-main .fa-inverse{
+      color:#282828;
+      top: -13px;
+    }
+    #search-main .arrow-icon{
+      top: 65px;
+    }*/
+
+    #search-main{
+        margin: 50px 0 80px 0!important;
+    }
+
+    /*у форми class="col-8 form-inline mt-2 mt-md-0 push-2"
+
+    ВИДАЛИТИ mt-2 mt-md-0*/
+
+
+    /*ползунок - Депутати - Голосування*/
+    #slider-range label {
+        position: absolute;;
+        margin-top: 20px;
+        margin-left: -10px;
+        text-align: center;
+
+        top: -23px;
+        background-color: #E5E5E5;
+        border-radius: 50%;
+        width: 6px;
+        content: "";
+        height: 6px;
+
+    }
+    .ui-widget.ui-widget-content{
+        height: 2px!important;
+        border-color: #E5E5E5;
+    }
+    .ui-state-default, .ui-widget-content .ui-state-default{
+        height: 12px;
+        width: 12px;
+        background-color: #009FE2;
+        border-radius: 50%;
+        border: none;
+        top: -6px;
+    }
+    .ui-slider-horizontal .ui-slider-range{
+        height: 4px;
+        background-color: #009FE2;
+        top: -2px;
+    }
+
+</style>
+<div class="col-12 list-filters clearfix">
   <ul class="sort-first text-uppercase">
     <li <%= params[:sort].nil? ? "class=disabled": "" %> ><%= link_to "За прізвищем", people_path(),  :remote => true %></li>
     <li <%= params[:sort] == "faction" ? "class=disabled": "" %> ><%= link_to "Фракцією", people_path(sort: :faction),  :remote => true %></li>
@@ -50,13 +139,15 @@
 
   <% end %>
 </div>
+
+<div class="col-12">
 <% mps.each_with_index do |m, i| %>
     <% if i % 2 == 0  %>
         <div class="row">
     <% end %>
 
     <div class="col-6">
-      <div class="col-12 card card-person ">
+      <div class="card card-person ">
         <%= link_to show_people_path(m.url_name), class: "" do %>
             <div class="row">
               <div class="col-3">
@@ -77,15 +168,16 @@
                 </div>
               </div>
             </div>
-            </div>
+      </div>
         <% end %>
-        </div>
+    </div>
 
     <% if i % 2== 1 %>
         </div>
     <% end %>
 
 <% end %>
+</div>
 </div>
 <script>
     //slider range
