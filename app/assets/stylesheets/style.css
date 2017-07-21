@@ -509,3 +509,8 @@ footer span+span{
 .bootstrap-select.btn-group .dropdown-toggle .filter-option {
     display: inline !important;
 }
+/* TODO; Дописав клас для слайдера фільтра поправ що там треба */
+.custom-handle {
+    position: absolute;
+    top: -30px;
+}

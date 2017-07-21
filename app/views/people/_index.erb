@@ -131,8 +131,8 @@
                 $("#slider-range").append(el);
 
             }
-            $('#custom-handle').text(<%= params[:filter_min] %>);
-            $('span.ui-slider-handle').text(<%= params[:filter_max] %>);
+            $('#custom-handle').append($('<span class = "custom-handle"><%= params[:filter_min] %></span>'));
+            $('span.ui-slider-handle').append($('<span class = "custom-handle"><%= params[:filter_max] %></span>'));;
 
         });
     });
