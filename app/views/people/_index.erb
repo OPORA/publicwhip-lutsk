@@ -1,10 +1,10 @@
 <div class="col-12 list-filters clearfix">
   <ul class="sort-first text-uppercase">
     <li <%= params[:sort].nil? ? "class=disabled": "" %> ><%= link_to "За прізвищем", people_path(),  :remote => true %></li>
-    <li <%= params[:sort] == "faction" ? "class=disabled": "" %> ><%= link_to "Фракцією", people_path(sort: :faction),  :remote => true %></li>
-    <li <%= params[:sort] == "distric" ? "class=disabled": "" %> ><%= link_to "Округом", people_path(sort: :distric), :remote => true %></li>
-    <li <%= params[:sort] == "rebellions" ? "class=disabled": "" %> ><%= link_to "Дотриманням фракційної дисципліни", people_path(sort: :rebellions), :remote => true %></li>
-    <li <%= params[:sort] == "attendance" ? "class=disabled": "" %> ><%= link_to "Присутністю", people_path(sort: :attendance), :remote => true %></li>
+    <li <%= params[:sort] == "faction" ? "class=disabled": "" %> ><%= link_to "За Фракцією", people_path(sort: :faction),  :remote => true %></li>
+    <li <%= params[:sort] == "distric" ? "class=disabled": "" %> ><%= link_to "За Округом", people_path(sort: :distric), :remote => true %></li>
+    <li <%= params[:sort] == "rebellions" ? "class=disabled": "" %> ><%= link_to "За Дотриманням фракційної дисципліни", people_path(sort: :rebellions), :remote => true %></li>
+    <li <%= params[:sort] == "attendance" ? "class=disabled": "" %> ><%= link_to "За Присутністю", people_path(sort: :attendance), :remote => true %></li>
   </ul>
 
   <% if params[:sort].nil? %>
@@ -29,24 +29,27 @@
 
   <% if params[:sort] == "distric" %>
       <ul class="sort-distric">
-        <li class="active-fon-circle">
-          <a href="">1</a></li>
-        <li class="">
-          <a href="">2</a></li>
-        <li class="">
-          <a href="">3</a></li>
+        <% @filter.each do |f| %>
+            <li class="<%= f == params[:filter].to_i ? "active-fon-circle" : "" %>">
+              <%= link_to(f, people_path(sort: "distric" , filter: f), remote: true)  %>
+            </li>
+        <% end %>
       </ul>
   <% end %>
 
   <% if params[:sort] == "rebellions" %>
 
-      <div id="slider-range"></div>
+      <div id="slider-range">
+        <div id="custom-handle" class="ui-slider-handle"></div>
+      </div>
 
   <% end %>
 
   <% if params[:sort] == "attendance" %>
 
-      <div id="slider-range"></div>
+      <div id="slider-range">
+        <div id="custom-handle" class="ui-slider-handle"></div>
+      </div>
 
   <% end %>
 </div>
@@ -67,7 +70,7 @@
               <div class="col-9">
                 <p class="card-name"><%=  m.full_name  %></p>
                 <p class="card-fraction">Фракція "<%= member_role(m.faction, m.okrug) %>"</p>
-                <p class="card-elected">Обрано за списком партії  XXXX </p>
+                <p class="card-elected">Обрано за списком партії  XXXX <%= m.mp_info.rebellions_fraction.to_f %> </p>
 
                 <div class="row check">
                   <div class="col-6 text-uppercase float-left">
@@ -98,9 +101,14 @@
             min: 0,
             max: 100,
             step: 10,
-            values: [ 20, 90 ],
+            values: [ <%= params[:filter_min] %>, <%= params[:filter_max] %> ],
             slide: function( event, ui ) {
                 console.log(ui.values);
+
+                $.ajax({
+                    type: "GET",
+                    url: "/people.js?filter_min=" + ui.values[0] + "&filter_max="+ ui.values[1] +"&sort=<%= params[:sort] %>"
+                });
             }
         }).each(function() {
 
@@ -123,6 +131,8 @@
                 $("#slider-range").append(el);
 
             }
+            $('#custom-handle').text(<%= params[:filter_min] %>);
+            $('span.ui-slider-handle').text(<%= params[:filter_max] %>);
 
         });
     });
