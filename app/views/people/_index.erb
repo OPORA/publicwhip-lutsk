@@ -1,0 +1,125 @@
+<div class="list-filters clearfix">
+  <ul class="sort-first text-uppercase">
+    <li <%= params[:sort].nil? ? "class=disabled": "" %> ><%= link_to "За прізвищем", people_path(),  :remote => true %></li>
+    <li <%= params[:sort] == "faction" ? "class=disabled": "" %> ><%= link_to "Фракцією", people_path(sort: :faction),  :remote => true %></li>
+    <li <%= params[:sort] == "distric" ? "class=disabled": "" %> ><%= link_to "Округом", people_path(sort: :distric), :remote => true %></li>
+    <li <%= params[:sort] == "rebellions" ? "class=disabled": "" %> ><%= link_to "Дотриманням фракційної дисципліни", people_path(sort: :rebellions), :remote => true %></li>
+    <li <%= params[:sort] == "attendance" ? "class=disabled": "" %> ><%= link_to "Присутністю", people_path(sort: :attendance), :remote => true %></li>
+  </ul>
+
+  <% if params[:sort].nil? %>
+      <ul class="sort-name">
+        <li class="active-fon-circle">
+          <a href="">А</a></li>
+        <li class="">
+          <a href="">Б</a></li>
+        <li class="">
+          <a href="">Б</a></li>
+      </ul>
+  <% end %>
+
+  <% if params[:sort] == "faction" %>
+      <ul class="sort-fraction">
+        <li class="active-fon-fraction"><a href="">Блок Петра Порошенка</a> </li>
+        <li><a href="">фывфывфывфыва</a> </li>
+        <li><a href="">фывфывфывфыва</a> </li>
+        <li><a href="">фывфывфывфыва</a> </li>
+
+      </ul>
+  <% end %>
+
+  <% if params[:sort] == "distric" %>
+      <ul class="sort-distric">
+        <li class="active-fon-circle">
+          <a href="">1</a></li>
+        <li class="">
+          <a href="">2</a></li>
+        <li class="">
+          <a href="">3</a></li>
+      </ul>
+  <% end %>
+
+  <% if params[:sort] == "rebellions" %>
+
+      <div id="slider-range"></div>
+
+  <% end %>
+
+  <% if params[:sort] == "attendance" %>
+
+      <div id="slider-range"></div>
+
+  <% end %>
+</div>
+<% mps.each_with_index do |m, i| %>
+    <% if i % 2 == 0  %>
+        <div class="row">
+    <% end %>
+
+    <div class="col-6">
+      <div class="col-12 card card-person ">
+        <%= link_to show_people_path(m.url_name), class: "" do %>
+            <div class="row">
+              <div class="col-3">
+                <img class="card-photo" src="/image/<%= m.deputy_id %>.png" alt="<%=  m.full_name  %>">
+              </div>
+              <div class="col-9">
+                <p class="card-name"><%=  m.full_name  %></p>
+                <p class="card-fraction">Фракція "<%= member_role(m.faction, m.okrug) %>"</p>
+                <p class="card-elected">Обрано за списком партії  XXXX </p>
+
+                <div class="row check">
+                  <div class="col-6 text-uppercase float-left">
+                    <p class="checkin">присутність</p>
+                    <p class="card-percent"><%= fraction_to_percentage_display(m.mp_info.attendance_fraction) %> засідань</p></div>
+                  <div class="col-6 text-uppercase">
+                    <p class="checkin">проти фракції</p>
+                    <p class="card-percent"><%= fraction_to_percentage_display(m.mp_info.rebellions_fraction) %> голосувань</p></div>
+                </div>
+              </div>
+            </div>
+            </div>
+        <% end %>
+        </div>
+
+    <% if i % 2== 1 %>
+        </div>
+    <% end %>
+
+<% end %>
+</div>
+<script>
+    //slider range
+    $(function() {
+        $( "#slider-range" ).slider({
+            range: true,
+            min: 0,
+            max: 50,
+            values: [ 5, 30 ],
+            slide: function( event, ui ) {
+            }
+        }).each(function() {
+
+            // Add labels to slider whose values
+            // are specified by min, max
+
+            // Get the options for this slider (specified above)
+            var opt = $(this).data().uiSlider.options;
+
+            // Get the number of possible values
+            var vals = opt.max - opt.min;
+
+            // Position the labels
+            for (var i = 0; i <= vals; i++) {
+
+                // Create a new element and position it with percentages
+                var el = $('<label>' + (i + opt.min) + '</label>').css('left', (i/vals*100) + '%');
+
+                // Add the element inside #slider
+                $("#slider-range").append(el);
+
+            }
+
+        });
+    });
+</script>
