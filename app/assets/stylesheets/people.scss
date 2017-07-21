@@ -1,43 +1,87 @@
 // Place all the styles related to the people controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-/*
-header{
-  background: none;
-  background-color: #000;
-  height: 42px;
-  min-height: auto;
-}
-#logo p{
-  color: #282828;
-}
-#logo .first-word{
-  color: #009FE2;
-}
-#navbarCollapse{
-  background-color: #000;
-}
-.navbar-inverse .navbar-nav .nav-link{
-  line-height: 28px;
-  font-size: 14px;
-  height: 3.51%;
-}
-.navbar {
-  padding: 0 0 0 15rem;
-}
-#first-block h1{
-  color: #252525;
-  font-size:24px;
-  line-height: 24px;
-  font-family: GothaProBol;
-}
-.fa-inverse {
-  color: #E5E5E5;
-  font-size: 12px;
-}
-*/
+
+@import "heder";
+    /*депутати і голосування*/
+    #search-main input[type="text"] {
+        background-color: #F5F5F5;
+        margin: 50px 0 80px 0;
+    }
+    #search-main .fa-inverse{
+        color:#282828;
+        top: -13px;
+    }
+    #search-main .arrow-icon{
+        top: 65px;
+    }
+    #slider-range label {
+        position: absolute;
+        width: 20px;
+        margin-top: 20px;
+        margin-left: -10px;
+        text-align: center;
+    }
+
+    .list-filters{
+        margin-bottom: 85px;
+    }
+    /*депутати і голосування*/
+    #search-main input[type="text"] {
+        background-color: #F5F5F5;
+        margin: 50px 0 80px 0;
+    }
+    /*#search-main .fa-inverse{
+      color:#282828;
+      top: -13px;
+    }
+    #search-main .arrow-icon{
+      top: 65px;
+    }*/
+
+    #search-main{
+        margin: 50px 0 80px 0!important;
+    }
+
+    /*у форми class="col-8 form-inline mt-2 mt-md-0 push-2"
+
+    ВИДАЛИТИ mt-2 mt-md-0*/
 
 
+    /*ползунок - Депутати - Голосування*/
+    #slider-range label {
+        position: absolute;;
+        margin-top: 20px;
+        margin-left: -10px;
+        text-align: center;
+
+        top: -23px;
+        background-color: #E5E5E5;
+        border-radius: 50%;
+        width: 6px;
+        content: "";
+        height: 6px;
+
+    }
+    .ui-widget.ui-widget-content{
+        height: 2px!important;
+        border-color: #E5E5E5;
+    }
+    .ui-state-default, .ui-widget-content .ui-state-default{
+        height: 12px;
+        width: 12px;
+        background-color: #009FE2;
+        border-radius: 50%;
+        border: none;
+        top: -6px;
+    }
+    .ui-slider-horizontal .ui-slider-range{
+        height: 4px;
+        background-color: #009FE2;
+        top: -2px;
+    }
+
+// ---------------
 ul li, ul span li {
   font-family: GothaProReg;
 }

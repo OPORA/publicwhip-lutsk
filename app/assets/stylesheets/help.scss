@@ -1,3 +1,67 @@
 // Place all the styles related to the help controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "heder";
+//<style>
+#first-block h1{
+  color: #252525;
+  font-size:24px;
+  line-height: 24px;
+  font-family: GothaProBol;
+}
+.faq-cat-content {
+  margin-top: 25px;
+}
+
+.faq-cat-tabs li a {
+  padding: 15px 10px 15px 10px;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  color: #777777;
+}
+
+.nav-tabs li a:focus,
+.panel-heading a:focus {
+  outline: none;
+}
+
+.panel-heading a,
+.panel-heading a:hover,
+.panel-heading a:focus {
+  text-decoration: none;
+  color: #777777;
+}
+
+.faq-cat-content .panel-heading:hover {
+  background-color: #efefef;
+}
+
+.active-faq {
+  border-left: 5px solid #888888;
+}
+
+.panel-faq .panel-heading .panel-title span {
+  font-size: 13px;
+  font-weight: normal;
+}
+.panel-title{
+  border-bottom: 1px solid #E5E5E5;
+  padding: 30px 0 30px 0;
+  margin: 0;
+  font-family: GothaProBol;
+  font-size: 14px;
+  line-height: 11px;
+  color: #4A4A4A;
+}
+.panel-body{
+  color: #4A4A4A;
+  font-family: GothaProReg;
+  font-size: 14px;
+  line-height: 17px;
+  padding: 30px 70px 60px 70px;
+}
+.arrow-icon{
+  color:#282828;
+  font-size: 15px;
+}
+//</style>

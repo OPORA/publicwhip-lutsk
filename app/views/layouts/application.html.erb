@@ -26,48 +26,6 @@
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <%= csrf_meta_tags %>
-  <% if controller.controller_path != "home" %>
-      <style>
-        header{
-          background: none;
-          background-color: #000;
-          height: 42px;
-          min-height: auto;
-        }
-        #logo p{
-          color: #000;
-        }
-        #logo .first-word{
-          color: #009FE2;
-        }
-        #navbarCollapse{
-          background-color: #000;
-        }
-        .navbar-inverse .navbar-nav .nav-link{
-
-          line-height: 28px;
-          font-size: 14px;
-          height: 3.51%;
-        }
-        .navbar {
-          padding: 0 0 0 15rem;
-        }
-        #first-block .notfound h1{
-
-          color: #252525;
-          font-size:24px;
-          line-height: 24px;
-          font-family: GothaProBol;
-        }
-        .fa-inverse {
-          color: #E5E5E5;
-          font-size: 12px;
-        }
-        .update-data p:nth-child(2), .rada-date p:nth-child(2){
-          color: #949393;
-        }
-      </style>
-  <% end %>
 </head>
 <body id = "<%=  body_class %>" >
     <%= notice  %>
