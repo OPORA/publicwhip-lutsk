@@ -67,6 +67,9 @@
     -moz-box-sizing: inherit;
     box-sizing: inherit;
 }*/
+.hide{
+    display: none;
+}
 body{
     font-family: GothaProReg;
 }

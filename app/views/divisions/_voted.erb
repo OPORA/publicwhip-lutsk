@@ -1,7 +1,7 @@
 <div class="row">
     <div class="container">
     <% division.each do |d| %>
-            <%= link_to divisions_show_path(d.date, d.number), class: "" do %>
+            <%= link_to divisions_show_path(d.date, d.number), class: "row" do %>
             <div class="col-12 pull-right card">
                 <div class="row">
                     <div class="col text-uppercase">
@@ -22,8 +22,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
             <% end %>
     <% end %>

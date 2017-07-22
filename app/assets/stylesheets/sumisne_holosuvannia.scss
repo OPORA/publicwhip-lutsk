@@ -2,3 +2,26 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "heder";
+
+ul.sort-month{
+  width:175px;
+  overflow:hidden;
+  padding: 0;
+  margin:20px 0;
+}
+ul.sort-month li{
+  line-height:1.5em;
+  float:left;
+  display:inline;
+}
+
+ul.social li{
+  display: inline;
+  list-style: none;
+  margin-right: 40px;
+  font-size: 11px;
+  line-height: 11px;
+  font-weight: 300;
+  padding-bottom: 8px;
+  color: #949393;
+}

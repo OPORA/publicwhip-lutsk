@@ -39,19 +39,46 @@
     </div>
 </div>
 
-<div class="list-filters clearfix">
-    <ul class="sort-first text-uppercase">
-        <li <%= params[:month] == "full" ? "class=disabled": "" %> ><%= link_to "За весь час", sumisne_holosuvannia_path(month: :full) %></li>
-        <li <%= params[:month] != "full" ? "class=disabled": "" %> ><%= link_to "обрати місяць" %>
-            <ul>
-              <% @month.each do |m| %>
-                  <li <%= params[:month] == m.strftime('%Y-%m') ? "class=disabled": "" %> ><%= link_to month(m.strftime('%Y-%m')), params.merge(month: m.strftime('%Y-%m')) %></li>
-              <% end %>
-            </ul>
-        </li>
-    </ul>
-</div>
+<div class="container">
+    <div class="row list-filters clearfix">
+        <ul class="col sort-first text-uppercase">
+            <li <%= params[:month] == "full" ? "class=disabled": "" %> ><%= link_to "За весь час", sumisne_holosuvannia_path(month: :full) %></li>
 
+            <li <%= params[:month] != "full" ? "class=disabled": "" %> ><%= link_to "обрати місяць" %>
+                <i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i>
+
+                <!-- default - hide -->
+                <ul class="sort-month hide" >
+                      <% @month.each do |m| %>
+                          <li <%= params[:month] == m.strftime('%Y-%m') ? "class=disabled": "" %> ><%= link_to month(m.strftime('%Y-%m')), params.merge(month: m.strftime('%Y-%m')) %></li>
+                      <% end %>
+                </ul>
+
+            </li>
+        </ul>
+
+        <ul class="social col-4 pull-right text-uppercase">
+            <li>
+                <span class="fa-stack ">
+                  <i class="fa fa-square-o fa-stack-2x"></i>
+                  <i class="fa  fa-download  fa-stack-1x"></i>
+                </span>
+                csv</li>
+            <li><span class="fa-stack ">
+                  <i class="fa fa-square-o fa-stack-2x"></i>
+                  <i class="fa  fa-download  fa-stack-1x"></i>
+                </span>
+                png</li>
+            <li>
+                <span class="fa-stack ">
+                <i class="fa  fa-share-alt  fa-stack-1x"></i>
+                    </span>
+                поширити
+            </li>
+        </ul>
+
+    </div>
+</div>
 
 <div class="container">
   <div class="row">
