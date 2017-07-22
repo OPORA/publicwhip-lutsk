@@ -1,6 +1,27 @@
 <% content_for :title, "Сумісне Голосуванн — Як Голосує Твій Депутат?" %>
 <script src="//d3js.org/d3.v4.min.js"></script>
-
+<script>
+    //search
+    window.onload = function() {
+        var availableTags = [
+            <% @party.each do |m| %>
+            "<%= m %>",
+            <% end %>
+        ];
+        $( "#party" ).autocomplete({
+            source: availableTags
+        });
+        // load page start ajax GET
+//        $.ajax({
+//            type: "GET",
+            <!--<%# if params[:filter] %>-->
+//            url: "<%#= people_path(sort: params[:sort], filter: params[:filter], format: :js, per: params[:per]) %>"
+            <!--<%# else %>-->
+//            url: "<%#= people_path(sort: params[:sort], filter_min: params[:filter_min], filter_max: params[:filter_max], format: :js, per: params[:per]) %>"
+            <!--<%# end %>-->
+//        });
+    };
+</script>
 <div id="first-block" class="container people">
 
     <h1 class="text-uppercase center-justified">
@@ -8,11 +29,11 @@
     </h1>
 
     <div class="col-12">
-        <%= form_tag(search_mp_path, method: "get", class: "col-8 form-inline mt-2 mt-md-0 push-2", id: "search-main" ) do  %>
+        <%= form_tag(sumisne_holosuvannia_path, method: "get", class: "col-8 form-inline mt-2 mt-md-0 push-2", id: "search-main" ) do  %>
                           <span class="fa-stack">
                             <i class="fa fa-search fa-stack-1x fa-inverse" aria-hidden="true"></i>
                           </span>
-        <%= text_field_tag(:mp, params[:mp] , class: "form-control mr-sm-2" , placeholder: "напр., Адамик Петро Михайлович" ) %>
+        <%= text_field_tag(:party, params[:party]=="Блок Петра Порошенка" ? '' : params[:party] , class: "form-control mr-sm-2" , placeholder: "напр., Блок Петра Порошенка" ) %>
         <i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i>
         <% end %>
     </div>
@@ -20,8 +41,14 @@
 
 <div class="list-filters clearfix">
     <ul class="sort-first text-uppercase">
-        <li <%= params[:sort] == "attendance" ? "class=disabled": "" %> ><%= link_to "За весь час", divisions_path(sort: :attendance) %></li>
-        <li <%= params[:sort] == "rebellions" ? "class=disabled": "" %> ><%= link_to "обрати місяць", divisions_path(sort: :rebellions) %></li>
+        <li <%= params[:month] == "full" ? "class=disabled": "" %> ><%= link_to "За весь час", sumisne_holosuvannia_path(month: :full) %></li>
+        <li <%= params[:month] != "full" ? "class=disabled": "" %> ><%= link_to "обрати місяць" %>
+          <ul>
+            <% @month.each do |m| %>
+                <li <%= params[:month] == m.strftime('%Y-%m') ? "class=disabled": "" %> ><%= link_to m.strftime('%Y-%m'), params.merge(month: m.strftime('%Y-%m')) %></li>
+            <% end %>
+          </ul>
+        </li>
     </ul>
 </div>
 
@@ -35,7 +62,7 @@
   </div>
   <script>
       var colors = ["#FE6162", "#01AFFF", "#B3B2FE", "#FFDD2D", "#84F1FE", "#F765B2"];
-      d3.json("<%= sumisne_holosuvannia_api_path %>", function (data) {
+      d3.json("<%= sumisne_holosuvannia_api_path(month: params[:month]) %>", function (data) {
           createGrafic(data);
           function createGrafic(Data) {
               var nested_data =  d3.nest().key(function (d) {
@@ -52,7 +79,7 @@
                   });
               var party = [];
 
-              firs_party = nested_data.find(x => x.Party == "Блок Петра Порошенка");
+              firs_party = nested_data.find(x => x.Party == "<%= params[:party] %>");
               nested_data.forEach(function (p, i) {
                     if (p.Party != firs_party.Party) {
                         party.push({party: p.Party, values: [p.Value, firs_party.Value ]})
