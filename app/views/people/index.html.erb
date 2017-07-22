@@ -1,17 +1,3 @@
-<script>
-    //search
-    window.onload = function() {
-        var availableTags = [
-            <% @mp.each do |m| %>
-            "<%= m.full_name %>",
-            <% end %>
-        ];
-        $( "#mp" ).autocomplete({
-            source: availableTags
-        });
-    };
-</script>
-
 <% content_for :title, "Депутати — Як Голосує Твій Депутат?" %>
 
 <div id="first-block" class="container people">
@@ -31,3 +17,16 @@
     <%= render(:partial => 'index', :locals => {:mps => @mps}) %>
   </div>
 </div>
+<script>
+    //search
+    window.onload = function() {
+        var availableTags = [
+            <% @mp.each do |m| %>
+            "<%= m.full_name %>",
+            <% end %>
+        ];
+        $( "#mp" ).autocomplete({
+            source: availableTags
+        });
+    };
+</script>

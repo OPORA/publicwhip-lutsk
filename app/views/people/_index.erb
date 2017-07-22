@@ -54,50 +54,14 @@
   <% end %>
 </div>
 
-<div class="col-12">
-<% mps.each_with_index do |m, i| %>
-    <% if i % 2 == 0  %>
-        <div class="row">
-    <% end %>
-
-    <div class="col-6">
-      <div class="card card-person ">
-        <%= link_to show_people_path(m.url_name), class: "" do %>
-            <div class="row">
-              <div class="col-3">
-                <img class="card-photo" src="/image/<%= m.deputy_id %>.png" alt="<%=  m.full_name  %>">
-              </div>
-              <div class="col-9">
-                <p class="card-name"><%=  m.full_name  %></p>
-                <p class="card-fraction">Фракція "<%= member_role(m.faction, m.okrug) %>"</p>
-                <p class="card-elected">Обрано за списком партії  XXXX</p>
-
-                <div class="row check">
-                  <div class="col-6 text-uppercase float-left">
-                    <p class="checkin">присутність</p>
-                    <p class="card-percent"><%= fraction_to_percentage_display(m.mp_info.attendance_fraction) %> засідань</p></div>
-                  <div class="col-6 text-uppercase">
-                    <p class="checkin">проти фракції</p>
-                    <p class="card-percent"><%= fraction_to_percentage_display(m.mp_info.rebellions_fraction) %> голосувань</p></div>
-                </div>
-              </div>
-            </div>
-      </div>
-        <% end %>
-    </div>
-
-    <% if i % 2== 1 %>
-        </div>
-    <% end %>
-
-<% end %>
+<div class="col-12" id = "list_mp">
+  <%= render(:partial => 'page', :locals => {:mpsp => @mps}) %>
 </div>
-<% unless mps.last_page? %>
-    <%= link_to('<h4 class="text-uppercase text-center">Більше <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h4>'.html_safe, params.merge(:per => (params[:per].to_i + 8)), remote: true ) %>
-<% end %>
+
 </div>
 <script>
-    window.onload = function() {
+    window.onload = LoadPagePeople;
+    function LoadPagePeople() {
         //slider range
         $(function () {
             $("#slider-range").slider({
@@ -107,8 +71,6 @@
                 step: 10,
                 values: [<%= params[:filter_min] %>, <%= params[:filter_max] %>],
                 slide: function (event, ui) {
-                    console.log(ui.values);
-
                     $.ajax({
                         type: "GET",
                         url: "/people.js?filter_min=" + ui.values[0] + "&filter_max=" + ui.values[1] + "&sort=<%= params[:sort] %>"

@@ -1,0 +1,4 @@
+$("#load_more_link").remove();
+$("#list_mp").append("<%= escape_javascript(render(:partial => 'page', :locals => {:mpsp => @mps})) %>");
+
+

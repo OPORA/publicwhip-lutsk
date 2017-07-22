@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'divisions/:date/:id' => 'divisions#show', as: :divisions_show
 
   get 'people' => 'people#index', as: :people
+  get 'people/page', as: :people_next
   get 'people/:mp' => 'people#show', as: :show_people
   get 'people/:mp/divisions' => 'people#divisions', as: :people_divisions
   get 'people/:mp/friends' => 'people#friends', as: :people_friends
