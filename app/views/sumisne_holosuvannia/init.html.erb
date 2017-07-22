@@ -43,11 +43,11 @@
     <ul class="sort-first text-uppercase">
         <li <%= params[:month] == "full" ? "class=disabled": "" %> ><%= link_to "За весь час", sumisne_holosuvannia_path(month: :full) %></li>
         <li <%= params[:month] != "full" ? "class=disabled": "" %> ><%= link_to "обрати місяць" %>
-          <ul>
-            <% @month.each do |m| %>
-                <li <%= params[:month] == m.strftime('%Y-%m') ? "class=disabled": "" %> ><%= link_to m.strftime('%Y-%m'), params.merge(month: m.strftime('%Y-%m')) %></li>
-            <% end %>
-          </ul>
+            <ul>
+              <% @month.each do |m| %>
+                  <li <%= params[:month] == m.strftime('%Y-%m') ? "class=disabled": "" %> ><%= link_to month(m.strftime('%Y-%m')), params.merge(month: m.strftime('%Y-%m')) %></li>
+              <% end %>
+            </ul>
         </li>
     </ul>
 </div>
