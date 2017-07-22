@@ -13,9 +13,9 @@
         $.ajax({
             type: "GET",
             <% if params[:filter] %>
-              url: "<%= people_path(sort: params[:sort], filter: params[:filter], format: :js) %>"
+              url: "<%= people_path(sort: params[:sort], filter: params[:filter], format: :js, per: params[:per]) %>"
             <% else %>
-             url: "<%= people_path(sort: params[:sort], filter_min: params[:filter_min], filter_max: params[:filter_max], format: :js) %>"
+             url: "<%= people_path(sort: params[:sort], filter_min: params[:filter_min], filter_max: params[:filter_max], format: :js, per: params[:per]) %>"
             <% end %>
         });
     };

@@ -92,8 +92,12 @@
 
 <% end %>
 </div>
+<% unless mps.last_page? %>
+    <%= link_to('<h4 class="text-uppercase text-center">Більше <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h4>'.html_safe, params.merge(:per => (params[:per].to_i + 8)), remote: true ) %>
+<% end %>
 </div>
 <script>
+//    window.history.pushState("", "", "<%= request.fullpath  %>");
     //slider range
     $(function() {
         $( "#slider-range" ).slider({
