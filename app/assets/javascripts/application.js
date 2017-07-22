@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+// require_tree .
 $('button.btn.glyphicon').click(function () {
     if($(this).hasClass('glyphicon-chevron-down'))
     {

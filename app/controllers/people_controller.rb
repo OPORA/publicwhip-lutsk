@@ -44,6 +44,10 @@ class PeopleController < ApplicationController
     if mpls
       @mps = Kaminari.paginate_array(mpls, total_count: mpls.size).page(params[:page]).per(params[:per])
     end
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show

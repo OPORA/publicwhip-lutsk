@@ -11,14 +11,7 @@
       <i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i>
     </form>
   </div>
-  <div id="division"></div>
+  <div id="division">
+    <%= render(:partial => 'index', :locals => {:divisions => @divisions}) %>
+  </div>
 </div>
-<script>
-    window.onload = function() {
-        // load page start ajax GET
-        $.ajax({
-            type: "GET",
-            url: "<%= divisions_path(sort: params[:sort], format: :js, per: params[:per] ) %>"
-        });
-    };
-</script>
