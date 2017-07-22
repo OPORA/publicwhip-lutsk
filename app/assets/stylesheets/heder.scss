@@ -14,7 +14,6 @@ header{
   background-color: #000;
 }
 .navbar-inverse .navbar-nav .nav-link{
-
   line-height: 28px;
   font-size: 14px;
   height: 3.51%;
@@ -33,6 +32,7 @@ header{
   font-size:24px;
   line-height: 24px;
   font-family: GothaProBol;
+  margin-bottom: 50px;
 }
 .fa-inverse {
   color: #E5E5E5;
@@ -44,18 +44,21 @@ header{
 /*депутати і голосування*/
 #search-main input[type="text"] {
   background-color: #F5F5F5;
-  margin: 50px 0 80px 0;
+  margin-bottom: 80px;
+}
+#search-main .fa-stack{
+top: 10px;
 }
 #search-main .fa-inverse{
   color:#282828;
-  top: -13px;
+ /* top: -13px;*/
 }
 #search-main .arrow-icon{
   top: 65px;
 }
-#search-main{
-  margin: 50px 0 80px 0!important;
-}
+/*#search-main{
+  margin: 50px 0 80px 0;
+}*/
 
 /*ползунок - Депутати - Голосування*/
 
