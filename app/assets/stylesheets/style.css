@@ -337,6 +337,7 @@ h3.background-line:before {
 }
 .check > div:nth-child(2){
     border-left: 1px solid #D8D8D8;
+    padding-left: 40px;
 }
 .approve {
     color: #282828;
@@ -347,6 +348,7 @@ h3.background-line:before {
 }
 .card p{
     margin: 0;
+    line-height: 22px;
 }
 .card i{
     float: left;
@@ -358,7 +360,7 @@ h3.background-line:before {
     font-family: GothaProReg;
     font-size: 12px;
     line-height: 12px;
-    width: 108px;
+    /*width: 108px;*/
     margin-bottom: 20px !important;
 }
 .card-text {

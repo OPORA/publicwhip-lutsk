@@ -3,23 +3,27 @@
     <% division.each do |d| %>
             <%= link_to divisions_show_path(d.date, d.number), class: "" do %>
             <div class="col-12 pull-right card">
-                <div class="col-4 text-uppercase">
-                    <p class="approve"><i class="fa <%=  d.result == "Прийнято" ? "fa-check-circle" : "fa-times-circle"  %>" aria-hidden="true"></i> <%= d.result %></p>
-                    <p class="card-date"<%= d.date.strftime('%d.%m.%Y') %>, <%= Time.parse(d.clock_time).strftime('%H:%M') %> </p>
-                </div>
-                <div class="col-12 card-text">
-                    <p><%=  d.name  %></p>
-                </div>
-                <div class="row check">
-                    <div class="col-4 text-uppercase float-left">
-                        <p class="checkin">присутність</p>
-                        <p class="card-percent"><%= fraction_to_percentage_display(d.division_info.attendance_division) %></p>
+                <div class="row">
+                    <div class="col text-uppercase">
+                        <p class="approve"><i class="fa <%=  d.result == "Прийнято" ? "fa-check-circle" : "fa-times-circle"  %>" aria-hidden="true"></i> <%= d.result %></p>
+                        <p class="card-date"><%= d.date.strftime('%d.%m.%Y') %>, <%= Time.parse(d.clock_time).strftime('%H:%M') %> </p>
                     </div>
-                    <div class="col-4 text-uppercase">
-                        <p class="checkin">проти фракції</p>
-                        <p class="card-percent"><%= d.division_info.rebellions %>  голосувань</p>
+                    <div class="col-9 card-text">
+                        <p><%=  d.name  %></p>
+                        <div class="row check">
+                            <div class="col-4 text-uppercase float-left">
+                                <p class="checkin">присутність</p>
+                                <p class="card-percent"><%= fraction_to_percentage_display(d.division_info.attendance_division) %></p>
+                            </div>
+                            <div class="col-4 text-uppercase">
+                                <p class="checkin">проти фракції</p>
+                                <p class="card-percent"><%= d.division_info.rebellions %>  голосувань</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+
             </div>
             <% end %>
     <% end %>

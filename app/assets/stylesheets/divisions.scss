@@ -3,5 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "heder";
 
+.card i {
+  font-size: 25px;
+}
 
+#first-block .card{
+  min-height: 203px;
+}
 
+.card-text > p:nth-child(1) {
+  margin-bottom: 25px;
+}
