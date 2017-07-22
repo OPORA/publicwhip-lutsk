@@ -2,25 +2,32 @@
   <ul class="sort-first text-uppercase">
     <li <%= params[:sort].nil? ? "class=disabled": "" %> ><%= link_to "За Датою", divisions_path(), remote: true %></li>
     <li <%= params[:sort] == "attendance" ? "class=disabled": "" %> ><%= link_to "За Присутністю", divisions_path(sort: :attendance), remote: true %></li>
-    <li <%= params[:sort] == "rebellions" ? "class=disabled": "" %> ><%= link_to "Дотриманням фракційної дисципліни", divisions_path(sort: :rebellions), remote: true %></li>
+    <li <%= params[:sort] == "rebellions" ? "class=disabled": "" %> ><%= link_to "ЗА ФРАКЦІЙНОЮ ДИСЦИПЛІНОЮ", divisions_path(sort: :rebellions), remote: true %></li>
   </ul>
 
   <% if params[:sort] == "attendance" %>
-
+      <div id="slider-range">
+        <div id="custom-handle" class="ui-slider-handle"></div>
+      </div>
   <% end %>
 
   <% if params[:sort] == "rebellions" %>
-
+      <div id="slider-range">
+        <div id="custom-handle" class="ui-slider-handle"></div>
+      </div>
   <% end %>
 
   <% if params[:sort].nil? %>
       <ul class="sort-fraction">
         <li class="active-fon-fraction"><a href="">За останній тиждень</a> </li>
-        <li><a href="">фывфывфывфыва</a> </li>
-        <li><a href="">фывфывфывфыва</a> </li>
-        <li><a href="">фывфывфывфыва</a> </li>
+        <li><a href="">За останній місяць</a></li>
+        <li><a href="">За попередній тиждень</a></li>
+        <li><a href="">За попередній місяць</a></li>
       </ul>
-
+      <label for="from">за період з</label>
+      <input type="text" id="from" name="from">
+      <label for="to">до</label>
+      <input type="text" id="to" name="to">
   <% end %>
 
   <%= render "voted", division: divisions  %>
@@ -32,3 +39,80 @@
     <%#= paginate divisions, remote: true %>
   </div>
 </div>
+<script>
+    //slider range
+    $(function() {
+        $( "#slider-range" ).slider({
+            range: true,
+            min: 0,
+            max: 100,
+            step: 10,
+            values: [ <%= params[:filter_min] %>, <%= params[:filter_max] %> ],
+            slide: function( event, ui ) {
+                console.log(ui.values);
+
+                $.ajax({
+                    type: "GET",
+                    url: "/divisions.js?filter_min=" + ui.values[0] + "&filter_max="+ ui.values[1] +"&sort=<%= params[:sort] %>"
+                });
+            }
+        }).each(function() {
+
+            // Add labels to slider whose values
+            // are specified by min, max
+
+            // Get the options for this slider (specified above)
+            var opt = $(this).data().uiSlider.options;
+
+            // Get the number of possible values
+            var vals = opt.max - opt.min;
+
+            // Position the labels
+            for (var i = 0; i <= vals; i = i + opt.step ) {
+
+                // Create a new element and position it with percentages
+                var el = $('<label></label>').css('left', (i) + '%');
+
+                // Add the element inside #slider
+                $("#slider-range").append(el);
+
+            }
+            $('#custom-handle').append($('<span class = "custom-handle"><%= params[:filter_min] %></span>'));
+            $('span.ui-slider-handle').append($('<span class = "custom-handle"><%= params[:filter_max] %></span>'));;
+
+        });
+    });
+//    DatePiker
+    $( function() {
+        var dateFormat = "",
+            from = $( "#from" )
+                .datepicker({
+                    defaultDate: "+1w",
+//                    changeMonth: true,
+                    numberOfMonths: 1,
+                    regional:  ["uk"]
+                })
+                .on( "change", function() {
+                    to.datepicker( "option", "minDate", getDate( this ) );
+                }),
+            to = $( "#to" ).datepicker({
+                defaultDate: "+1w",
+//                changeMonth: true,
+                numberOfMonths: 1
+            })
+                .on( "change", function() {
+                    from.datepicker( "option", "maxDate", getDate( this ) );
+                });
+
+        function getDate( element ) {
+            var date;
+            try {
+                date = $.datepicker.parseDate( dateFormat, element.value );
+            } catch( error ) {
+                date = null;
+            }
+
+            return date;
+        }
+    } );
+</script>

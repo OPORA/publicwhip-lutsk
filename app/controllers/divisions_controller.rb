@@ -7,8 +7,20 @@ class DivisionsController < ApplicationController
     @divisions =
         case params[:sort]
           when "attendance"
+            if params[:filter_min].nil?
+              params[:filter_min] = 30
+            end
+            if params[:filter_max].nil?
+              params[:filter_max] = 90
+            end
              divisions.order('division_infos.turnout desc', number: :desc).page(params[:page]).per(params[:per])
           when "rebellions"
+            if params[:filter_min].nil?
+              params[:filter_min] = 30
+            end
+            if params[:filter_max].nil?
+              params[:filter_max] = 90
+            end
              divisions.order('division_infos.rebellions desc', number: :desc).page(params[:page]).per(params[:per])
           else
              divisions.order(date: :desc, number: :desc).page(params[:page]).per(params[:per])
