@@ -88,8 +88,7 @@
             from = $( "#from" )
                 .datepicker({
                     defaultDate: "+1w",
-//                    changeMonth: true,
-                  // placeholder:
+                    changeMonth: true,
                     numberOfMonths: 1,
                     regional:  ["uk"]
                 })
@@ -98,8 +97,9 @@
                 }),
             to = $( "#to" ).datepicker({
                 defaultDate: "+1w",
-//                changeMonth: true,
-                numberOfMonths: 1
+                changeMonth: true,
+                numberOfMonths: 1,
+		regional:  ["uk"]
             })
                 .on( "change", function() {
                     from.datepicker( "option", "maxDate", getDate( this ) );
@@ -117,3 +117,4 @@
         }
     } );
 </script>
+
