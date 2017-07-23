@@ -309,14 +309,12 @@ h3.background-line {
     position: relative;
     z-index: 1;
 }
-h3.background-line:before {
+#divisionshow h2::after, #first-block h2::after, .col h2::after, h3.background-line:after {
     border-top: 4px solid #000;
     content:"";
-    margin: 0 auto;
-    position: absolute;
-    top: 180%; left: 0; right: 0; bottom: 0;
     width: 10%;
-    z-index: -1;
+    margin: 22px auto;
+    display:block;
 }
 #first-block [class*="row"] + [class*="row"], #second-block [class*="row"] + [class*="row"]{
     margin-top: 25px;
@@ -527,4 +525,15 @@ footer span+span{
 .custom-handle {
     position: absolute;
     top: -30px;
+}
+
+.chevron{
+    font-size: 15px;
+}
+.panel-heading .chevron:after {
+    content: "\f077";
+
+}
+.panel-heading a.collapsed .chevron:after {
+    content: "\f078";
 }

@@ -43,17 +43,7 @@ input#from , input#to {
   line-height: 18px;
   text-align: center;
   margin-bottom: 80px;
-}/*
-#divisionshow h2::before {
-  border-top: 4px solid #000;
-  content: "";
-  margin: 0 auto;
-  position: absolute;
-  left: 0;
-  right: 0;
-  width: 10%;
-  top: 380px;
-}*/
+}
 #divisionshow a{
   text-decoration: unset;
 }
@@ -71,7 +61,7 @@ input#from , input#to {
   padding-left: 0;
   margin-left: -15px;
 }
-#divisionshow [class*="row"] .row .col{
+#divisionshow [class*="row"] .row .col, .panel-group a{
   color: #4A4A4A;
   font-family: GothaProReg;
   font-size: 11px;
@@ -103,9 +93,28 @@ input#from , input#to {
 }
 #divisionshow .detail{
   font-size: 12px;
-  line-height: 11px;
+  line-height: 15px;
   margin-top: 30px;
 }
 #divisionshow .member-row{
   margin-top: 15px;
+}
+#divisionshow .all{
+  margin-bottom: 120px;
+}
+.progress-bar{
+  background-color:#FFDD2D;
+  color:#000;
+}
+.progress{
+  -webkit-border-radius:none;
+  -moz-border-radius:none;
+  border-radius:none;
+  margin-left: 10px;
+  padding: 0;
+  height: 15px;
+}
+.progress.active .progress-bar {
+  -webkit-transition: none !important;
+  transition: none !important;
 }
