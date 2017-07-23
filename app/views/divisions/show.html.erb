@@ -41,7 +41,7 @@
                 <div class="row">
                     <div class="col text-uppercase text-xs-center">
                         <p class="approve">
-                            <i class="fa <%=  d.result == "Прийнято" ? "fa-check-circle" : "fa-times-circle"  %>" aria-hidden="true"></i>
+                            <i class="fa <%=  d.result.gsub(/[[:space:]]/, '') == "Прийнято" ? "fa-check-circle" : "fa-times-circle"  %>" aria-hidden="true"></i>
                             <span><%= d.result %></span></p>
                         <p class="card-date"><%= d.date.strftime('%d.%m.%Y') %>, <%= Time.parse(d.clock_time).strftime('%H:%M') %>  </p>
                     </div>
@@ -160,80 +160,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-<!--
-    <table class="table">
-      <colgroup class="column-name" span="1"></colgroup>
-      <colgroup class="column-vote" span="1"></colgroup>
-      <colgroup class="column-toggler" span="1"></colgroup>
-      <thead>
-      <tr>
-        <th>Фракція</th>
-        <th class="cell-vote">Голоси</th>
-        <th class="cell-toggler"></th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @whips.each_with_index  do |w, i| %>
-      <tr class="party-row" data-target=".member-row-<%= i %>" data-toggle="collapse" role="tab" aria-selected="false" aria-expanded="false">
-        <th class="cell-name">
-          <span class="party-name"><%= w.party %></span>
-          <small class="post-title text-muted">(<%= fraction_to_percentage_display((w.aye_votes + w.against + w.abstain + w.no_votes).to_f/(w.aye_votes + w.against + w.abstain + w.no_votes + w.absent))%>
-            явки)</small>
-        </th>
-        <td class="cell-vote">
-          <span class="<%= w.whip_guess != "aye" and w.aye_votes > 0 ? "rebel" : "normal" %>"><%= w.aye_votes %> Так </span>
-          <span class="<%= w.whip_guess != "against" and w.against > 0 ? "rebel" : "normal" %>"><%= w.against %> Ні</span>
-          <span class="<%= w.whip_guess != "abstain" and  w.abstain > 0 ? "rebel" : "normal" %>"><%= w.abstain %> Утрималися</span>
-          <span class="<%= w.whip_guess != "not_voted" and  w.no_votes > 0 ? "rebel" : "normal" %>"><%= w.no_votes %> Не голосували</span>
-        </td>
-        <td class="cell-toggler">
-          <button class="btn glyphicon glyphicon-chevron-down" data-target=".member-row-<%= i %>" data-toggle="collapse" role="tab" aria-selected="false" aria-expanded="false">
-            <span class="sr-only">показати усіх членів</span>
-          </button>
-        </td>
-      </tr>
-          <% @voted[w.party].each do |v| %>
-      <tr class="collapse member-row member-row-<%= i %> party-member-row">
-        <th class="cell-name">
-          <%= link_to v[:name], show_people_path(v[:url]), target: "_blank" %>
-          <span class="text-muted member-electorate"></span>
-          <small class="post-title text-muted"></small>
-        </th>
-        <td class="cell-vote <%=  w.whip_guess == v[:vote] or  v[:vote] =="absent" ? "": "rebel"   %>"><%= result_voted_mp(v[:vote]) %></td>
-        <td class="cell-toggler"></td>
-      </tr>
-          <% end %>
-      <% end %>
-      <tr>
-        <th class="whip">
-          Всього
-          <small class="post-title text-muted">(<%= fraction_to_percentage_display(d.division_info.attendance_division) %> явки)</small>
-        </th>
-        <td class="cell-vote">
-          <span class="whip"><%=  d.division_info.aye_votes %> Так</span>
-          <span class="normal"><%=  d.division_info.against %> Ні</span>
-          <span><%=  d.division_info.abstain %> Утрималися</span>
-          <span><%=  d.division_info.no_votes %> Не голосували</span>
-        </td>
-        <td class="cell-toggler"></td>
-      </tr>
-      </tbody>
-      </table>
--->
-
-<figcaption class='panel-footer small'>
-<% if d.division_info.rebellions > 0 %>
-  <p><span class="rebel">Червоні позначки</span> позначають голоси проти лінії фракції.</p>
-<% end %>
-<p>Явка - це відсоток депутатів, картки яких у момент волевиявлення були активовані у системі голосування.</p>
-</figcaption>
-<% end %>
 
 <div class="bottom"></div>
 
