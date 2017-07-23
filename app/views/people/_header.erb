@@ -41,12 +41,12 @@
   </div>
 
   <div class="row center-justified first">
-    <div class="col-4 text-uppercase">відвідування</div>
+    <div class="col-4 text-uppercase">відвідування <%= fraction_to_percentage_display(mp.mp_info.attendance_fraction) %></div>
     <div class="col-4">
       <img class="media-object circle-photo " src="/image/<%= mp.deputy_id %>.png" alt="<%=  mp.full_name %>" height="200">
       <p class="frac"><%= member_role(mp.faction, mp.okrug) %></p>
     </div>
-    <div class="col-4 text-uppercase">голосування проти</div>
+    <div class="col-4 text-uppercase">голосування проти   <%= fraction_to_percentage_display( mp.mp_info.against.to_f/mp.mp_info.votes_attended ) %></div>
   </div>
 </div>
 </div>
@@ -68,14 +68,14 @@
         <!-- Треба змінні % голосувань-->
         <div class="progress">
           <div class="progress-bar-1 progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="background-color: #88B04B">
-            50%
+            <%= fraction_to_percentage_display( mp.mp_info.aye_voted.to_f/mp.mp_info.votes_attended ) %>
           </div>
         </div>
         <script type="text/javascript">
           //<![CDATA[
           $( document ).ready(function(){
             $(".progress-bar-1").animate({
-              width: "50%"
+              width: "<%= fraction_to_percentage_display( mp.mp_info.aye_voted.to_f/mp.mp_info.votes_attended ) %>"
             }, 2500);
           });
           //]]>
@@ -88,14 +88,14 @@
         <!-- Треба змінні % голосувань-->
         <div class="progress">
           <div class="progress-bar-2 progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="background-color: #FE6162">
-            50%
+            <%= fraction_to_percentage_display( mp.mp_info.against.to_f/mp.mp_info.votes_attended ) %>
           </div>
         </div>
         <script type="text/javascript">
           //<![CDATA[
           $( document ).ready(function(){
             $(".progress-bar-2").animate({
-              width: "50%"
+              width: "<%= fraction_to_percentage_display( mp.mp_info.against.to_f/mp.mp_info.votes_attended ) %>"
             }, 2500);
           });
           //]]>
@@ -108,14 +108,14 @@
         <!-- Треба змінні % голосувань-->
         <div class="progress">
           <div class="progress-bar-5 progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="background-color: #01AFFF">
-            50%
+            <%= fraction_to_percentage_display( mp.mp_info.abstain.to_f/mp.mp_info.votes_attended ) %>
           </div>
         </div>
         <script type="text/javascript">
           //<![CDATA[
           $( document ).ready(function(){
             $(".progress-bar-5").animate({
-              width: "50%"
+              width: "<%= fraction_to_percentage_display( mp.mp_info.abstain.to_f/mp.mp_info.votes_attended ) %>"
             }, 2500);
           });
           //]]>
@@ -128,14 +128,14 @@
         <!-- Треба змінні % голосувань-->
         <div class="progress">
           <div class="progress-bar-3 progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="background-color: #B3B2FE">
-            50%
+            <%= fraction_to_percentage_display( mp.mp_info.not_voted.to_f/mp.mp_info.votes_attended ) %>
           </div>
         </div>
         <script type="text/javascript">
           //<![CDATA[
           $( document ).ready(function(){
             $(".progress-bar-3").animate({
-              width: "50%"
+              width: "<%= fraction_to_percentage_display( mp.mp_info.not_voted.to_f/mp.mp_info.votes_attended ) %>"
             }, 2500);
           });
           //]]>
@@ -148,14 +148,14 @@
         <!-- Треба змінні % голосувань-->
         <div class="progress">
           <div class="progress-bar-4 progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="background-color: #FFDD2D">
-            50%
+            <%= fraction_to_percentage_display( mp.mp_info.absent.to_f/mp.mp_info.votes_attended ) %>
           </div>
         </div>
         <script type="text/javascript">
           //<![CDATA[
           $( document ).ready(function(){
             $(".progress-bar-4").animate({
-              width: "50%"
+              width: "<%= fraction_to_percentage_display( mp.mp_info.absent.to_f/mp.mp_info.votes_attended ) %>"
             }, 2500);
           });
           //]]>

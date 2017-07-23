@@ -24,7 +24,11 @@ module PeopleHelper
   def fraction_to_percentage_display(fraction, options = {precision: 2, significant: true})
     if fraction
       percentage = fraction * 100
-      number_to_percentage(percentage, options)
+      if percentage == 0
+        return "0%"
+      else
+        number_to_percentage(percentage, options)
+      end
     else
       'n/a'
     end
