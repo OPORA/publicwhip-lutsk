@@ -19,7 +19,7 @@
                           </p>
                         </a>
                       </div>
-                      <div id="search-cat-1-sub-1" class="panel-collapse collapse">
+                      <div id="search-cat-1-sub-1" class="panel-collapse collapse show">
                         <div class="panel-body">
                           <div class="list-group">
                           <% @mps.each do |m| %>
@@ -44,7 +44,7 @@
                     </p>
                   </a>
               </div>
-              <div id="search-cat-1-sub-2" class="panel-collapse collapse">
+              <div id="search-cat-1-sub-2" class="panel-collapse collapse <%= @mps.blank? ? "show" : "" %>">
                   <div class="panel-body">
                     <div class="list-group">
                       <% @divisions.each do |d| %>
