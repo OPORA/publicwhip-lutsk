@@ -44,7 +44,6 @@
       </div>
 
   <% end %>
-
   <% if params[:sort] == "attendance" %>
 
       <div id="slider-range">
@@ -59,9 +58,8 @@
 </div>
 
 </div>
-<script>
-    window.onload = LoadPagePeople;
-    function LoadPagePeople() {
+<script type="text/javascript" charset="utf-8">
+    function LoadPagePeople () {
         //slider range
         $(function () {
             $("#slider-range").slider({

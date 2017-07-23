@@ -13,17 +13,17 @@ class PeopleController < ApplicationController
         params[:filter] = @filter.first
       end
     elsif params[:sort] == "rebellions"
-      if params[:filter_min].nil?
+      if params[:filter_min].nil? or params[:filter_min].blank?
         params[:filter_min] = 30
       end
-      if params[:filter_max].nil?
+      if params[:filter_max].nil? or params[:filter_max].blank?
         params[:filter_max] = 90
       end
     elsif params[:sort] == "attendance"
-      if params[:filter_min].nil?
+      if params[:filter_min].nil? or params[:filter_min].blank?
         params[:filter_min] = 30
       end
-      if params[:filter_max].nil?
+      if params[:filter_max].nil? or params[:filter_max].blank?
         params[:filter_max] = 90
       end
     else
