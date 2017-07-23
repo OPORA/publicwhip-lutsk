@@ -54,6 +54,9 @@ input#from , input#to {
   width: 10%;
   top: 380px;
 }*/
+#divisionshow a{
+  text-decoration: unset;
+}
 #divisionshow .social{
   margin-bottom: 65px
 }
@@ -82,10 +85,27 @@ input#from , input#to {
   line-height: 11px;
   text-align: center;
 }
-#divisionshow .golos{
+#divisionshow .panel-group, #divisionshow .member-row{
   border-bottom: 1px solid #E5E5E5;
-padding-bottom: 20px;
+  padding-bottom: 20px;
+}
+#divisionshow .member-row:last-child{
+  border:none;
+}
+#divisionshow .panel-group:last-child{
+  border-bottom:2px solid #949393;
 }
 #divisionshow .col, .golos{
   padding-left: 0;
+}
+#divisionshow .detail a{
+  color:#4A4A4A;
+}
+#divisionshow .detail{
+  font-size: 12px;
+  line-height: 11px;
+  margin-top: 30px;
+}
+#divisionshow .member-row{
+  margin-top: 15px;
 }
