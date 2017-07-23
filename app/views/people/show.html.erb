@@ -86,7 +86,7 @@
       <%#= link_to "Більше друзів по голосуванню", people_friends_path(@mp.url_name), class: "btn btn-default btn-sm" %>
    <% else %>
   <p><%= @mp.short_name %> голосував проти лінії фракції політичної партії
-    "<%= @mp.faction %>" <%= @mo %> разів</p>
+    "<%= @mp.faction %>" <%= @mp.mp_info.rebellions %> разів</p>
   <%= render "voted", division: @division_rebilions, mp: @mp %>
   <%#= link_to "Дивитись всі голосування проти фракції", people_divisions_path(@mp.url_name, filter: :rebellions ), class: "btn btn-default btn-sm" %>
    <% end %>
