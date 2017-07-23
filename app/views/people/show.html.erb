@@ -65,28 +65,28 @@
       </g>
     </g>
   </svg>
+  <div class="col">
+  <h2 class="center-justified text-xs-center text-uppercase">Деталі голосувань</h2>
   <div class="col-12 list-filters clearfix">
     <ul class="sort-first text-uppercase">
-      <li <%= params[:vote].blank? ? "class=disabled": "" %>><%= link_to "ГОЛОСУВАННЯ ПРОТИ ФРАКЦІЇ", show_people_path(@mp.url_name) %></li>
-      <li <%= params[:vote] == "last_vote" ? "class=disabled": "" %>><%= link_to "ОСТАННІ ГОЛОСУВАННЯ", show_people_path(@mp.url_name, vote: "last_vote") %></li>
-      <li <%= params[:vote] == "friends" ? "class=disabled": "" %>><%= link_to "ДРУЗІ ПО ГОЛОСУВАННЮ", show_people_path(@mp.url_name, vote: "friends" )%></li>
+      <li <%= params[:vote].blank? ? "class=disabled": "" %>><%= link_to "Голосування проти фракції", show_people_path(@mp.url_name) %></li>
+      <li <%= params[:vote] == "last_vote" ? "class=disabled": "" %>><%= link_to "Останні голосування", show_people_path(@mp.url_name, vote: "last_vote") %></li>
+      <li <%= params[:vote] == "friends" ? "class=disabled": "" %>><%= link_to "Друзі по голосуванню", show_people_path(@mp.url_name, vote: "friends" )%></li>
     </ul>
+  </div>
+  </div>
   <% if params[:vote] == "last_vote" %>
-      <h2>Останні голосування</h2>
-      <p>Останні голосування у міській раді, в яких депутат міг взяти участь.</p>
+      <p>Голосування в яких депутат міг взяти участь</p>
       <%= render "voted", division: @division, mp: @mp  %>
       <%#= link_to "Дивитись всі голосування", people_divisions_path(@mp.url_name), class: "btn btn-default btn-sm" %>
    <% elsif params[:vote] == "friends"  %>
-      <h2>Друзі по голосуванню</h2>
-      <p>Тут перераховані депутати, що голосують подібно, або ну відвідують засідання. Вимірюється від 0% (ніколи так не голосував) до 100% (завжди
-        голосував так само). Таким чином, можна виявити неочікуваний зв’язок між політичними позиціями депутатів.</p>
+      <p>Депутати, що голосують подібно. Таким чином, можна виявити
+        неочікуваний зв’язок між політичними позиціями депутатів.</p>
       <%= render "friends", friends: @friends, mp: @mp  %>
       <%#= link_to "Більше друзів по голосуванню", people_friends_path(@mp.url_name), class: "btn btn-default btn-sm" %>
    <% else %>
-      <h2>Останні голосування проти фракції</h2>
-  <p>
-    <%= @mp.short_name %> голосував проти фракції <%= @mp.mp_info.rebellions %> разів <%= link_to 'що таке “голосування проти фракції”' %>
-  </p>
+  <p><%= @mp.short_name %> голосував проти лінії фракції політичної партії
+    "<%= @mp.faction %>" <%= @mo %> разів</p>
   <%= render "voted", division: @division_rebilions, mp: @mp %>
   <%#= link_to "Дивитись всі голосування проти фракції", people_divisions_path(@mp.url_name, filter: :rebellions ), class: "btn btn-default btn-sm" %>
    <% end %>
