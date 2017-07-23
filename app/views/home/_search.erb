@@ -1,51 +1,63 @@
-<% content_for :title, "Результати пошуку: #{params[:search]} - Вони голосують для тебе" %>
-<div class="jumbotron">
-  <div class="container">
-     <div class="row">
-       <h1><em>Шукати депутатів та голосування:</em></h1>
-       <%= form_tag(search_path, method: "get", class: "form-inline" ) do  %>
-           <div class="input-group col-sm-12 col-md-8 col-lg-7">
-             <%= text_field_tag(:query, params[:query] , class: "form-control" , placeholder: "Пошук", maxlength: "256") %>
-           </div>
-             <%= submit_tag("Пошук", class: "btn btn-primary") %>
-
-       <% end %>
-     </div>
-  </div>
-</div>
 <div class="container">
   <% unless params[:query].blank? %>
     <% if @divisions.blank? and @mps.blank? %>
-        <h2>Відсутні результати пошуку</h2>
-        <p>Вибач, але ми не змогли знайти ні депутатів, ні політики, ні голосування за пошуковим запитом “<%= params[:query] %>”.</p>
-        <p>Радимо перевірити написання або ж спробувати більш загальні чи альтернативні терміни.</p>
-
-        <p>Ти можеш також переглянути перелік <%= link_to "Голосувань", divisions_path %>, та <%= link_to "Депутатів", people_path %>.</p>
+        <p>Ми нічого не знайшли за запитом “<%= params[:query] %>”.</p>
+        <p>Перевірте написання або спробуйте альтернативні терміни.</p>
+        <p>Можливо вам допоможе пощук по <%= link_to "Депутатах", people_path %>,  <%= link_to "Голосуваннях", divisions_path %> або статистка <%= link_to "Сумісних голосувань", sumisne_holosuvannia_path %> фракцій.</p>
     <% else %>
+          <div class="tab-content search-cat-content">
+            <div class="tab-pane active in fade show" id="search-cat-1">
+              <div class="panel-group" id="accordion-cat-search">
+
       <% unless @mps.blank? %>
-        <h2><%= @mps.size %> депутатів</h2>
-            <div class="list-group">
-              <% @mps.each do |m| %>
-                  <%= link_to show_people_path(m.url_name), class: "list-group-item" do %>
-                      <div class="media">
-                        <div class="media-left media-middle">
-                          <img class="media-object " src="/image/<%= m.deputy_id %>.png" alt="<%=  m.full_name  %>" height="115">
-                        </div>
-                        <div class="media-body">
-                          <h2 class="media-heading"><%=  m.full_name  %></h2>
-                          <p><%= member_role(m.faction, m.okrug) %></p>
-                          <p class="object-secondary"><span>Проти фракції у <%= fraction_to_percentage_display(m.mp_info.rebellions_fraction) %> випадків</span>
-                            <span class="member-attendance"><%= fraction_to_percentage_display(m.mp_info.attendance_fraction) %> Присутність</span></p>
+                    <div class="panel panel-default panel-search">
+                      <div class="panel-heading">
+                        <a data-toggle="collapse" data-parent="#accordion-cat-search-mp" href="#search-cat-1-sub-1">
+                          <p class="panel-title">
+                            Депутати. <%= @mps.size %> результати
+                            <span class="pull-right"><i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i></span>
+                          </p>
+                        </a>
+                      </div>
+                      <div id="search-cat-1-sub-1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                          <div class="list-group">
+                          <% @mps.each do |m| %>
+                              <%= link_to show_people_path(m.url_name), class: "list-group-item" do %>
+                                  <h2 class="media-heading"><%=  m.full_name  %></h2>
+                                  <p><%= member_role(m.faction, m.okrug) %></p>
+                              <% end %>
+                          <% end %>
+                          </div>
                         </div>
                       </div>
-                  <% end %>
-              <% end %>
-            </div>
+                    </div>
+
       <% end %>
       <% unless @divisions.blank? %>
-        <h2><%= @divisions.size  %> голосувань</h2>
-        <%= render 'divisions/voted', division: @divisions %>
+          <div class="panel panel-default panel-search">
+              <div class="panel-heading">
+                  <a data-toggle="collapse" data-parent="#accordion-cat-search-voted" href="#search-cat-1-sub-2">
+                    <p class="panel-title">
+                        Голосування. <%=  @divisions.size  %> результатів.
+                        <span class="pull-right"><i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i></span>
+                    </p>
+                  </a>
+              </div>
+              <div id="search-cat-1-sub-2" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="list-group">
+                      <% @divisions.each do |d| %>
+                          <%= link_to d.name , divisions_show_path(d.date, d.number), class: "list-group-item" %>
+                      <% end %>
+                    </div>
+                  </div>
+              </div>
+          </div>
       <% end %>
+        </div>
+            </div>
+          </div>
     <% end %>
   <% end %>
 </div>
