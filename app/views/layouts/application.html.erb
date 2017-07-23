@@ -154,9 +154,10 @@
                 </div>
                 <div class="modal-body">
                     <span>Пошук по сайту</span>
-                  <%= form_tag(search_path, method: "get" ) do  %>
+                  <%= form_tag(search_path, method: "get", remote: true ) do  %>
                       <%= text_field_tag(:query, params[:query], placeholder: "Уведіть пошуковий запит" ) %>
                   <% end %>
+                  <div id="search"></div>
                 </div>
                 
             </div>

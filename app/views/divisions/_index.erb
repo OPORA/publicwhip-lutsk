@@ -31,15 +31,10 @@
       <input type="text" id="to" name="to" value="<%= (Date.today() + 10.day).strftime('%d.%m.%Y') %>">
     </div>
   <% end %>
-
-  <%= render "voted", division: divisions  %>
-
-  <div class="index-pagination">
-    <% unless divisions.last_page? %>
-      <%= link_to('<h4 class="text-uppercase text-center">Більше <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h4>'.html_safe, params.merge(:per => (params[:per].to_i + 5)), remote: true ) %>
-    <% end %>
-    <%#= paginate divisions, remote: true %>
+  <div id="list_division">
+    <%= render "voted", division: divisions  %>
   </div>
+
 </div>
 <script>
     window.onload = LoadPage;
@@ -57,7 +52,11 @@
 
                     $.ajax({
                         type: "GET",
-                        url: "/divisions.js?filter_min=" + ui.values[0] + "&filter_max=" + ui.values[1] + "&sort=<%= params[:sort] %>"
+                        url: "/divisions?filter_min=" + ui.values[0] + "&filter_max=" + ui.values[1] + "&sort=<%= params[:sort] %>",
+                        headers: {
+                            Accept: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript",
+                            "Content-Type": "text/javascript; charset=utf-8"
+                        }
                     });
                 }
             }).each(function () {

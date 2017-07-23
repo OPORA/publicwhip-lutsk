@@ -1,5 +1,19 @@
 class DivisionsController < ApplicationController
   def index
+    @divisions = division()
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+  def page
+    @divisions_page = division()
+
+    respond_to do |format|
+      format.js
+    end
+  end
+  def division
     if params[:per].nil?
       params[:per] = 5
     end
@@ -13,7 +27,7 @@ class DivisionsController < ApplicationController
             if params[:filter_max].nil?
               params[:filter_max] = 90
             end
-             divisions.order('division_infos.turnout desc', number: :desc).page(params[:page]).per(params[:per])
+            divisions.order('division_infos.turnout desc', number: :desc).page(params[:page]).per(params[:per])
           when "rebellions"
             if params[:filter_min].nil?
               params[:filter_min] = 30
@@ -21,12 +35,11 @@ class DivisionsController < ApplicationController
             if params[:filter_max].nil?
               params[:filter_max] = 90
             end
-             divisions.order('division_infos.rebellions desc', number: :desc).page(params[:page]).per(params[:per])
+            divisions.order('division_infos.rebellions desc', number: :desc).page(params[:page]).per(params[:per])
           else
-             divisions.order(date: :desc, number: :desc).page(params[:page]).per(params[:per])
+            divisions.order(date: :desc, number: :desc).page(params[:page]).per(params[:per])
         end
   end
-
   def show
     @divisions = Division.includes(:division_info).where(date: params[:date], number: params[:id])
     @whips = Whip.where(division_id: @divisions.first.id).order(:party)

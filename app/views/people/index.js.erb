@@ -1,6 +1,3 @@
 window.history.pushState("", "", "<%= request.fullpath  %>");
 $("#profile").html("<%= escape_javascript(render(:partial => 'index', :locals => {:mps => @mps})) %>");
 LoadPagePeople();
-<% if params[:format] == "js" %>
-window.history.pushState("", "", "<%= request.fullpath.gsub('.js','')  %>");
-<% end %>

@@ -69,9 +69,13 @@
                 step: 10,
                 values: [<%= params[:filter_min] %>, <%= params[:filter_max] %>],
                 slide: function (event, ui) {
-                    $.ajax({
+                    $.get({
                         type: "GET",
-                        url: "/people.js?filter_min=" + ui.values[0] + "&filter_max=" + ui.values[1] + "&sort=<%= params[:sort] %>"
+                        url: "/people?filter_min=" + ui.values[0] + "&filter_max=" + ui.values[1] + "&sort=<%= params[:sort] %>",
+                        headers: {
+                            Accept: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript",
+                            "Content-Type": "text/javascript; charset=utf-8"
+                        }
                     });
                 }
             }).each(function () {

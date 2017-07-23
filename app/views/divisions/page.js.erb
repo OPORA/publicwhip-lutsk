@@ -1,0 +1,2 @@
+$("#load_more_link").remove();
+$("#list_division").append("<%= escape_javascript(render(:partial => 'voted', :locals => {:division => @divisions_page})) %>");

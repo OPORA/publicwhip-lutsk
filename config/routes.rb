@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'help/licencing'
 
   get 'divisions' => 'divisions#index', as: :divisions
-
+  get 'divisions/page', as: :divisions_next
   get 'divisions/:date/:id' => 'divisions#show', as: :divisions_show
 
   get 'people' => 'people#index', as: :people
