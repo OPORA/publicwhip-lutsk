@@ -66,34 +66,36 @@
       <% end %>
 
     <% @whips.each_with_index  do |w, i| %>
-    <div class="row">
-        <h3 class="col-12 text-uppercase" data-target=".member-row-<%= i %>" data-toggle="collapse" role="tab" aria-selected="false" aria-expanded="false">
-            <%= w.party %>
-        </h3>
-        <div class="row col-12 golos">
-            <div class="col text-uppercase <%= w.whip_guess != "aye" and w.aye_votes > 0 ? "rebel" : "normal" %>">за <span><%= w.aye_votes %></span></div>
-            <div class="col text-uppercase <%= w.whip_guess != "against" and w.against > 0 ? "rebel" : "normal" %>">проти <span><%= w.against %></span></div>
-            <div class="col text-uppercase <%= w.whip_guess != "abstain" and  w.abstain > 0 ? "rebel" : "normal" %>">утримався <span><%= w.abstain %></span></div>
-            <div class="col text-uppercase <%= w.whip_guess != "not_voted" and  w.no_votes > 0 ? "rebel" : "normal" %>">не голосвав <span><%= w.no_votes %></span></div>
-            <div class="col text-uppercase">присутність
-                <small class="post-title text-muted">(<%= fraction_to_percentage_display((w.aye_votes + w.against + w.abstain + w.no_votes).to_f/(w.aye_votes + w.against + w.abstain + w.no_votes + w.absent))%> явки)</small>
-                <i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i></div>
-        </div>
-
-        <% @voted[w.party].each do |v| %>
-        <div class="detail collapse member-row member-row-<%= i %> party-member-row open">
-            <div class="">
-                <%= link_to v[:name], show_people_path(v[:url]), target: "_blank" %>
-                <span class=""></span>
-                <small class=""></small>
+    <div id="accordion-<%= i %>" class="row panel-group">
+        <div class="col-12 panel panel-default">
+            <div class="panel-heading">
+                <a data-toggle="collapse" data-parent="#accordion-<%= i %>" href="#detail-<%= i %>" class="collapsed" aria-expanded="false">
+                    <h3 class="col-12 panel-title text-uppercase">
+                    <%= w.party %>
+                    </h3></a>
+                <div class="row col-12 golos">
+                    <div class="col text-uppercase <%= w.whip_guess != "aye" and w.aye_votes > 0 ? "rebel" : "normal" %>">за <span><%= w.aye_votes %></span></div>
+                    <div class="col text-uppercase <%= w.whip_guess != "against" and w.against > 0 ? "rebel" : "normal" %>">проти <span><%= w.against %></span></div>
+                    <div class="col text-uppercase <%= w.whip_guess != "abstain" and  w.abstain > 0 ? "rebel" : "normal" %>">утримався <span><%= w.abstain %></span></div>
+                    <div class="col text-uppercase <%= w.whip_guess != "not_voted" and  w.no_votes > 0 ? "rebel" : "normal" %>">не голосвав <span><%= w.no_votes %></span></div>
+                    <div class="col text-uppercase">присутність
+                        <small class="post-title text-muted">(<%= fraction_to_percentage_display((w.aye_votes + w.against + w.abstain + w.no_votes).to_f/(w.aye_votes + w.against + w.abstain + w.no_votes + w.absent))%> явки)</small>
+                        <i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i></div>
+                </div>
             </div>
-            <div class=" <%=  w.whip_guess == v[:vote] or  v[:vote] =="absent" ? "": "rebel"   %>"><%= result_voted_mp(v[:vote]) %></td>
+
+            <div id="detail-<%= i %>" class="panel-collapse detail collapse " aria-expanded="false" >
+                <% @voted[w.party].each do |v| %>
+                <div  class="member-row member-row-<%= i %> party-member-row" >
+                    <div class="panel-body">
+                        <%= link_to v[:name], show_people_path(v[:url]), target: "_blank" %>
+                    </div>
+                    <div class=" <%=  w.whip_guess == v[:vote] or  v[:vote] =="absent" ? "": "rebel"   %>"><%= result_voted_mp(v[:vote]) %></div>
+                </div>
+                <% end %>
+            </div>
         </div>
-        <% end %>
-
     </div>
-
-
     <% end %>
 
 <div>
@@ -108,6 +110,10 @@
         <span><%=  d.division_info.no_votes %> Не голосували</span>
     </div>
 </div>
+
+
+
+
 
 
 <!--
