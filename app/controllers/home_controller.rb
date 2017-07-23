@@ -3,6 +3,10 @@ class HomeController < ApplicationController
     @mps = Mp.order(last_name: :asc).map{|m| m.last_name + " " + m.first_name + " " + m.middle_name}
     @last_division = Division.includes(:division_info).last(4)
     @top_mp_rebellions = Mp.includes(:mp_info).where(end_date: nil).to_a.sort_by{ |m| [-(m.mp_info.attendance_fraction || -1), m.last_name, m.first_name, m.middle_name, m.faction, m.okrug ]}.reverse[0 .. 3]
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
   def search_mp
     mp = params[:mp].gsub(" ", "_")
@@ -12,6 +16,10 @@ class HomeController < ApplicationController
     unless params[:query].blank?
       @mps = Mp.find_by_search_query params[:query]
       @divisions = Division.find_by_search_query params[:query]
+    end
+
+    respond_to do |format|
+      format.js
     end
   end
 end
