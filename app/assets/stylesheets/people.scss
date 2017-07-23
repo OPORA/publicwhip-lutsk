@@ -32,7 +32,7 @@
   line-height: 16px;
   text-align: center;
 }
-#stat h2{
+#stat h2, h2{
     color: #282828;
     font-family: GothaProMed;
     font-size: 18px;
@@ -61,4 +61,13 @@ ul.object-secondary li span.pull-right{
     font-weight: 300;
     line-height: 18px;
     text-align: right;
+}
+.progress-bar{
+  color: #000000;
+}
+circle {
+  fill: #FFDD2D;
+  stroke-width: 1;
+  width:52px;
+  height:52px
 }
