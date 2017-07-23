@@ -15,13 +15,11 @@ ul.sort-month li{
   display:inline;
 }
 
-ul.social li{
-  display: inline;
-  list-style: none;
-  margin-right: 40px;
-  font-size: 11px;
-  line-height: 11px;
-  font-weight: 300;
-  padding-bottom: 8px;
-  color: #949393;
+#collapseExample ul{
+  margin-top: 20px;
+  width: 175px;
+}
+#collapseExample ul li{
+  display: block;
+  margin-bottom: 10px;
 }

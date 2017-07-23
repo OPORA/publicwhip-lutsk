@@ -27,7 +27,7 @@ header{
   line-height: 24px;
   font-family: GothaProBol;
 }
-#first-block h1{
+#first-block h1, #divisionshow h1{
   color: #252525;
   font-size:24px;
   line-height: 24px;
@@ -137,7 +137,9 @@ ul.sort-distric li{
   padding: 5px 10px;
 }
 
-
+#slider-range{
+  margin-bottom: 85px;
+}
 #slider-range label {
   position: absolute;;
   margin-top: 20px;
@@ -150,7 +152,6 @@ ul.sort-distric li{
   width: 6px;
   content: "";
   height: 6px;
-
 }
 #slider-range.ui-widget.ui-widget-content{
   height: 2px ;
@@ -168,4 +169,17 @@ ul.sort-distric li{
   height: 4px;
   background-color: #009FE2;
   top: -2px;
+}
+ul.social li{
+  display: inline;
+  list-style: none;
+  margin-right: 40px;
+  font-size: 11px;
+  line-height: 11px;
+  font-weight: 300;
+  padding-bottom: 8px;
+  color: #949393;
+}
+ul.social li a{
+  color: #949393;
 }

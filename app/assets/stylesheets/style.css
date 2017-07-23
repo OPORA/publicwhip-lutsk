@@ -78,6 +78,9 @@ body{
     -moz-text-align-last: center;
     text-align-last: center;
 }
+.text-xs-center {
+    text-align: center !important;
+}
 header{
     background: url(fon_home.png) no-repeat center center;
     -webkit-background-size: cover;
@@ -136,7 +139,6 @@ header{
     /*margin-bottom: 40px;*/
     margin-right: 10px;
 }
-
 #info div > div :nth-child(3){
     font-family: GothaProMed;
     height: 12px;
@@ -431,9 +433,18 @@ footer{
     background-color: #000;
     color:#D4D6D9;
     height: 190px;
-}
-footer {
     border-top: 15px solid #949393;
+}
+footer a{
+    color: #D4D6D9;
+}
+footer span{
+    font-size:12px;
+    line-height:14px;
+}
+footer .fa-inverse{
+    font-size:  26px;
+
 }
 footer .title{
     text-transform: capitalize;
@@ -450,21 +461,19 @@ footer div [class*="row"] p a{
     height: 11px;
     width: 20px;
 }
-footer > div [class*="row"]{
+/*footer > div [class*="row"]{
     padding-top: 40px;
-}
+}*/
 footer > div [class*="row"] p{
-    height: 42px;
-    width: 228px;
     color: #D4D6D9;
     font-family: GothaProReg;
     font-size: 12px;
     line-height: 14px;
 }
-footer > div [class*="row"] span {
+/*footer > div [class*="row"] span {
     height: 40px;
     width: 40px;
-}
+}*/
 footer span+span{
     margin-left: 16.666667%;
 }

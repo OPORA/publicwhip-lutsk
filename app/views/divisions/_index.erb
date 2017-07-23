@@ -24,10 +24,12 @@
         <li><a href="">За попередній тиждень</a></li>
         <li><a href="">За попередній місяць</a></li>
       </ul>
+    <div class="text-xs-center ">
       <label for="from">за період з</label>
       <input type="text" id="from" name="from" value="<%= (Date.today() - 10.day).strftime('%d.%m.%Y') %>">
       <label for="to">до</label>
       <input type="text" id="to" name="to" value="<%= (Date.today() + 10.day).strftime('%d.%m.%Y') %>">
+    </div>
   <% end %>
 
   <%= render "voted", division: divisions  %>

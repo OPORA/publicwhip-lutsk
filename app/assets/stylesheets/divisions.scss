@@ -6,11 +6,9 @@
 .card i {
   font-size: 25px;
 }
-
 #first-block .card{
   min-height: 203px;
 }
-
 .card-text > p:nth-child(1) {
   margin-bottom: 25px;
 }
@@ -21,4 +19,73 @@ input#from , input#to {
   height: 30px;
   border-radius: 4px;
   font-family: GothaProReg;
+  margin: 0 20px;
+}
+#division .text-xs-center{
+  margin-bottom: 1rem;
+}
+#divisionshow .card {
+  border: none;
+  outline: none;
+  margin-bottom: 60px;
+}
+#divisionshow .fa-times-circle {
+  font-size: 58px;
+}
+#divisionshow h1{
+  margin-bottom: 80px;
+}
+#divisionshow h2 {
+  color: #282828;
+  font-family: GothaProMed;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: center;
+  margin-bottom: 80px;
+}/*
+#divisionshow h2::before {
+  border-top: 4px solid #000;
+  content: "";
+  margin: 0 auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 10%;
+  top: 380px;
+}*/
+#divisionshow .social{
+  margin-bottom: 65px
+}
+#divisionshow h3{
+    color: #4A4A4A;
+    font-family: GothaProMed;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 11px;
+  margin-bottom: 15px;
+  margin-top: 30px;
+  padding-left: 0;
+  margin-left: -15px;
+}
+#divisionshow [class*="row"] .row .col{
+  color: #4A4A4A;
+  font-family: GothaProReg;
+  font-size: 11px;
+  line-height: 11px;
+}
+#divisionshow [class*="row"] .row .col span{
+  color: #4A4A4A;
+  font-family: GothaProMed;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 11px;
+  text-align: center;
+}
+#divisionshow .golos{
+  border-bottom: 1px solid #E5E5E5;
+padding-bottom: 20px;
+}
+#divisionshow .col, .golos{
+  padding-left: 0;
 }
