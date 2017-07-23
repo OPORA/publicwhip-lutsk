@@ -65,9 +65,12 @@
       </g>
     </g>
   </svg>
- <%= link_to "ГОЛОСУВАННЯ ПРОТИ ФРАКЦІЇ", show_people_path(@mp.url_name) %>
-  <%= link_to "ОСТАННІ ГОЛОСУВАННЯ", show_people_path(@mp.url_name, vote: "last_vote") %>
-  <%= link_to "ДРУЗІ ПО ГОЛОСУВАННЮ", show_people_path(@mp.url_name), vote: "friends" %>
+  <div class="col-12 list-filters clearfix">
+    <ul class="sort-first text-uppercase">
+      <li <%= params[:vote].blank? ? "class=disabled": "" %>><%= link_to "ГОЛОСУВАННЯ ПРОТИ ФРАКЦІЇ", show_people_path(@mp.url_name) %></li>
+      <li <%= params[:vote] == "last_vote" ? "class=disabled": "" %>><%= link_to "ОСТАННІ ГОЛОСУВАННЯ", show_people_path(@mp.url_name, vote: "last_vote") %></li>
+      <li <%= params[:vote] == "friends" ? "class=disabled": "" %>><%= link_to "ДРУЗІ ПО ГОЛОСУВАННЮ", show_people_path(@mp.url_name, vote: "friends" )%></li>
+    </ul>
   <% if params[:vote] == "last_vote" %>
       <h2>Останні голосування</h2>
       <p>Останні голосування у міській раді, в яких депутат міг взяти участь.</p>
