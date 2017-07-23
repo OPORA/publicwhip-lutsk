@@ -3,26 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "heder";
 
-ul.sort-month{
-  width:175px;
-  overflow:hidden;
-  padding: 0;
-  margin:20px 0;
-}
-ul.sort-month li{
-  line-height:1.5em;
-  float:left;
-  display:inline;
-}
-
-#collapseExample ul{
-  margin-top: 20px;
-  width: 175px;
-}
-#collapseExample ul li{
-  display: block;
-  margin-bottom: 10px;
-}
 .col h2{
     color: #282828;
     font-family: GothaProMed;

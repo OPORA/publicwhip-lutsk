@@ -4,12 +4,61 @@
 
 @import "heder";
 
-    /*у форми class="col-8 form-inline mt-2 mt-md-0 push-2"
-
-    ВИДАЛИТИ mt-2 mt-md-0*/
-
-
-
+.media-heading{
+  margin-bottom: 80px;
+    color: #252525;
+    font-family: GothaProBol;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 24px;
+    text-align: center;
+}
 .list-filters{
   margin-bottom: 85px;
+}
+.first{
+  margin-bottom: 50px;
+}
+.circle-photo{
+  height: 200px;
+  width:200px;
+  clip-path: circle(100px at center);
+  border-radius: 100px;
+}
+.frac {
+  color: #4A4A4A;
+  font-family: GothaProReg;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: center;
+}
+#stat h2{
+    color: #282828;
+    font-family: GothaProMed;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 18px;
+    text-align: center;
+  }
+#stat{
+  background-color: #F5F5F5;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+ul.object-secondary li{
+  list-style: none;
+  color: #000000;
+  font-family: GothaProBol;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 18px;
+  margin-bottom: 20px;
+}
+ul.object-secondary li span.pull-right{
+    color: #282828;
+    font-family: GothaProReg;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 18px;
+    text-align: right;
 }

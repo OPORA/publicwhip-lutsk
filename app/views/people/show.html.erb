@@ -65,8 +65,11 @@
       </g>
     </g>
   </svg>
+
+
+
   <div class="col">
-  <h2 class="center-justified text-xs-center text-uppercase">Деталі голосувань</h2>
+  <h2 class="center-justified text-xs-center text-uppercase background-line">Деталі голосувань</h2>
   <div class="col-12 list-filters clearfix">
     <ul class="sort-first text-uppercase">
       <li <%= params[:vote].blank? ? "class=disabled": "" %>><%= link_to "Голосування проти фракції", show_people_path(@mp.url_name) %></li>
@@ -75,6 +78,7 @@
     </ul>
   </div>
   </div>
+
   <% if params[:vote] == "last_vote" %>
       <p>Голосування в яких депутат міг взяти участь</p>
       <%= render "voted", division: @division, mp: @mp  %>
