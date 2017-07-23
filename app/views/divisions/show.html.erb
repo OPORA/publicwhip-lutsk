@@ -78,9 +78,42 @@
                         <div class="col text-uppercase <%= w.whip_guess != "against" and w.against > 0 ? "rebel" : "normal" %>">проти <span><%= w.against %></span></div>
                         <div class="col text-uppercase <%= w.whip_guess != "abstain" and  w.abstain > 0 ? "rebel" : "normal" %>">утримався <span><%= w.abstain %></span></div>
                         <div class="col text-uppercase <%= w.whip_guess != "not_voted" and  w.no_votes > 0 ? "rebel" : "normal" %>">не голосвав <span><%= w.no_votes %></span></div>
-                        <div class="col text-uppercase">присутність
-                            <small class="post-title text-muted">(<%= fraction_to_percentage_display((w.aye_votes + w.against + w.abstain + w.no_votes).to_f/(w.aye_votes + w.against + w.abstain + w.no_votes + w.absent))%> явки)</small>
-                            <i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i></div>
+                        <div class="col-4 text-uppercase">
+                            <div class="row">
+                                присутність
+                                <div class="progress col-8">
+                                    <div class="progress-bar-<%= i %> progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" >
+                                        <%= fraction_to_percentage_display((w.aye_votes + w.against + w.abstain + w.no_votes).to_f/(w.aye_votes + w.against + w.abstain + w.no_votes + w.absent))%>
+                                    </div>
+                                </div>
+                                <i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i>
+
+
+                                <style>
+                                    .panel-heading .accordion-toggle:after {
+                                        /* symbol for "opening" panels */
+                                        font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+                                        content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+                                        float: right;        /* adjust as needed */
+                                        color: grey;         /* adjust as needed */
+                                    }
+                                    .panel-heading .accordion-toggle.collapsed:after {
+                                        /* symbol for "collapsed" panels */
+                                        content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+                                    }
+
+                                </style>
+                            </div>
+                            <script type="text/javascript">
+                                //<![CDATA[
+                                $( document ).ready(function(){
+                                    $(".progress-bar-<%= i %> ").animate({
+                                        width: "<%= fraction_to_percentage_display((w.aye_votes + w.against + w.abstain + w.no_votes).to_f/(w.aye_votes + w.against + w.abstain + w.no_votes + w.absent))%>"
+                                    }, 2500);
+                                });
+                                //]]>
+                            </script>
+                        </div>
                     </div>
                 </a>
             </div>
@@ -112,17 +145,34 @@
 
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid all">
 
         <h3 class="panel-title text-uppercase">Всього</h3>
 
-    <div class="row golos">
+    <div class="row golos detail">
         <div class="col text-uppercase ">Так  <span ><%=  d.division_info.aye_votes %> </span></div>
         <div class="col text-uppercase ">Ні <span>  <%=  d.division_info.against %> </span></div>
         <div class="col text-uppercase  ">Утрималися <span><%=  d.division_info.abstain %> </span></div>
         <div class="col text-uppercase ">Не голосували <span><%=  d.division_info.no_votes %> </span></div>
-        <div class="col text-uppercase">присутність
-            <small class="post-title text-muted">(<%= fraction_to_percentage_display(d.division_info.attendance_division) %> явки)</small>
+        <div class="col-4 text-uppercase">
+            <div class="row">
+                присутність
+                <div class="progress col-8">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                        <%= fraction_to_percentage_display(d.division_info.attendance_division) %>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    //<![CDATA[
+                    $( document ).ready(function(){
+                        $(".all .progress-bar").animate({
+                            width: "<%= fraction_to_percentage_display(d.division_info.attendance_division) %>"
+                        }, 2500);
+                    });
+                    //]]>
+                </script>
+            </div>
+
         </div>
     </div>
 </div>
