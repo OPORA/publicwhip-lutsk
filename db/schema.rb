@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20170724174325) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "division_infos", id: :serial, force: :cascade do |t|
+  create_table "division_infos", force: :cascade do |t|
     t.integer "division_id"
     t.integer "aye_votes"
     t.integer "no_votes"
@@ -29,9 +29,9 @@ ActiveRecord::Schema.define(version: 20170724174325) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "divisions", id: :serial, force: :cascade do |t|
+  create_table "divisions", force: :cascade do |t|
     t.date "date"
-    t.integer "number"
+    t.string "number"
     t.text "name"
     t.string "clock_time"
     t.string "result"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20170724174325) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "mp_friends", id: :serial, force: :cascade do |t|
+  create_table "mp_friends", force: :cascade do |t|
     t.integer "deputy_id"
     t.integer "friend_deputy_id"
     t.integer "count"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20170724174325) do
     t.date "date_mp_friend"
   end
 
-  create_table "mp_infos", id: :serial, force: :cascade do |t|
+  create_table "mp_infos", force: :cascade do |t|
     t.integer "deputy_id"
     t.integer "rebellions"
     t.integer "not_voted"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20170724174325) do
     t.date "date_mp_info"
   end
 
-  create_table "mps", id: :serial, force: :cascade do |t|
+  create_table "mps", force: :cascade do |t|
     t.integer "deputy_id"
     t.string "first_name"
     t.string "middle_name"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 20170724174325) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "votes", id: :serial, force: :cascade do |t|
+  create_table "votes", force: :cascade do |t|
     t.integer "division_id"
     t.integer "deputy_id"
     t.string "vote"
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20170724174325) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "whips", id: :serial, force: :cascade do |t|
+  create_table "whips", force: :cascade do |t|
     t.integer "division_id"
     t.string "party"
     t.integer "aye_votes"

@@ -46,8 +46,9 @@ input#from , input#to {
   outline: none;
   margin-bottom: 60px;
 }
-#divisionshow .fa-times-circle {
+#divisionshow .fa-times-circle,  #divisionshow .fa-check-circle{
   font-size: 58px;
+  margin-left: 30%;
 }
 #divisionshow h1{
   margin-bottom: 80px;
@@ -91,7 +92,11 @@ input#from , input#to {
   font-weight: 500;
   line-height: 11px;
   text-align: center;
+  /*padding: 0 35%;*/
 }
+/*#divisionshow .card-date{
+  padding: 0 40%;
+}*/
 #divisionshow .panel-group, #divisionshow .member-row{
   border-bottom: 1px solid #E5E5E5;
   padding-bottom: 20px;

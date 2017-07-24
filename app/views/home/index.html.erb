@@ -24,11 +24,11 @@
       <div class="col-6">
         <%= link_to divisions_show_path(d.date, d.number), class: "" do %>
         <div class="col-12 pull-right card">
-          <div class="col-4 text-uppercase">
+          <div class="row text-uppercase">
             <p class="approve"><i class="fa <%=  d.result == "Прийнято" ? "fa-check-circle" : "fa-times-circle"  %>" aria-hidden="true"></i> <%= d.result %></p>
             <p class="card-date"><%= d.date.strftime('%d.%m.%Y') %> / <%= Time.parse(d.clock_time).strftime('%H:%M') %></p>
           </div>
-          <div class="col-12 card-text">
+          <div class="row card-text">
             <p><%=  d.name  %></p>
           </div>
           <div class="row check">
