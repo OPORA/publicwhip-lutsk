@@ -277,7 +277,7 @@ header{
     line-height: 18px;
     margin-bottom: 5rem;
 }
-#first-block h4, #second-block h4{
+#first-block h4, #second-block h4, .index-pagination h4{
     height: 18px;
     color: #4A4A4A;
     font-family: GothaProMed;
@@ -326,6 +326,7 @@ h3.background-line {
 .check > div:nth-child(2){
     border-left: 1px solid #D8D8D8;
     padding-left: 40px;
+    height: 45px;
 }
 .approve {
     color: #282828;
