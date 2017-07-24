@@ -1,21 +1,8 @@
 namespace :deputi_cashe do
   desc "Update mp cashe"
-  task mp: :environment do
+  task mp_month: :environment do
     @mp = Mp.all
-    def save_update_mp_ifo(deputy_id, date, rebellions, not_voted, absent, against, aye, abstain, votes_possible, votes_attended)
-      mp_info = MpInfo.find_or_initialize_by(deputy_id: deputy_id, date_mp_info: date)
-      mp_info.rebellions = rebellions
-      mp_info.not_voted = not_voted
-      mp_info.absent = absent
-      mp_info.against = against
-      mp_info.aye_voted = aye
-      mp_info.abstain = abstain
-      mp_info.votes_possible = votes_possible
-      mp_info.votes_attended = votes_attended
-      mp_info.save
-      p mp_info
-    end
-    Division.all.to_a.group_by{|d| d.date.strftime("%Y-%m-%d")}.each do |d|
+    Division.all.to_a.group_by{|d| d.date.strftime("%Y-%m")}.each do |d|
       date = d[0]
       vote_id =  d[1].map{|v| v.id }
       @mp.each do |m|
@@ -23,12 +10,12 @@ namespace :deputi_cashe do
         v_month =  Vote.where(deputy_id: m.deputy_id, division_id: vote_id ).map {|v| v}
 
         hash_month = {
-                 not_voted: v_month.count{|v| v.vote == "not_voted"},
-                 absent: v_month.count{|v| v.vote == "absent"},
-                 against: v_month.count{|v| v.vote == "against"},
-                 aye: v_month.count{|v| v.vote == "aye"},
-                 abstain: v_month.count{|v| v.vote == "abstain"}
-             }
+            not_voted: v_month.count{|v| v.vote == "not_voted"},
+            absent: v_month.count{|v| v.vote == "absent"},
+            against: v_month.count{|v| v.vote == "against"},
+            aye: v_month.count{|v| v.vote == "aye"},
+            abstain: v_month.count{|v| v.vote == "abstain"}
+        }
         p m.deputy_id
         p m.full_name
         p hash_month
@@ -37,6 +24,10 @@ namespace :deputi_cashe do
         save_update_mp_ifo(m.deputy_id, Date.strptime(date, '%Y-%m'), rebellions_month, hash_month[:not_voted], hash_month[:absent], hash_month[:against],hash_month[:aye], hash_month[:abstain], votes_possible_month, votes_attended_month)
       end
     end
+  end
+  desc "Update mp cashe"
+  task mp: :environment do
+    @mp = Mp.all
       @mp.each do |m|
       rebellions = Division.joins(:whips, :votes).where('votes.deputy_id = ?', m.deputy_id ).where('whips.party = ?', m.faction).where("votes.vote != 'absent'").where('votes.vote != whips.whip_guess').count
       v =  Vote.where(deputy_id: m.deputy_id).map {|v| v}
@@ -103,5 +94,18 @@ namespace :deputi_cashe do
     end
 
 
+  end
+  def save_update_mp_ifo(deputy_id, date, rebellions, not_voted, absent, against, aye, abstain, votes_possible, votes_attended)
+    mp_info = MpInfo.find_or_initialize_by(deputy_id: deputy_id, date_mp_info: date)
+    mp_info.rebellions = rebellions
+    mp_info.not_voted = not_voted
+    mp_info.absent = absent
+    mp_info.against = against
+    mp_info.aye_voted = aye
+    mp_info.abstain = abstain
+    mp_info.votes_possible = votes_possible
+    mp_info.votes_attended = votes_attended
+    mp_info.save
+    p mp_info
   end
 end
