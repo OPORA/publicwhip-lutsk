@@ -42,7 +42,18 @@ class DivisionsController < ApplicationController
             divi =divisions.to_a.find_all{|m| m.division_info.rebellions_fraction.to_f >= params[:filter_min].to_f/100 and m.division_info.rebellions_fraction.to_f <= params[:filter_max].to_f/100 }.sort_by{ |m| [-(m.division_info.rebellions_fraction || -1), m.date, m.number ]}
             Kaminari.paginate_array(divi).page(params[:page]).per(params[:per])
           else
-            divisions.order(date: :desc, number: :desc).page(params[:page]).per(params[:per])
+            if (params[:min_date].nil? or params[:min_date].blank? or params[:max_date].nil? or params[:max_date].blank?) and (params[:last].nil? or params[:last].blank?)
+              params[:last] = "3"
+            end
+            if params[:last] == "3"
+               params[:min_date] = (Date.today() - 3.month).strftime('%d.%m.%Y')
+               params[:max_date] = Date.today().strftime('%d.%m.%Y')
+            elsif params[:last] == "1"
+              min_date = Date.strptime((Division.pluck(:date).last.strftime('%m.%Y')), '%m.%Y')
+              params[:min_date] = min_date.strftime('%d.%m.%Y')
+              params[:max_date] = (min_date + 1.month - 1.day).strftime('%d.%m.%Y')
+            end
+            divisions.where("date >= ? AND date <= ?", params[:min_date], params[:max_date]).order(date: :desc, number: :desc).page(params[:page]).per(params[:per])
         end
   end
   def show
