@@ -94,6 +94,9 @@ class PeopleController < ApplicationController
   end
   def get_divisions(deputy_id, faction)
     division = Division.includes(:division_info).joins(:votes, :whips).where('votes.deputy_id =? and whips.party=?', deputy_id, faction ).order(date: :desc, id: :desc).references(:division_info)
+    if params[:month] != "full"
+    division = division.where("date >= ? AND date < ?", Date.strptime(params[:month], '%Y-%m'), Date.strptime(params[:month], '%Y-%m') + 1.month)
+    end
     divisions =
         case params[:vote]
           when "last_vote"
@@ -104,7 +107,13 @@ class PeopleController < ApplicationController
     return divisions
   end
   def get_friends(deputy_id)
-    MpFriend.where(deputy_id: deputy_id).order(count: :desc).page(params[:page]).per(5)
+    if params[:month] != "full"
+      #TODO Adede MPFriend date
+      friends = MpFriend.where(deputy_id: deputy_id).order(count: :desc)
+    else
+      friends = MpFriend.where(deputy_id: deputy_id).order(count: :desc)
+    end
+    friends.page(params[:page]).per(5)
   end
   def divisions
     @division = get_mp()
