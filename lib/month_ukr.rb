@@ -35,17 +35,17 @@ class MonthUkr
   def self.i_to_month(month)
     case month.to_i
       when 1
-        "січнь"
+        "січень"
       when 2
         "лютий"
       when 3
-        "березнь"
+        "березень"
       when 4
         "квітень"
       when 5
         "травень"
       when 6
-        "червнь"
+        "червень"
       when 7
         "липень"
       when 8
