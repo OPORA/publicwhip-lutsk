@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511233128) do
+ActiveRecord::Schema.define(version: 20170724174325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20170511233128) do
     t.integer "count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "date_mp_friend"
   end
 
   create_table "mp_infos", id: :serial, force: :cascade do |t|
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170511233128) do
     t.integer "votes_attended"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "date_mp_info"
   end
 
   create_table "mps", id: :serial, force: :cascade do |t|
