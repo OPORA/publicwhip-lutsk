@@ -118,10 +118,9 @@ class PeopleController < ApplicationController
   end
   def get_friends(deputy_id)
     if params[:month] != "full"
-      #TODO Adede MPFriend date
-      friends = MpFriend.where(deputy_id: deputy_id).order(count: :desc)
+      friends = MpFriend.where(deputy_id: deputy_id, date_mp_friend: Date.strptime(params[:month], '%Y-%m') ).order(count: :desc)
     else
-      friends = MpFriend.where(deputy_id: deputy_id).order(count: :desc)
+      friends = MpFriend.where(deputy_id: deputy_id, date_mp_friend: "9999-12-31" ).order(count: :desc)
     end
     friends.page(params[:page]).per(5)
   end

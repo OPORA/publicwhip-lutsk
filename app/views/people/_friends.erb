@@ -22,7 +22,7 @@
   </div>
 <% end %>
 <div class="index-pagination">
-  <% unless friends.last_page? %>
+  <% unless friends.last_page? or friends.blank? %>
       <%= link_to('<h4 class="text-uppercase text-center">Більше <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h4>'.html_safe, people_friends_path(params.merge(page: friends.current_page + 1)), remote: true, id: "load_more_link" ) %>
   <% end %>
 </div>
