@@ -70,7 +70,8 @@ ul li, ul span li {
   font-family: GothaProReg;
 }
 ul.sort-first{
-  margin-bottom: 65px;
+  margin-bottom: 35px;
+  height: 24px;
 }
 ul.sort-first li{
   display: inline;
@@ -80,6 +81,26 @@ ul.sort-first li{
   line-height: 11px;
   font-weight: 300;
   padding-bottom: 8px;
+}
+
+ul.sort-first li{
+  float: left;
+}
+.sort-first .dropdown > a:hover, .sort-first .dropdown.show > a, .sort-first .dropdown.show ul.dropdown-menu li a{
+  font-family: GothaProBol;
+  color: #292b2c;
+}
+ul.dropdown-menu{
+  padding: 0;
+}
+.sort-first .dropdown.show ul.dropdown-menu li{
+  font-family: GothaProBol;
+  color: #292b2c;
+  width: 100%;
+  padding: 10px 0 10px 10px;
+}
+.sort-first .dropdown.show ul.dropdown-menu li:hover {
+  background-color: #ccc;
 }
 ul li a{
   color: #4A4A4A;
@@ -197,15 +218,6 @@ ul.sort-month li{
   line-height:1.5em;
   float:left;
   display:inline;
-}
-
-#collapseExample ul{
-  margin-top: 20px;
-  width: 175px;
-}
-#collapseExample ul li{
-  display: block;
-  margin-bottom: 10px;
 }
 
 #calendar .ui-state-default, .ui-widget-content .ui-state-default{

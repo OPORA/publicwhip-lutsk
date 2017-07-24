@@ -51,22 +51,18 @@
             <li <%= params[:month] == "full" ? "class=disabled": "" %> ><%= link_to "За весь час", sumisne_holosuvannia_path(month: :full) %></li>
 
             <li <%= params[:month] != "full" ? "class=disabled": "" %> >
-
-              <!--Bootstrap-->
-              <a data-toggle="collapse" href="#collapseExample" aria-expanded="true" aria-controls="collapseExample"><%= params[:month] != "full" ? month(params[:month]) : "обрати місяць" %></a>
-              <!-- end head Bootstrap-->
-              <!--Bootstrap body-->
-              <div class="collapsing" id="collapseExample">
-                  <ul>
-                    <% @month.each do |m| %>
+                <div class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown"><%= params[:month] != "full" ? month(params[:month]) : "обрати місяць" %>
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <% @month.each do |m| %>
                         <li <%= params[:month] == m.strftime('%Y-%m') ? "class=disabled": "" %> ><%= link_to month(m.strftime('%Y-%m')), params.merge(month: m.strftime('%Y-%m')) %></li>
-                    <% end %>
-                  </ul>
-              </div>
-              <!--End-->
-
+                        <% end %>
+                    </ul>
+                </div>
             </li>
         </ul>
+
 
         <ul class="social col-4 pull-right text-uppercase">
             <li>
