@@ -49,14 +49,14 @@ class PeopleController < ApplicationController
     elsif params[:sort] == "distric"
       @mps = mps.where(okrug: params[:filter]).order(:okrug, :last_name, :first_name, :middle_name, :faction).page(params[:page]).per(params[:per])
     elsif params[:sort] == "rebellions"
-      mpls = mps.to_a.find_all{|m| m.mp_info.rebellions_fraction.to_f >= params[:filter_min].to_f/100 and m.mp_info.rebellions_fraction.to_f <= params[:filter_max].to_f/100 }.sort_by{ |m| [-(m.mp_info.rebellions_fraction || -1), m.last_name, m.first_name, m.middle_name, m.faction, m.okrug ]}#params[:filter_max].to_f/100}#
+      mpls = mps.to_a.find_all{|m| m.mp_info.rebellions_fraction.to_f >= params[:filter_min].to_f/100 and m.mp_info.rebellions_fraction.to_f <= params[:filter_max].to_f/100 }.sort_by{ |m| [-(m.mp_info.rebellions_fraction || -1), m.last_name, m.first_name, m.middle_name, m.faction, m.okrug ]}
     elsif params[:sort] == "attendance"
       mpls = mps.to_a.find_all{|m| m.mp_info.attendance_fraction.to_f >= params[:filter_min].to_f/100 and m.mp_info.attendance_fraction.to_f <= params[:filter_max].to_f/100 }.sort_by{ |m| [-(m.mp_info.attendance_fraction || -1), m.last_name, m.first_name, m.middle_name, m.faction, m.okrug ]}
     else
       @mps = mps.where("last_name like ?", params[:filter] + "%" ).order(:last_name, :first_name, :middle_name, :faction, :okrug).page(params[:page]).per(params[:per])
     end
     if mpls
-      @mps = Kaminari.paginate_array(mpls, total_count: mpls.size).page(params[:page]).per(params[:per])
+      @mps = Kaminari.paginate_array(mpls).page(params[:page]).per(params[:per])
     end
     return @mps
   end
