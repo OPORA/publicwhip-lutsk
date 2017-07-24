@@ -81,7 +81,14 @@ class PeopleController < ApplicationController
   end
   def get_mp
     mp_find = params[:mp].split("_")
-    @mp = Mp.includes(:mp_info).where(last_name: mp_find[0], first_name: mp_find[1], middle_name: mp_find[2]).first
+    if params[:month] != "full"
+      mp_date = (Date.strptime(params[:month], '%Y-%m'))
+      p mp_date
+    else
+      mp_date = "9999-12-31"
+    end
+    @mp = Mp.includes(:mp_info).where(last_name: mp_find[0], first_name: mp_find[1], middle_name: mp_find[2]).where('mp_infos.date_mp_info = ?',  mp_date).references(:mp_info).first
+    p @mp
     if @mp
       if params[:vote] == "friends"
         return get_friends(@mp.deputy_id)
@@ -89,7 +96,7 @@ class PeopleController < ApplicationController
         return get_divisions(@mp.deputy_id, @mp.faction)
       end
     else
-      redirect_to people_path, :notice => "Не занйдено #{params[:mp]}"
+      #redirect_to people_path, :notice => "Не занйдено #{params[:mp]}"
     end
   end
   def get_divisions(deputy_id, faction)
