@@ -1,4 +1,5 @@
 class PeopleController < ApplicationController
+  #Deputies
   def index
     mps = Mp.includes(:mp_info).where(end_date: nil)
     @mp = mps.order(:last_name)
@@ -65,34 +66,50 @@ class PeopleController < ApplicationController
       format.js
     end
   end
+  #Deputy
   def show
+    if params[:month].nil? or  params[:month].blank?
+      params[:month] = "full"
+    end
+    @month = VoteFaction.pluck(:date).uniq
+
+    @division = get_mp()
+
+  end
+  def detal
+    @division = get_mp()
+  end
+  def get_mp
     mp_find = params[:mp].split("_")
     @mp = Mp.includes(:mp_info).where(last_name: mp_find[0], first_name: mp_find[1], middle_name: mp_find[2]).first
     if @mp
-      @division_rebilions = Division.includes(:division_info).joins(:votes, :whips).where('votes.deputy_id =? and whips.party=?', @mp.deputy_id, @mp.faction ).where('votes.vote != whips.whip_guess and votes.vote != ?', "absent").order(date: :desc, id: :desc).references(:division_info).limit(5)
-      @division = Division.includes(:division_info).joins(:votes, :whips).where('votes.deputy_id =? and whips.party=?', @mp.deputy_id, @mp.faction ).order(date: :desc, id: :desc).references(:division_info).limit(5)
-      @friends = MpFriend.where(deputy_id: @mp.deputy_id).order(count: :desc).limit(5)
+      if params[:vote] == "friends"
+        return get_friends(@mp.deputy_id)
+      else
+        return get_divisions(@mp.deputy_id, @mp.faction)
+      end
     else
       redirect_to people_path, :notice => "Не занйдено #{params[:mp]}"
     end
   end
-
-  def divisions
-    mp_find = params[:mp].split("_")
-    @mp = Mp.includes(:mp_info).where(last_name: mp_find[0], first_name: mp_find[1], middle_name: mp_find[2]).first
-    division = Division.includes(:division_info).joins(:votes, :whips).where('votes.deputy_id =? and whips.party=?', @mp.deputy_id, @mp.faction ).order(date: :desc, id: :desc).references(:division_info)
-    @division =
-        case params[:filter]
-          when "rebellions"
-          division.where('votes.vote != whips.whip_guess and votes.vote != ?', "absent").page params[:page]
+  def get_divisions(deputy_id, faction)
+    division = Division.includes(:division_info).joins(:votes, :whips).where('votes.deputy_id =? and whips.party=?', deputy_id, faction ).order(date: :desc, id: :desc).references(:division_info)
+    divisions =
+        case params[:vote]
+          when "last_vote"
+            division.page(params[:page]).per(6)
           else
-            division.page params[:page]
+            division.where('votes.vote != whips.whip_guess and votes.vote != ?', "absent").page(params[:page]).per(6)
         end
+    return divisions
   end
-
+  def get_friends(deputy_id)
+    MpFriend.where(deputy_id: deputy_id).order(count: :desc).page(params[:page]).per(5)
+  end
+  def divisions
+    @division = get_mp()
+  end
   def friends
-    mp_find = params[:mp].split("_")
-    @mp = Mp.includes(:mp_info).where(last_name: mp_find[0], first_name: mp_find[1], middle_name: mp_find[2]).first
-    @friends = MpFriend.where(deputy_id: @mp.deputy_id).order(count: :desc)
+    @friends = get_mp()
   end
 end

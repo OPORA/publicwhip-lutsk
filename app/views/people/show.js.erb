@@ -1,0 +1,2 @@
+window.history.pushState("", "", "<%= request.fullpath  %>");
+$("#profile").html("<%= escape_javascript(render(:partial => 'show')) %>");

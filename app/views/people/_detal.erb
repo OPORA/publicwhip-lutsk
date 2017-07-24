@@ -1,0 +1,37 @@
+
+<div class="col-12 list-filters clearfix">
+  <ul class="sort-first text-uppercase">
+    <li <%= params[:vote].blank? ? "class=disabled": "" %>><%= link_to "Голосування проти фракції", people_detal_path(@mp.url_name, month: params[:month] ), remote: true %></li>
+    <li <%= params[:vote] == "last_vote" ? "class=disabled": "" %>><%= link_to "Останні голосування", people_detal_path(@mp.url_name, vote: "last_vote", month: params[:month]), remote: true %></li>
+    <li <%= params[:vote] == "friends" ? "class=disabled": "" %>><%= link_to "Друзі по голосуванню", people_detal_path(@mp.url_name, vote: "friends", month: params[:month] ), remote: true %></li>
+  </ul>
+</div>
+
+
+<% if params[:vote] == "last_vote" %>
+    <p class="text-xs-center ">Голосування в яких депутат міг взяти участь</p>
+    <div id="list_vote">
+      <%= render "voted", division: @division, mp: @mp  %>
+    </div>
+<% elsif params[:vote] == "friends"  %>
+    <p class="text-xs-center ">Депутати, що голосують подібно. Таким чином, можна виявити
+      неочікуваний зв’язок між політичними позиціями депутатів.</p>
+    <div id="friend" class="container">
+      <div class="row head">
+        <div class="col-3">Спільних голосувань</div>
+        <div class="col-3">Депутат</div>
+
+        <div class="col-3">Округ</div>
+        <div class="col-3">Фракція</div>
+      </div>
+      <div id="list_vote">
+        <%= render "friends", friends: @division, mp: @mp  %>
+      </div>
+    </div>
+<% else %>
+    <p class="text-xs-center "><%= @mp.short_name %> голосував проти лінії фракції політичної партії
+      "<%= @mp.faction %>" <%= @mp.mp_info.rebellions %> разів</p>
+    <div id="list_vote">
+      <%= render "voted", division: @division, mp: @mp %>
+    </div>
+<% end %>

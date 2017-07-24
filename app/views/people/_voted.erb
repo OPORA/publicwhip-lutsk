@@ -31,3 +31,8 @@
         <% end %>
     </div>
 </div>
+<div class="index-pagination">
+  <% unless division.last_page? %>
+      <%= link_to('<h4 class="text-uppercase text-center">Більше <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h4>'.html_safe, people_divisions_path(params.merge(page: division.current_page + 1)), remote: true, id: "load_more_link" ) %>
+  <% end %>
+</div>

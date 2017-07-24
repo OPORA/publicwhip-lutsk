@@ -1,14 +1,4 @@
-
-<div id="friend" class="container">
-  <div class="row head">
-    <div class="col-3">Спільних голосувань</div>
-    <div class="col-3">Депутат</div>
-
-    <div class="col-3">Округ №</div>
-    <div class="col-3">Фракція</div>
-  </div>
-
-  <% friends.each_with_index do |f, i| %>
+<% friends.each_with_index do |f, i| %>
   <div class="row">
     <div class="col-3">
       <div class="progress">
@@ -30,5 +20,10 @@
     <div class="col-3"><%= f.mp2.okrug %></div>
     <div class="col-3"><%= f.mp2.faction %></div>
   </div>
+<% end %>
+<div class="index-pagination">
+  <% unless friends.last_page? %>
+      <%= link_to('<h4 class="text-uppercase text-center">Більше <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h4>'.html_safe, people_friends_path(params.merge(page: friends.current_page + 1)), remote: true, id: "load_more_link" ) %>
   <% end %>
 </div>
+

@@ -1,0 +1,2 @@
+window.history.pushState("", "", "<%= show_people_path(params.merge(vote: params[:vote], action: nil, controller: nil, mp: nil)) %>");
+$("#det").html("<%= escape_javascript(render(:partial => 'detal')) %>");
