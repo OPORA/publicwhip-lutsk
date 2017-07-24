@@ -13,6 +13,7 @@ namespace :deputi_cashe do
       mp_info.votes_possible = votes_possible
       mp_info.votes_attended = votes_attended
       mp_info.save
+      p mp_info
     end
     Division.all.to_a.group_by{|d| d.date.strftime("%Y-%m-%d")}.each do |d|
       date = d[0]
@@ -20,6 +21,7 @@ namespace :deputi_cashe do
       @mp.each do |m|
         rebellions_month = Division.joins(:whips, :votes).where('votes.deputy_id = ? and votes.division_id  in (?)', m.deputy_id, vote_id ).where('whips.party = ?', m.faction).where("votes.vote != 'absent'").where('votes.vote != whips.whip_guess').count
         v_month =  Vote.where(deputy_id: m.deputy_id, division_id: vote_id ).map {|v| v}
+
         hash_month = {
                  not_voted: v_month.count{|v| v.vote == "not_voted"},
                  absent: v_month.count{|v| v.vote == "absent"},
@@ -27,9 +29,12 @@ namespace :deputi_cashe do
                  aye: v_month.count{|v| v.vote == "aye"},
                  abstain: v_month.count{|v| v.vote == "abstain"}
              }
+        p m.deputy_id
+        p m.full_name
+        p hash_month
         votes_possible_month = hash_month.sum{|k,v| v}
         votes_attended_month = votes_possible_month - hash_month[:absent]
-        save_update_mp_ifo(m.deputy_id, date, rebellions_month, hash_month[:not_voted], hash_month[:absent], hash_month[:against],hash_month[:qaye], hash_month[:abstain], votes_possible_month, votes_attended_month)
+        save_update_mp_ifo(m.deputy_id, Date.strptime(date, '%Y-%m'), rebellions_month, hash_month[:not_voted], hash_month[:absent], hash_month[:against],hash_month[:aye], hash_month[:abstain], votes_possible_month, votes_attended_month)
       end
     end
       @mp.each do |m|
@@ -37,7 +42,6 @@ namespace :deputi_cashe do
       v =  Vote.where(deputy_id: m.deputy_id).map {|v| v}
       hash = {
           not_voted: v.count{|v| v.vote == "not_voted"},
-          not_voted_month: 1,
           absent: v.count{|v| v.vote == "absent"},
           against: v.count{|v| v.vote == "against"},
           aye: v.count{|v| v.vote == "aye"},
@@ -45,7 +49,7 @@ namespace :deputi_cashe do
       }
       votes_possible = hash.sum{|k,v| v}
       votes_attended = votes_possible - hash[:absent]
-      save_update_mp_ifo(m.deputy_id, '9999-12-31', rebellions, hash[:not_voted], hash[:absent], hash[:against],hash[:qaye], hash[:abstain], votes_possible, votes_attended)
+      save_update_mp_ifo(m.deputy_id, '9999-12-31', rebellions, hash[:not_voted], hash[:absent], hash[:against],hash[:aye], hash[:abstain], votes_possible, votes_attended)
       end
   end
   desc "Update mp friend cashe"
