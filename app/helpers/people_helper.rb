@@ -57,7 +57,7 @@ module PeopleHelper
         </g>
                             </g>
         </svg><p class="text-xs-center">'.html_safe +
-         + "проти"
+         + "проти" +'</p>'.html_safe
       when "aye"
         '<svg class="svg col" >
         <g>
