@@ -71,7 +71,7 @@ class PeopleController < ApplicationController
     if params[:month].nil? or  params[:month].blank?
       params[:month] = "full"
     end
-    @month = VoteFaction.pluck(:date).uniq
+    @month = MpInfo.pluck(:date_mp_info).uniq.to_a.delete_if{|m| m.strftime('%Y-%m-%d') == '9999-12-31'}
 
     @division = get_mp()
 

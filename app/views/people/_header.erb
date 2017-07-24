@@ -10,15 +10,17 @@
       </li>
 
       <li <%= params[:month] != "full" ? "class=disabled": "" %> >
-      <div class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown"><%= params[:month] != "full" ? month(params[:month]) : "обрати місяць" %>
-          <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <% @month.each do |m| %>
-          <li <%= params[:month] == m.strftime('%Y-%m') ? "class=disabled": "" %> ><%= link_to month(m.strftime('%Y-%m')), params.merge(month: m.strftime('%Y-%m')), remote: true %></li>
-          <% end %>
-        </ul>
-      </div>
+        <% if !@month.blank? %>
+        <div class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown"><%= params[:month] != "full" ? month(params[:month]) : "обрати місяць" %>
+            <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <% @month.each do |m| %>
+            <li <%= params[:month] == m.strftime('%Y-%m') ? "class=disabled": "" %> ><%= link_to month(m.strftime('%Y-%m')), params.merge(month: m.strftime('%Y-%m')), remote: true %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
       </li>
     </ul>
     <ul class="social col-4 pull-right text-uppercase">
@@ -68,7 +70,7 @@
     </div>
     <div class="col-4 text-uppercase">
       <div id="rebellions-fraction"
-           data-percentage="<%=  mp.mp_info.rebellions_fraction * 100 %>"
+           data-percentage="<%=  fraction_to_percentage_display(mp.mp_info.rebellions_fraction) %>"
            data-track-width="5"
            data-track-colour="E5E5E5"
            data-fill-colour="FE6162"
