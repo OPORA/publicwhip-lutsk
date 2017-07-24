@@ -19,7 +19,7 @@ set :rvm_use_path,  '/usr/local/rvm/scripts/rvm'
 set :keep_releases, 2
 ## Optional settings:
 set :user, 'root'          # Username in the server to SSH to.
-#   set :port, '30000'           # SSH port number.
+set :port, '1122'           # SSH port number.
 #   set :forward_agent, true     # SSH forward_agent.
 
 # shared dirs and files will be symlinked into the app-folder by the 'deploy:link_shared_paths' step.
