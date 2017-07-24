@@ -24,7 +24,7 @@
       <div class="col-6">
         <%= link_to divisions_show_path(d.date, d.number), class: "" do %>
         <div class="col-12 pull-right card">
-          <div class="row text-uppercase">
+          <div class="col12 text-uppercase">
             <p class="approve"><i class="fa <%=  d.result == "Прийнято" ? "fa-check-circle" : "fa-times-circle"  %>" aria-hidden="true"></i> <%= d.result %></p>
             <p class="card-date"><%= d.date.strftime('%d.%m.%Y') %> / <%= Time.parse(d.clock_time).strftime('%H:%M') %></p>
           </div>
@@ -32,11 +32,11 @@
             <p><%=  d.name  %></p>
           </div>
           <div class="row check">
-            <div class="col-4 text-uppercase float-left">
+            <div class="col-6 text-uppercase float-left">
               <p class="checkin">присутність</p>
               <p class="card-percent"><%= fraction_to_percentage_display(d.division_info.attendance_division) %></p>
             </div>
-            <div class="col-4 text-uppercase">
+            <div class="col-6 text-uppercase">
               <p class="checkin">проти фракції</p>
               <p class="card-percent"><%= d.division_info.rebellions %>  голосувань</p>
             </div>
