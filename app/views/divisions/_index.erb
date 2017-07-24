@@ -24,11 +24,15 @@
         <li><a href="">За попередній тиждень</a></li>
         <li><a href="">За попередній місяць</a></li>
       </ul>
-    <div class="text-xs-center ">
+    <div id="calendar" class="text-xs-center text-uppercase">
       <label for="from">за період з</label>
       <input type="text" id="from" name="from" value="<%= (Date.today() - 10.day).strftime('%d.%m.%Y') %>">
+        <i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i>
+
       <label for="to">до</label>
       <input type="text" id="to" name="to" value="<%= (Date.today() + 10.day).strftime('%d.%m.%Y') %>">
+        <i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i>
+
     </div>
   <% end %>
   <div id="list_division">

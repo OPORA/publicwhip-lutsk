@@ -148,7 +148,7 @@ ul.sort-distric li{
   margin-top: 20px;
   margin-left: -10px;
   text-align: center;
-
+  cursor: pointer;
   top: -23px;
   background-color: #E5E5E5;
   border-radius: 50%;
@@ -167,6 +167,7 @@ ul.sort-distric li{
   border-radius: 50%;
   border: none;
   top: -6px;
+  cursor: pointer;
 }
 #slider-range  .ui-widget-header{
   height: 4px;
@@ -205,4 +206,13 @@ ul.sort-month li{
 #collapseExample ul li{
   display: block;
   margin-bottom: 10px;
+}
+
+#calendar .ui-state-default, .ui-widget-content .ui-state-default{
+  height: 24px;
+  width: 24px;
+  font-size: 12px;
+}
+#calendar .ui-datepicker td span, .ui-datepicker td a{
+  padding: 4px 5px;
 }

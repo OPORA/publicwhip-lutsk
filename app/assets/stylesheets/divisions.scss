@@ -12,6 +12,19 @@
 .card-text > p:nth-child(1) {
   margin-bottom: 25px;
 }
+#calendar{
+  margin: 10px auto;
+}
+#calendar label {
+  margin: 0 20px;
+
+    color: #4A4A4A;
+    font-family: GothaProReg;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+
+}
 input#from , input#to {
   border: none;
   background-color: #F5F5F5;
@@ -19,7 +32,11 @@ input#from , input#to {
   height: 30px;
   border-radius: 4px;
   font-family: GothaProReg;
-  margin: 0 20px;
+  color: #282828;
+  padding: 10px 24px 10px 10px;
+}
+#calendar i {
+  margin-left: -30px;
 }
 #division .text-xs-center{
   margin-bottom: 80px;
