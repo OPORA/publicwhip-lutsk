@@ -19,21 +19,80 @@
 
   <% if params[:sort].nil? %>
       <ul class="sort-fraction">
-        <li class="active-fon-fraction"><a href="">За останній тиждень</a> </li>
-        <li><a href="">За останній місяць</a></li>
-        <li><a href="">За попередній тиждень</a></li>
-        <li><a href="">За попередній місяць</a></li>
+        <li <%= params[:last] == "3" ? 'class="active-fon-fraction"'.html_safe : ""  %>><%= link_to "За останні 3 місяця", params.merge(last: "3"), remote: true %></li>
+        <li <%= params[:last] == "1" ? 'class="active-fon-fraction"'.html_safe : ""  %>><%= link_to "За останній пленарний місяць", params.merge(last: "1"), remote: true %></li>
       </ul>
     <div id="calendar" class="text-xs-center text-uppercase">
       <label for="from">за період з</label>
-      <input type="text" id="from" name="from" value="<%= (Date.today() - 10.day).strftime('%d.%m.%Y') %>">
+      <input type="text" id="from" name="from" value="<%= params[:min_date] %>">
         <i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i>
 
       <label for="to">до</label>
-      <input type="text" id="to" name="to" value="<%= (Date.today() + 10.day).strftime('%d.%m.%Y') %>">
+      <input type="text" id="to" name="to" value="<%= params[:max_date] %>">
         <i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i>
 
     </div>
+      <script>
+
+          function AjaxGetDate (min_date, max_date) {
+              $.ajax({
+                  <% if params[:divisions].nil? or params[:divisions].blank?  %>
+                  url: "/divisions?min_date=" + min_date + "&max_date=" + max_date + "",
+                  <% else %>
+                  url: "/divisions?min_date=" + min_date + "&max_date=" + max_date + "&divisions=<%= params[:divisions] %> ",
+                  <% end %>
+                  headers: {
+                      Accept: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript",
+                      "Content-Type": "text/javascript; charset=utf-8"
+                  }
+              });
+          }
+          $( "#calendar input[type='text']" ).change(function() {
+              var min_date = $('#from').val(),
+              max_date = $('#to').val();
+              AjaxGetDate(min_date, max_date);
+          });
+          //    DatePiker
+          $(function () {
+              var dateFormat = 'dd.mm.yy',
+                  from = $("#from")
+                      .datepicker({
+                          defaultDate: "+1w",
+                          changeMonth: true,
+                          numberOfMonths: 1,
+                          regional: ["uk"]
+                      })
+                      .on("change", function () {
+                          to.datepicker("option", "minDate", getDate(this));
+                          var min_date = $('#from').val(),
+                              max_date = $('#to').val();
+                          AjaxGetDate(min_date, max_date);
+                      }),
+                  to = $("#to").datepicker({
+                      defaultDate: "+1w",
+                      changeMonth: true,
+                      numberOfMonths: 1,
+                      regional:  ["uk"]
+                  })
+                      .on("change", function () {
+                          from.datepicker("option", "maxDate", getDate(this));
+                          var min_date = $('#from').val(),
+                              max_date = $('#to').val();
+                          AjaxGetDate(min_date, max_date);
+                      });
+
+              function getDate(element) {
+                  var date;
+                  try {
+                      date = $.datepicker.parseDate(dateFormat, element.value);
+                  } catch (error) {
+                      date = null;
+                  }
+
+                  return date;
+              }
+          });
+      </script>
   <% end %>
   <div id="list_division">
     <%= render "voted", division: divisions  %>
@@ -53,7 +112,11 @@
                 values: [<%= params[:filter_min] %>, <%= params[:filter_max] %>],
                 slide: function (event, ui) {
                     $.ajax({
+                        <% if params[:divisions].nil? or params[:divisions].blank?  %>
                         url: "/divisions?filter_min=" + ui.values[0] + "&filter_max=" + ui.values[1] + "&sort=<%= params[:sort]  %>",
+                        <% else %>
+                        url: "/divisions?filter_min=" + ui.values[0] + "&filter_max=" + ui.values[1] + "&sort=<%= params[:sort]  %>&divisions=<%= params[:divisions] %>",
+                        <% end %>
                         headers: {
                             Accept: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript",
                             "Content-Type": "text/javascript; charset=utf-8"
@@ -87,40 +150,7 @@
 
             });
         });
-//    DatePiker
-        $(function () {
-            var dateFormat = "",
-                from = $("#from")
-                    .datepicker({
-                        defaultDate: "+1w",
-                        changeMonth: true,
-                        numberOfMonths: 1,
-                        regional: ["uk"]
-                    })
-                    .on("change", function () {
-                        to.datepicker("option", "minDate", getDate(this));
-                    }),
-                to = $("#to").datepicker({
-                    defaultDate: "+1w",
-                    changeMonth: true,
-                    numberOfMonths: 1,
-                    regional:  ["uk"]
-                })
-                    .on("change", function () {
-                        from.datepicker("option", "maxDate", getDate(this));
-                    });
 
-            function getDate(element) {
-                var date;
-                try {
-                    date = $.datepicker.parseDate(dateFormat, element.value);
-                } catch (error) {
-                    date = null;
-                }
-
-                return date;
-            }
-        });
     }
 </script>
 
