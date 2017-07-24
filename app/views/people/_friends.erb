@@ -2,14 +2,14 @@
   <div class="row">
     <div class="col-3">
       <div class="progress">
-        <div class="progress-bar-0<%= i %> progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="background-color: #FFDD2D">
+        <div class="progress-bar-0<%= i %>-<%= friends.current_page %> progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="background-color: #FFDD2D">
           <%= fraction_to_percentage_display((f.count.to_f/mp.mp_info.votes_possible))%>
         </div>
       </div>
       <script type="text/javascript">
         //<![CDATA[
         $( document ).ready(function(){
-          $(".progress-bar-0<%= i %>").animate({
+          $(".progress-bar-0<%= i %>-<%=  friends.current_page %>").animate({
             width: "<%= fraction_to_percentage_display((f.count.to_f/mp.mp_info.votes_possible))%>"
           }, 2500);
         });
