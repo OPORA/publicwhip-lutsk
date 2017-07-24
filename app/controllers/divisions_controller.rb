@@ -18,6 +18,9 @@ class DivisionsController < ApplicationController
       params[:per] = 5
     end
     divisions = Division.includes(:division_info)
+    unless params[:divisions].blank?
+      divisions = divisions.find_by_search_query(params[:divisions])
+    end
     @divisions =
         case params[:sort]
           when "attendance"
