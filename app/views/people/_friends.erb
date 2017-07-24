@@ -1,7 +1,7 @@
 <!-- 3 2 start-->
 
-<div class="container">
-  <div class="row">
+<div id="friend" class="container">
+  <div class="row head">
     <div class="col-3">Спільних голосувань</div>
     <div class="col-3">Депутат</div>
 
@@ -9,26 +9,25 @@
     <div class="col-3">Фракція</div>
   </div>
 
-  <% friends.each do |f| %>
+  <% friends.each_with_index do |f, i| %>
   <div class="row">
     <div class="col-3">
       <div class="progress">
-        <div class="progress-bar progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="background-color: #01AFFF">
+        <div class="progress-bar-0<%= i %> progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="background-color: #FFDD2D">
           <%= fraction_to_percentage_display((f.count.to_f/mp.mp_info.votes_possible))%>
         </div>
       </div>
       <script type="text/javascript">
         //<![CDATA[
         $( document ).ready(function(){
-          $(".progress-bar").animate({
+          $(".progress-bar-0<%= i %>").animate({
             width: "<%= fraction_to_percentage_display((f.count.to_f/mp.mp_info.votes_possible))%>"
           }, 2500);
         });
         //]]>
       </script>
-      <%= f.count %> ()</div>
+       (<%= f.count %>)</div>
     <div class="col-3"><%= f.mp2.full_name %></div>
-
     <div class="col-3"><%= f.mp2.okrug %></div>
     <div class="col-3"><%= f.mp2.faction %></div>
   </div>
