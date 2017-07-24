@@ -28,6 +28,7 @@
     </div>
 </div>
 <div class="index-pagination">
+
   <% unless division.last_page? or division.blank? %>
       <%= link_to('<h4 class="text-uppercase text-center">Більше <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h4>'.html_safe, divisions_next_path(params.merge(page: division.current_page + 1)), remote: true, id: "load_more_link" ) %>
   <% end %>

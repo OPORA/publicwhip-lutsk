@@ -48,11 +48,8 @@
                 step: 10,
                 values: [<%= params[:filter_min] %>, <%= params[:filter_max] %>],
                 slide: function (event, ui) {
-                    console.log(ui.values);
-
                     $.ajax({
-                        type: "GET",
-                        url: "/divisions?filter_min=" + ui.values[0] + "&filter_max=" + ui.values[1] + "&sort=<%= params[:sort] %>",
+                        url: "/divisions?filter_min=" + ui.values[0] + "&filter_max=" + ui.values[1] + "&sort=<%= params[:sort]  %>",
                         headers: {
                             Accept: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript",
                             "Content-Type": "text/javascript; charset=utf-8"
