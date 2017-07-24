@@ -78,6 +78,9 @@ class PeopleController < ApplicationController
   end
   def detal
     @division = get_mp()
+    if request.format.html?
+      redirect_to show_people_path(params)
+    end
   end
   def get_mp
     mp_find = params[:mp].split("_")
