@@ -16,7 +16,7 @@
         //]]>
       </script>
        </div>
-    <div class="col-3"><%= f.mp2.full_name %></div>
+    <div class="col-3"><%= link_to f.mp2.full_name, show_people_path(f.mp2.url_name), :target => "_blank" %></div>
     <div class="col-3"><%= f.mp2.okrug %></div>
     <div class="col-3"><%= f.mp2.faction %></div>
   </div>
