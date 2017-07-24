@@ -53,7 +53,7 @@ class DivisionsController < ApplicationController
               params[:min_date] = min_date.strftime('%d.%m.%Y')
               params[:max_date] = (min_date + 1.month - 1.day).strftime('%d.%m.%Y')
             end
-            divisions.where("date >= ? AND date <= ?", params[:min_date], params[:max_date]).order(date: :desc, number: :desc).page(params[:page]).per(params[:per])
+            divisions.where("date >= ? AND date <= ?", Date.strptime(params[:min_date], '%d.%m.%Y'), Date.strptime(params[:max_date], '%d.%m.%Y')).order(date: :desc, number: :desc).page(params[:page]).per(params[:per])
         end
   end
   def show
