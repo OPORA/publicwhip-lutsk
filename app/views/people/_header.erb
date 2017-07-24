@@ -41,12 +41,13 @@
   </div>
 
   <div class="row center-justified first">
-    <div class="col-4 text-uppercase">відвідування <%= fraction_to_percentage_display(mp.mp_info.attendance_fraction) %></div>
+    <div class="col-4 text-uppercase">відвідування засідань <%= fraction_to_percentage_display(mp.mp_info.attendance_fraction) %></div>
     <div class="col-4">
       <img class="media-object circle-photo " src="/image/<%= mp.deputy_id %>.png" alt="<%=  mp.full_name %>" height="200">
       <p class="frac"><%= member_role(mp.faction, mp.okrug) %></p>
+      <p>Обрано за списком партії з 10.2014</p>
     </div>
-    <div class="col-4 text-uppercase">голосування проти   <%= fraction_to_percentage_display( mp.mp_info.against.to_f/mp.mp_info.votes_attended ) %></div>
+    <div class="col-4 text-uppercase">голосування проти фракції  <%= fraction_to_percentage_display( mp.mp_info.against.to_f/mp.mp_info.votes_attended ) %></div>
   </div>
 </div>
 </div>
@@ -55,10 +56,6 @@
   <div class="container">
   <div class="row ">
     <h2 class="col-12 text-uppercase background-line center-justified text-xs-center">Статистика голосувань</h2>
-
-    <p class="col-12"><span>Проти фракції у <%= fraction_to_percentage_display(mp.mp_info.rebellions_fraction) %> випадків <%= link_to "що таке голосування проти фракції" %></span>
-      <span class="member-attendance"><%= fraction_to_percentage_display(mp.mp_info.attendance_fraction) %> Присутність <%= link_to "Що таке Присутність" %></span>
-    </p>
 
     <ul class="col-8 object-secondary">
       <li>
