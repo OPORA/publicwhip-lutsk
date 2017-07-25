@@ -43,7 +43,7 @@ class PeopleController < ApplicationController
     if params[:per].nil?
       params[:per] = 8
     end
-    mps = Mp.includes(:mp_info).where(end_date: nil)
+    mps = Mp.includes(:mp_info).where(end_date:  nil).where('mp_infos.date_mp_info =  ?','9999-12-31').references(:mp_info)
     if params[:sort] == "faction"
       @mps = mps.where(faction: params[:filter]).order(:faction, :last_name, :first_name, :middle_name, :okrug).page(params[:page]).per(params[:per])
     elsif params[:sort] == "distric"
@@ -71,7 +71,7 @@ class PeopleController < ApplicationController
     if params[:month].nil? or  params[:month].blank?
       params[:month] = "full"
     end
-    @month = MpInfo.pluck(:date_mp_info).uniq.to_a.delete_if{|m| m.strftime('%Y-%m-%d') == '9999-12-31'}
+    @month = MpInfo.pluck(:date_mp_info).uniq.sort{|x, y| y <=> x } .to_a.delete_if{|m| m.strftime('%Y-%m-%d') == '9999-12-31'}
 
     @division = get_mp()
 
