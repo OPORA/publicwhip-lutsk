@@ -4,4 +4,12 @@ class Vote < ApplicationRecord
   def self.find_mp(id)
     find_by(deputy_id: id ).vote
   end
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |d|
+        csv << d.attributes.values_at(*column_names)
+      end
+    end
+  end
 end

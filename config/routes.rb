@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'api/divisions'
+  get 'api/division'
+  get 'api/mp'
+  get 'api/mps'
+
   get 'errors/not_found'
 
   get 'errors/unacceptable'

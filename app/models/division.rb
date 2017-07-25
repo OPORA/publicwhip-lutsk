@@ -12,4 +12,12 @@ class Division < ApplicationRecord
   def self.find_by_search_query(query)
     where("UPPER(name) like :query_name ", { query_name: "%#{query.upcase}%" })
   end
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |d|
+        csv << d.attributes.values_at(*column_names)
+      end
+    end
+  end
 end
