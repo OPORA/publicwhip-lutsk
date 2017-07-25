@@ -16,7 +16,7 @@
 **для отримання наступних 50 використовуйте `?page=2..``**
 [https://lviv.rada4you.org/api/divisions.json?page=2](https://lviv.rada4you.org/api/divisions.json?page=2) 
 
-[https://lviv.rada4you.org/api/division.json?division=1](https://lviv.rada4you.org/api/division.csv?division=1)
+[https://lviv.rada4you.org/api/division.json?division=1](https://lviv.rada4you.org/api/division.json?division=1)
 
 ##CSV АРІ
 #по депутатам
