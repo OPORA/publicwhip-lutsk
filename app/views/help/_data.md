@@ -6,7 +6,7 @@
 
 ** інформація про конкретно депутата за полем `deputy_id` **
  
-[https://lutsk.rada4you.org/api/mp.json?deputy_id=3463](https://lutsk.rada4you.org/api/mp.json?deputy_id=3463) 
+[https://lutsk.rada4you.org/api/mp.json?deputy_id=2000](https://lutsk.rada4you.org/api/mp.json?deputy_id=2000) 
 
 #по голосуванням
 **перші 50 голосування**
@@ -24,7 +24,7 @@
 
 [https://lutsk.rada4you.org/api/mps.csv](https://lutsk.rada4you.org/api/mps.csv)
 
-[https://lutsk.rada4you.org/api/mp.csv?deputy_id=3463](https://lutsk.rada4you.org/api/mp.csv?deputy_id=3463)
+[https://lutsk.rada4you.org/api/mp.csv?deputy_id=2000](https://lutsk.rada4you.org/api/mp.csv?deputy_id=2000)
 
 #по голосуванням
 [https://lutsk.rada4you.org/api/divisions.csv](https://lutsk.rada4you.org/api/divisions.csv)
