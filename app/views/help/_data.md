@@ -33,4 +33,4 @@
 
 [https://lutsk.rada4you.org/api/division.csv?division=1&filter=whips](https://lutsk.rada4you.org/api/division.csv?division=1&filter=whips)
 
-[https://lutsk.rada4you.org/api/division.csv?division=1&filter=info](https://lutsk.rada4you.org/api/division.csv?division=1&filter=whips)
+[https://lutsk.rada4you.org/api/division.csv?division=1&filter=info](https://lutsk.rada4you.org/api/division.csv?division=1&filter=info)
