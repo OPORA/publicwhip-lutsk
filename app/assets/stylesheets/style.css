@@ -307,6 +307,9 @@ h3.background-line {
 #list_division [class*="row"]{
     margin: 25px 0 0 0;
 }
+#list_division [class*="row"]{
+    margin: 25px 0 0 0;
+}
 #first-block .card{
     min-height: 297px;
     padding: 25px;
