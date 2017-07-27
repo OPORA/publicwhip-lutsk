@@ -32,4 +32,4 @@
 
 [https://lviv.rada4you.org/api/division.csv?division=1&filter=whips](https://lviv.rada4you.org/api/division.csv?division=1&filter=whips)
 
-[https://lviv.rada4you.org/api/division.csv?division=1&filter=info](https://lviv.rada4you.org/api/division.csv?division=1&filter=whips)
+[https://lviv.rada4you.org/api/division.csv?division=1&filter=info](https://lviv.rada4you.org/api/division.csv?division=1&filter=info)
