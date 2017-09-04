@@ -20,6 +20,7 @@
 
   <%= stylesheet_link_tag 'bootstrap', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag 'style', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'media', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag body_class, media: 'all', 'data-turbolinks-track' => true %>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.3/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -63,7 +64,7 @@
         </div>
       </nav>
       <% if controller.controller_path == "home" %>
-        <div id="info" class="container-fluid">
+        <div id="info" class="container">
           <div class="col-12">
             <div class="col-2 update-data pull-right pull-2">
                           <span class="fa-stack">
@@ -82,6 +83,15 @@
               <p><%= last_sessions_rada() %></p>
             </div>
           </div>
+
+            <div class="row justify-content-end">
+                <div class="col-4">
+                    One of two columns
+                </div>
+                <div class="col-4">
+                    One of two columns
+                </div>
+            </div>
         </div>
         <div style="clear: both;"></div>
       <% end %>
