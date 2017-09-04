@@ -65,31 +65,22 @@
       </nav>
       <% if controller.controller_path == "home" %>
         <div id="info" class="container">
-          <div class="col-12">
-            <div class="col-2 update-data pull-right pull-2">
-                          <span class="fa-stack">
-                              <i class="fa fa-circle fa-stack-2x"></i>
-                              <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
-                          </span>
-              <p class="text-uppercase">Оновлення даних</p>
-              <p><%= last_update_rada %></p>
-            </div>
-            <div class="col-2 rada-date pull-right push-2">
-                          <span class="fa-stack">
-                              <i class="fa fa-circle fa-stack-2x"></i>
-                              <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
-                          </span>
-              <p class="text-uppercase">Засідання міськради</p>
-              <p><%= last_sessions_rada() %></p>
-            </div>
-          </div>
-
             <div class="row justify-content-end">
-                <div class="col-4">
-                    One of two columns
+                <div class="col-3 update-data">
+                   <span class="fa-stack">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                          </span>
+                    <p class="text-uppercase">Оновлення даних</p>
+                    <p><%= last_update_rada %></p>
                 </div>
-                <div class="col-4">
-                    One of two columns
+                <div class="col-3 rada-date">
+                    <span class="fa-stack">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
+                          </span>
+                    <p class="text-uppercase">Засідання міськради</p>
+                    <p><%= last_sessions_rada() %></p>
                 </div>
             </div>
         </div>
