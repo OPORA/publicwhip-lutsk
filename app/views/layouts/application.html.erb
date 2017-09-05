@@ -89,18 +89,19 @@
 
       <% if controller.controller_path != "home" %>
             </header>
-          <div id="info" class="container-fluid">
-            <div class="col-12">
+          <div id="info" class="container">
               <%= link_to "<p><i class='fa fa-circle fa-stack-1x'></i><span class='first-word'>Lviv</span>.Rada4You.org</p>".html_safe, root_path, class: "col-4 navbar-brand text-uppercase logo", id: "logo" %>
+
+              <div class="row justify-content-end">
               <% if controller.controller_path != "errors" %>
-              <div class="col-3 update-data pull-right pull-3">
+              <div class="col-lg-3 col-6 update-data">
                           <span class="fa-stack">
                               <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
                           </span>
                 <p class="text-uppercase">Оновлення даних</p>
                 <p><%= last_update_rada %></p>
               </div>
-              <div class="col-3 rada-date pull-right push-3">
+              <div class="col-lg-3 col-6 rada-date">
                           <span class="fa-stack">
                               <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
                           </span>
