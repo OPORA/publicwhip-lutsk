@@ -9,5 +9,42 @@
   .logo p {
     font-size: 12px;
   }
+  .text-q{
+    font-size: 20px;
+    margin-bottom: 75px;
+  }
+  #search-main input[type="text"], .bootstrap-select > .dropdown-toggle.bs-placeholder{
+    font-size:14px;
+  }
+  #first-block h3, #second-block h3{
+    font-size:16px;
+    margin-bottom: 3rem;
+  }
+  .card-text{
+    margin-bottom: 0;
+  }
+  #first-block .card, #second-block .card{
+    margin-bottom: 10px;
+    min-height: 230px;
+  }
 
+  #first-block [class*="row"] + [class*="row"], #second-block [class*="row"] + [class*="row"]{
+  margin-top:  0;
+  }
+  #second-block .check{
+    margin-left: -90px;
+  }
+  .card-name, .card-fraction, .card-elected{
+    padding-left: 22px;
+  }
+  footer span, footer div [class*="row"] p a{
+    font-size: 9px;
+    line-height: 11px;
+  }
+  footer div [class*="row"] > div{
+    margin-bottom: 25px;
+  }
+  /*footer .fa-inverse{
+    font-size: 14px
+  }*/
 }
