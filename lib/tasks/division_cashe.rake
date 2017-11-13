@@ -58,32 +58,40 @@ namespace :division_cashe do
   end
   desc "Cache party voted aye 50%+1"
   task party_voted: :environment do
-    party = {}
+    p "Start aye_votes"
     Whip.all.find_each do |w|
       size = (w.aye_votes + w.no_votes + w.absent + w.against + w.abstain)/2+1
       if w.aye_votes >= size
-       if party.has_key?("#{w.party}")
-         if party["#{w.party}"].has_key?("#{w.division.date.strftime("%Y-%m")}")
-           party["#{w.party}"]["#{w.division.date.strftime("%Y-%m")}"] << 1
-         else
-           party["#{w.party}"]["#{w.division.date.strftime("%Y-%m")}"] = [1]
-         end
-       else
-         party["#{w.party}"] = {
-             w.division.date.strftime("%Y-%m") => [1]
-         }
-       end
+        VoteFaction.find_or_initialize_by(faction: w.party, division_id: w.division_id, aye: true)
       end
     end
-    party.each do |p|
-      faction = p[0]
-      p[1].each do |d|
-        date = d[0]
-        vote_aye = d[1].size
-        vote_sum = VoteFaction.find_or_initialize_by(faction: faction, date: Date.strptime(date, '%Y-%m'))
-        vote_sum.vote_aye = vote_aye
-        vote_sum.save
+    p "End aye_votes"
+    p "Start Party Frends"
+    Division.all.to_a.group_by{|d| d.date.strftime("%Y-%m")}.each do |d|
+      date = d[0]
+      vote_id =  d[1].map{|v| v.id }
+      Mp.select(:faction).distinct do |m1|
+        sql = %Q{
+       SELECT
+        votes2.faction, count(*)
+       FROM
+        public.vote_fractions AS votes1
+       LEFT JOIN
+        public.vote_fractions AS votes2 ON votes1.division_id = votes2.division_id AND votes1.aye = votes2.aye AND votes1.faction != votes2.faction
+       WHERE
+        votes1.faction = #{m1.faction} AND votes1.division_id IN (#{vote_id.join(',')}) AND votes2.faction is not null"
+       GROUP BY
+        votes2.faction
+        }
+        ActiveRecord::Base.connection.execute(sql).each do |q|
+          p q
+          friends = PartyFriend.find_or_initialize_by(party:  m1.faction, friend_party: q["faction"], date_party_friend:  Date.strptime(date, '%Y-%m') )
+          friends.count = q["count"]
+          friends.save
+          p friends
+        end
       end
     end
+    p "End party friends"
   end
 end

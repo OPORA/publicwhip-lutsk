@@ -6,15 +6,15 @@ class SumisneHolosuvanniaController < ApplicationController
     if params[:party].nil? or params[:party].blank?
       params[:party] = "Блок Петра Порошенка"
     end
-     @party = VoteFaction.pluck(:faction).uniq
-     @month = VoteFaction.order(date: :desc).pluck(:date).uniq
+     @party = PartyFriend.pluck(:party).uniq
+     @month = PartyFriend.order(date_party_friend: :desc).pluck(:date_party_friend).uniq
   end
   def api
-    party = VoteFaction.pluck(:faction).uniq
+    party = PartyFriend.pluck(:party).uniq
     if params[:month] == "full"
-       @vote = VoteFaction.order(vote_aye: :desc).map{|v| {faction: v.faction, date: v.date.strftime('%Y-%m'), vote_aye: v.vote_aye}}
+       @vote = PartyFriend.where(party: params[:party]).order(count: :desc).map{|v| {faction: v.friend_party, date: v.date_party_friend.strftime('%Y-%m'), vote_aye: v.count}}
     else
-       @vote = VoteFaction.where(date: Date.strptime(params[:month], '%Y-%m')).order(vote_aye: :desc).map{|v| {faction: v.faction, date: v.date.strftime('%Y-%m'), vote_aye: v.vote_aye}}
+       @vote = PartyFaction.where(party: params[:party], date_party_friend: Date.strptime(params[:month], '%Y-%m')).order(count: :desc).map{|v| {faction: v.friend_party, date: v.date_party_friend.strftime('%Y-%m'), vote_aye: v.count}}
     end
     vote_party = @vote.map{|p| p[:faction]}
     party_not_voted = party.find_all{|v| vote_party.include?(v) == false }
