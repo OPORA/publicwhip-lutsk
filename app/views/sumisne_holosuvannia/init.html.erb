@@ -85,7 +85,7 @@
   </div>
   <script>
       var colors = ["#FE6162", "#01AFFF", "#B3B2FE", "#FFDD2D", "#84F1FE", "#F765B2"];
-      d3.json("<%= sumisne_holosuvannia_api_path(month: params[:month]) %>", function (data) {
+      d3.json("<%= sumisne_holosuvannia_api_path(month: params[:month], party:  params[:party]) %>", function (data) {
           window.addEventListener('resize', function (event) {
               createGrafic(data);
           });
