@@ -12,9 +12,11 @@ class SumisneHolosuvanniaController < ApplicationController
   def api
     party = PartyFriend.pluck(:party).uniq
     if params[:month] == "full"
-       @vote = PartyFriend.where(party: params[:party]).order(count: :desc).map{|v| {faction: v.friend_party, date: v.date_party_friend.strftime('%Y-%m'), vote_aye: v.count}}
+      first_party =  VoteFaction.where(faction: params[:party], aye: true).size
+       @vote =  [{faction: params[:party], date: "full", vote_aye: first_party}]
+       @vote += PartyFriend.where(party: params[:party]).order(count: :desc).map{|v| {faction: v.friend_party, date: v.date_party_friend.strftime('%Y-%m'), vote_aye: v.count}}
     else
-       @vote = PartyFaction.where(party: params[:party], date_party_friend: Date.strptime(params[:month], '%Y-%m')).order(count: :desc).map{|v| {faction: v.friend_party, date: v.date_party_friend.strftime('%Y-%m'), vote_aye: v.count}}
+       @vote = PartyFriend.where(party: params[:party], date_party_friend: Date.strptime(params[:month], '%Y-%m')).order(count: :desc).map{|v| {faction: v.friend_party, date: v.date_party_friend.strftime('%Y-%m'), vote_aye: v.count}}
     end
     vote_party = @vote.map{|p| p[:faction]}
     party_not_voted = party.find_all{|v| vote_party.include?(v) == false }

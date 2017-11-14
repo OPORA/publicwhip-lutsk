@@ -106,11 +106,11 @@
                   });
               var party = [];
 
-//              firs_party = nested_data.find(x => x.Party == "<%#= params[:party] %>");
+              firs_party = nested_data.find(x => x.Party == "<%= params[:party] %>");
               nested_data.forEach(function (p, i) {
-//                    if (p.Party != firs_party.Party) {
+                    if (p.Party != firs_party.Party) {
                         party.push({party: p.Party, values: [p.Value, firs_party.Value ]})
-//                    }
+                    }
               });
 
               var result = party.map(function (d) {
