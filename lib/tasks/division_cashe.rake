@@ -58,15 +58,15 @@ namespace :division_cashe do
   end
   desc "Cache party voted aye 50%+1"
   task party_voted: :environment do
-    # p "Start aye_votes"
-    # Whip.all.find_each do |w|
-    #   p w.division_id
-    #   size = (w.aye_votes + w.no_votes + w.absent + w.against + w.abstain)/2+1
-    #   if w.aye_votes >= size
-    #     VoteFaction.find_or_create_by(faction: w.party, division_id: w.division_id, aye: true)
-    #   end
-    # end
-    # p "End aye_votes"
+    p "Start aye_votes"
+    Whip.all.find_each do |w|
+      p w.division_id
+      size = (w.aye_votes + w.no_votes + w.absent + w.against + w.abstain)/2+1
+      if w.aye_votes >= size
+        VoteFaction.find_or_create_by(faction: w.party, division_id: w.division_id, date:  Date.strptime(w.division.date, '%Y-%m'), aye: true)
+      end
+    end
+    p "End aye_votes"
     p "Start Party Frends"
     Division.all.to_a.group_by{|d| d.date.strftime("%Y-%m")}.each do |d|
       date = d[0]
