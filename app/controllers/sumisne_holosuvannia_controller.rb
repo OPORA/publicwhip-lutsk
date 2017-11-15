@@ -12,12 +12,16 @@ class SumisneHolosuvanniaController < ApplicationController
   def api
     party = PartyFriend.pluck(:party).uniq
     if params[:month] == "full"
-      first_party =  VoteFaction.where(faction: params[:party], aye: true).size
-       @vote =  [{faction: params[:party], date: "full", vote_aye: first_party}]
+      vote =  Division.all.size
+       @vote =  [{faction: params[:party], date: "full", vote_aye: vote}]
        @vote += PartyFriend.where(party: params[:party]).order(count: :desc).map{|v| {faction: v.friend_party, date: v.date_party_friend.strftime('%Y-%m'), vote_aye: v.count}}
     else
-      first_party = VoteFaction.where(faction: params[:party], date: Date.strptime(params[:month],'%Y-%m'), aye: true).size
-      @vote =  [{faction: params[:party], date: "full", vote_aye: first_party}]
+      date = Date.strptime(params[:month],'%Y-%m')
+      year_month = date.strftime('%Y-%m')
+      date_min = year_month + "-01"
+      date_max = date + 1.month
+      vote = Division.where("date >= ? AND date < ?", date_min, date_max).size
+      @vote =  [{faction: params[:party], date: params[:month], vote_aye: vote}]
       @vote += PartyFriend.where(party: params[:party], date_party_friend: Date.strptime(params[:month], '%Y-%m')).order(count: :desc).map{|v| {faction: v.friend_party, date: v.date_party_friend.strftime('%Y-%m'), vote_aye: v.count}}
     end
     vote_party = @vote.map{|p| p[:faction]}

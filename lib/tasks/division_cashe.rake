@@ -63,7 +63,7 @@ namespace :division_cashe do
       p w.division_id
       size = (w.aye_votes + w.no_votes + w.absent + w.against + w.abstain)/2+1
       if w.aye_votes >= size
-        VoteFaction.find_or_create_by(faction: w.party, division_id: w.division_id, date:  Date.strptime(w.division.date, '%Y-%m'), aye: true)
+        VoteFaction.find_or_create_by(faction: w.party, division_id: w.division_id, aye: true)
       end
     end
     p "End aye_votes"

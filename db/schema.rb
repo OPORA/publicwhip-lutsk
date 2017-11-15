@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20171113225834) do
 
   create_table "vote_factions", force: :cascade do |t|
     t.string "faction"
+    t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "division_id"
