@@ -138,7 +138,7 @@
               var g = svg.append("g")
                   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
               x.domain(result.map(function(d) { return d.party; }));
-              y.domain([0, d3.max(result, function(d) { return d.present; })]);
+              y.domain([0, 100]);//d3.max(result, function(d) { return d.present; })
 
               d3.select('.domain')
                   .attr("stroke","none");
