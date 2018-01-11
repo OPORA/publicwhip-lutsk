@@ -67,7 +67,7 @@ body{
     display: none;
 }
 header{
-    background: url(fon_home.png) no-repeat center center;
+    background: url(fon_home.jpg) no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -121,7 +121,7 @@ header{
 #info  .fa-stack {
     float: left;
     padding-bottom: 20px;
-    /*margin-bottom: 40px;*/
+    margin-bottom: 40px;
     margin-right: 10px;
 }
 #info div > div :nth-child(3){
@@ -256,10 +256,12 @@ header{
 */
 .fa.fa-check-circle{
     color:#88B04B;
+    font-size: 28px;
 }
 
 .fa.fa-times-circle{
     color:#FE6162;
+    font-size: 28px;
 }
 .no-padding > [class*="col-"] {
     padding-left: 0 !important;
@@ -301,9 +303,6 @@ h3.background-line {
     margin: 22px auto;
     display:block;
 }
-#first-block [class*="row"] + [class*="row"], #second-block [class*="row"] + [class*="row"]{
-    margin-top: 25px;
-}
 #list_division [class*="row"]{
     margin: 25px 0 0 0;
 }
@@ -340,7 +339,7 @@ h3.background-line {
     font-family: GothaProMed;
     font-size: 10px;
     font-weight: 500;
-    line-height: 10px;
+    line-height: 10px!important;
 }
 .card p{
     margin: 0;
@@ -426,7 +425,7 @@ h3.background-line {
 footer{
     background-color: #000;
     color:#D4D6D9;
-    height: 190px;
+    min-height: 190px;
     border-top: 15px solid #949393;
 }
 footer a{

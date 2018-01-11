@@ -20,6 +20,7 @@
 
   <%= stylesheet_link_tag 'bootstrap', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag 'style', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'media', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag body_class, media: 'all', 'data-turbolinks-track' => true %>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.3/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -70,43 +71,44 @@ gtag('config', 'UA-70897601-4');
         </div>
       </nav>
       <% if controller.controller_path == "home" %>
-        <div id="info" class="container-fluid">
-          <div class="col-12">
-            <div class="col-2 update-data pull-right pull-2">
-                          <span class="fa-stack">
+        <div id="info" class="container">
+            <div class="row justify-content-end">
+                <div class="col-lg-3 col-6 update-data">
+                   <span class="fa-stack">
                               <i class="fa fa-circle fa-stack-2x"></i>
                               <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
                           </span>
-              <p class="text-uppercase">Оновлення даних</p>
-              <p><%= last_update_rada %></p>
-            </div>
-            <div class="col-2 rada-date pull-right push-2">
-                          <span class="fa-stack">
+                    <p class="text-uppercase">Оновлення даних</p>
+                    <p><%= last_update_rada %></p>
+                </div>
+                <div class="col-lg-3 col-6 rada-date">
+                    <span class="fa-stack">
                               <i class="fa fa-circle fa-stack-2x"></i>
                               <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
                           </span>
-              <p class="text-uppercase">Засідання міськради</p>
-              <p><%= last_sessions_rada() %></p>
+                    <p class="text-uppercase">Засідання міськради</p>
+                    <p><%= last_sessions_rada() %></p>
+                </div>
             </div>
-          </div>
         </div>
         <div style="clear: both;"></div>
       <% end %>
 
       <% if controller.controller_path != "home" %>
             </header>
-          <div id="info" class="container-fluid">
-            <div class="col-12">
+          <div id="info" class="container">
               <%= link_to "<p><i class='fa fa-circle fa-stack-1x'></i><span class='first-word'>Lviv</span>.Rada4You.org</p>".html_safe, root_path, class: "col-4 navbar-brand text-uppercase logo", id: "logo" %>
+
+              <div class="row justify-content-end">
               <% if controller.controller_path != "errors" %>
-              <div class="col-3 update-data pull-right pull-3">
+              <div class="col-lg-3 col-6 update-data">
                           <span class="fa-stack">
                               <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
                           </span>
                 <p class="text-uppercase">Оновлення даних</p>
                 <p><%= last_update_rada %></p>
               </div>
-              <div class="col-3 rada-date pull-right push-3">
+              <div class="col-lg-3 col-6 rada-date">
                           <span class="fa-stack">
                               <i class="fa fa-clock-o fa-stack-1x fa-inverse" aria-hidden="true"></i>
                           </span>
