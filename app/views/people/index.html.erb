@@ -3,7 +3,7 @@
 <div id="first-block" class="container">
 
     <div class="row justify-content-lg-center">
-      <h1 class="col-lg-8 text-q text-uppercase">Депутати львівської міськради</h1>
+      <h1 class="col-lg-8 text-q text-uppercase">Депутати <%= Settings.name_rada %></h1>
 
       <div class="col-lg-8">
         <%= form_tag(search_mp_path, method: "get", class: "form-inline mt-2 mt-md-0", id: "search-main" ) do  %>

@@ -27,13 +27,13 @@
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70897601-4"></script>
+   <script async src="https://www.googletagmanager.com/gtag/js?id=<%= Settings.gtag %>"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 
-gtag('config', 'UA-70897601-4');
+gtag('config', '<%= Settings.gtag %>');
 </script>
   <%= csrf_meta_tags %>
 </head>
@@ -47,7 +47,7 @@ gtag('config', 'UA-70897601-4');
           <span class="navbar-toggler-icon"></span>
         </button>
         <% if controller.controller_path == "home" %>
-          <%= link_to "<p><i class='fa fa-circle fa-stack-1x'></i><span class='first-word'>Lviv</span>.Rada4You.org</p>".html_safe, root_path, class: "navbar-brand text-uppercase logo" %>
+          <%= link_to "<p><i class='fa fa-circle fa-stack-1x'></i><span class='first-word'>#{Settings.name_site}</span>.Rada4You.org</p>".html_safe, root_path, class: "navbar-brand text-uppercase logo" %>
         <% end %>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
@@ -97,7 +97,7 @@ gtag('config', 'UA-70897601-4');
       <% if controller.controller_path != "home" %>
             </header>
           <div id="info" class="container">
-              <%= link_to "<p><i class='fa fa-circle fa-stack-1x'></i><span class='first-word'>Lviv</span>.Rada4You.org</p>".html_safe, root_path, class: "col-4 navbar-brand text-uppercase logo", id: "logo" %>
+              <%= link_to "<p><i class='fa fa-circle fa-stack-1x'></i><span class='first-word'>#{Settings.name_site}</span>.Rada4You.org</p>".html_safe, root_path, class: "col-4 navbar-brand text-uppercase logo", id: "logo" %>
 
               <div class="row justify-content-end">
               <% if controller.controller_path != "errors" %>
