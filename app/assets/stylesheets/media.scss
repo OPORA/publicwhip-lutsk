@@ -29,7 +29,11 @@
   }
 
   #first-block [class*="row"] + [class*="row"], #second-block [class*="row"] + [class*="row"]{
-  margin-top:  0;
+    margin-top:  0;
+  }
+
+  [class*="row"]  [class*="col-lg-6"]{
+    margin-top:  15px;
   }
   #second-block .check, #list_division [class*="row"] .check , #profile .check{
     margin-left: -90px;
@@ -54,4 +58,10 @@
     position: absolute;
     top: -120px;
     color: #ffffff;}
+}
+
+@media (min-width: 360px) and (max-width: 1200px) {
+  footer span + span{
+    margin-left: 10px;
+  }
 }

@@ -58,8 +58,10 @@
 
 <div id="second-block" class="container-fluid">
     <div class="col-12"><h3 class="text-uppercase text-center background-line">Прогульники засідань</h3></div>
+  <div class="container">
     <% @top_mp_rebellions.each_with_index do |mp, i| %>
-    
+
+
       <% if i % 2 == 0  %>
       <div class="row">
       <% end %>
@@ -93,7 +95,9 @@
       <% if i % 2 == 1  %>
       </div>
       <% end %>
+
     
     <% end %>
+  </div>
     <div class="col-12"><%= link_to  '<h4 class="text-uppercase text-center">До відвідування засідань <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h4>'.html_safe, people_path(sort: :attendance) %></div>
 </div>
