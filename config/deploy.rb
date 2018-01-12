@@ -1,7 +1,6 @@
 require 'mina/rails'
 require 'mina/git'
-require 'config'
-Config.load_and_set_settings('settings.yml')
+
 # require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
 require 'mina/rvm'    # for rvm support. (http://rvm.io)
 
@@ -12,8 +11,8 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :domain, 'ruby.oporaua.org'
-set :deploy_to, "/home/#{Settings.directory_name}"
-set :repository, "git@github.com:OPORA/#{Settings.directory_name}.git"
+set :deploy_to, "/home/publicwhip-drohobych/"
+set :repository, "git@github.com:OPORA/publicwhip-drohobych.git"
 set :branch, 'master'
 
 # For system-wide RVM install.
@@ -45,7 +44,7 @@ task :setup do
   # command %{rbenv install 2.3.0}
   command %[touch "#{fetch(:shared_path)}/config/database.yml"]
   command %[touch "#{fetch(:shared_path)}/config/secrets.yml"]
-  command %[echo "-----> Be sure to edit '#{fetch(:shared_path)}config/database.yml' and 'secrets.yml'."]
+  command %[echo "-----> Be sure to edit '#{fetch(:shared_path)}/config/database.yml' and 'secrets.yml'."]
 end
 
 desc "Deploys the current version to the server."
