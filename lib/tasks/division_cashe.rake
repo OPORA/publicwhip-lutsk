@@ -83,7 +83,7 @@ namespace :division_cashe do
        LEFT JOIN
         public.vote_factions AS votes2 ON votes1.division_id = votes2.division_id AND votes1.aye = votes2.aye AND votes1.faction != votes2.faction
        WHERE
-        votes1.faction = '#{m1}' AND votes1.division_id IN (#{vote_id.join(',')}) AND votes2.faction is not null
+        votes1.faction = "#{m1}" AND votes1.division_id IN (#{vote_id.join(',')}) AND votes2.faction is not null
        GROUP BY
         votes2.faction
         }
