@@ -5,7 +5,7 @@ namespace :load_division do
     save_votes = Division.pluck(:date).uniq.to_a.map{|d| d.strftime('%Y-%m-%d')}
     date_votes = load_votes - save_votes
     date_votes.each do |date|
-      divisions = JSON.load(open("http://lvivvoted.oporaua.org/votes_events/#{date}"))
+      divisions = JSON.load(open("http://#{Settings.name_site}voted.oporaua.org/votes_events/#{date}"))
       divisions.each do |d|
         division = Division.find_or_create_by(
             date: DateTime.parse(d[0]["date_vote"]).strftime("%F"),
