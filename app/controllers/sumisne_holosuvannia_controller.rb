@@ -4,7 +4,8 @@ class SumisneHolosuvanniaController < ApplicationController
        params[:month] = "full"
      end
     if params[:party].nil? or params[:party].blank?
-      params[:party] = "Блок Петра Порошенка"
+      params[:party] =  PartyFriend.order("RANDOM()").pluck(:party).first
+      params[:example_party] = 1
     end
      @party = PartyFriend.pluck(:party).uniq
      @month = PartyFriend.order(date_party_friend: :desc).pluck(:date_party_friend).uniq
