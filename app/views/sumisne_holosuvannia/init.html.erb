@@ -105,8 +105,8 @@
 
                   });
               var party = [];
-
-              firs_party = nested_data.find(x => x.Party == "<%= params[:party] %>");
+              console.log(nested_data);
+              firs_party = nested_data.find(x => x.Party == '<%= params[:party].html_safe %>');
               nested_data.forEach(function (p, i) {
                     if (p.Party != firs_party.Party) {
                         party.push({party: p.Party, values: [p.Value, firs_party.Value ]})
