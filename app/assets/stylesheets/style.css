@@ -76,6 +76,8 @@ header{
     /*background-color: rgba(40,40,40,0.6);*/
     color:#fff;
     margin-bottom: 75px;
+    box-shadow:0 0 0 508px rgba(0, 0, 0, 0.33) inset;
+
 }
 .logo p{
     height: 20px;
