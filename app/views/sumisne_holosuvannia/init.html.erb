@@ -22,8 +22,8 @@
             });
         });
     });
-</script>
 
+</script>
 <div id="first-block" class="container people">
 
     <h1 class="text-uppercase center-justified text-xs-center">
@@ -85,7 +85,8 @@
                     <span class="fa-stack ">
                     <i class="fa  fa-share-alt  fa-stack-1x"></i>
                         </span>
-                <a href="" >поширити</a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=<%= request.protocol  + request.host +  request.fullpath %>;src=sdkpreparse" target="_blank">поширити</a>
+
             </li>
         </ul>
     </div>
@@ -109,7 +110,7 @@
               createGrafic(data);
           });
           createGrafic(data);
-          function createGrafic(Data) {
+          function createGrafic(Data) {data-href="<%=  url_for(:only_path => false) %>" data-mobile-iframe="true"
               d3.select("svg").remove();
               var nested_data =  d3.nest().key(function (d) {
                   return d.faction; })
