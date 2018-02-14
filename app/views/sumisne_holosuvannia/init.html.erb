@@ -22,7 +22,7 @@
                           <span class="fa-stack">
                             <i class="fa fa-search fa-stack-1x fa-inverse" aria-hidden="true"></i>
                           </span>
-        <%= text_field_tag(:party, params[:example_party] == 1 ? '' : params[:party] , class: "form-control mr-sm-2" , placeholder: "напр., " + params[:party], list: "party-datalist") %>
+        <%= text_field_tag(:party, params[:example_party] == 1 ? '' : params[:party] , class: "form-control mr-sm-2" , placeholder: "напр., " + params[:party], list: "party-datalist", autocomplete: "off" ) %>
         <i class="fa fa-chevron-down arrow-icon" aria-hidden="true"></i>
           <datalist id="party-datalist">
             <% @party.each do |m| %>
@@ -101,12 +101,13 @@
               }).entries(Data)
                   .map(function(d){
 //                      console.log(d);
-                      return { Party: d.key, Value: d.value};
+                      return { Party: d.key.replace(/"/g, '&quot;').replace(/'/g, '&#39;'), Value: d.value};
 
                   });
               var party = [];
               console.log(nested_data);
-              firs_party = nested_data.find(x => x.Party == '<%= params[:party].html_safe %>');
+              firs_party = nested_data.find(x => x.Party ==  '<%= params[:party] %>' ); <%#= params[:party].html_safe %>
+
               nested_data.forEach(function (p, i) {
                     if (p.Party != firs_party.Party) {
                         party.push({party: p.Party, values: [p.Value, firs_party.Value ]})
