@@ -71,7 +71,7 @@
                       <i class="fa fa-square-o fa-stack-2x"></i>
                       <i class="fa  fa-download  fa-stack-1x"></i>
                     </span>
-                <a href="" >csv</a></li>
+                <a href="" id ="csv" >csv</a></li>
             <li>
               <a href="javascript:void(0)" id ="downpdf">
                   <span class="fa-stack ">
@@ -124,7 +124,7 @@
 
                   });
               var party = [];
-              console.log(nested_data);
+              //console.log(nested_data);
               firs_party = nested_data.find(x => x.Party ==  '<%= params[:party] %>' ); <%#= params[:party].html_safe %>
 
               nested_data.forEach(function (p, i) {
@@ -138,16 +138,28 @@
                       return a - b;
                   });
                   if (val[1] == 0){
-                      return {party: d.party,  present: 0  }
+                      return {party: d.party.replace(/&quot;/g, '"').replace(/&#39;/g, "'"),  present: 0  }
                   } else {
-                      return {party: d.party,  present: Math.round((val[0]/val[1])*100)  }
+                      return {party: d.party.replace(/&quot;/g, '"').replace(/&#39;/g, "'"),  present: Math.round((val[0]/val[1])*100)  }
                   }
 
               });
               result = result.sort(function (a,b) {
                   return b.present - a.present;
               });
-//              console.log(result);
+              let csvContent = "data:text/csv;charset=utf-8,";
+              let head = "Сумісне голосування,Період,Партія,Відсоток\r\n";
+              csvContent += head
+              result.forEach(function(d){
+                  let part = "<%= params[:party] %>".replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+                  let row = part+",<%= params[:month]=="full" ? "Весь час" : params[:month] %>,"+d.party +"," + d.present;
+                  csvContent += row + "\r\n";
+              });
+              var encodedUri = encodeURI(csvContent);
+              var link = document.getElementById("csv");
+              link.setAttribute("href", encodedUri);
+              link.setAttribute("download", "voted_sum.csv");
+            // console.log(result);
               var svg = d3.select("#graph").append('svg'),
                   margin = {top: 20, right: 40, bottom: 30, left: 40},
                   width = (document.querySelector("#graph").clientWidth) - margin.left - margin.right,
@@ -185,7 +197,7 @@
                   .attr("y", function(d) {return x(d.party) - margin.top  ; })
                   .attr("dy", ".95em")
                   .attr("style", "fill:#000; font-size:12px; line-height: 18px; font-family: GothaProBol;")
-                  .text(function (d) {return d.party.replace(/&quot;/g, '"').replace(/&#39;/g, "'")});
+                  .text(function (d) {return d.party});
               bar.append("text")
                   .attr("class", "text-uppercase")
                   .attr("y", function(d) {return x(d.party); })
