@@ -10,7 +10,20 @@
             $('.collapse').collapse('hide');
         });
     };
+
+    $( document ).ready(function() {
+        $("#downpdf").click(function () {
+            html2canvas($('#png_div'), {
+                onrendered: function (canvas) {
+                    var link = document.getElementById('downpdf');
+                    link.setAttribute('download', 'Сумісне Голосування <%= params[:party] %>.png');
+                    link.setAttribute('href', canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"));
+                }
+            });
+        });
+    });
 </script>
+
 <div id="first-block" class="container people">
 
     <h1 class="text-uppercase center-justified text-xs-center">
@@ -59,12 +72,16 @@
                       <i class="fa  fa-download  fa-stack-1x"></i>
                     </span>
                 <a href="" >csv</a></li>
-            <li><span class="fa-stack ">
+            <li>
+              <a href="javascript:void(0)" id ="downpdf">
+                  <span class="fa-stack ">
                       <i class="fa fa-square-o fa-stack-2x"></i>
                       <i class="fa  fa-download  fa-stack-1x"></i>
-                    </span>
-                <a href="" >png</a></li>
+                  </span> png
+              </a>
+            </li>
             <li>
+
                     <span class="fa-stack ">
                     <i class="fa  fa-share-alt  fa-stack-1x"></i>
                         </span>
@@ -75,11 +92,13 @@
 </div>
 
 <div class="container">
+  <div id="png_div">
   <div class="col">
     <h2 class="center-justified text-xs-center text-uppercase">СУМІСНЕ ГОЛОСУВАННЯ <%= params[:party] %></h2>
     <div id="graph">
       <svg ></svg>
     </div>
+</div>
     <!--<div id="slider" style="width: 960px;"></div>-->
     <%#= link_to 'API', sumisne_holosuvannia_api_path %>
   </div>
@@ -166,7 +185,7 @@
                   .attr("y", function(d) {return x(d.party) - margin.top  ; })
                   .attr("dy", ".95em")
                   .attr("style", "fill:#000; font-size:12px; line-height: 18px; font-family: GothaProBol;")
-                  .text(function (d) {return d.party});
+                  .text(function (d) {return d.party.replace(/&quot;/g, '"').replace(/&#39;/g, "'")});
               bar.append("text")
                   .attr("class", "text-uppercase")
                   .attr("y", function(d) {return x(d.party); })

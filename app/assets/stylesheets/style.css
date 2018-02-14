@@ -538,3 +538,6 @@ footer span+span{
     /*margin: 0 0 0 0;*/
     margin-top: 25px;
 }
+#png_div {
+    background-color: white;
+}
