@@ -110,7 +110,7 @@
               createGrafic(data);
           });
           createGrafic(data);
-          function createGrafic(Data) {data-href="<%=  url_for(:only_path => false) %>" data-mobile-iframe="true"
+          function createGrafic(Data) {
               d3.select("svg").remove();
               var nested_data =  d3.nest().key(function (d) {
                   return d.faction; })
