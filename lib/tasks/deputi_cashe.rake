@@ -6,7 +6,11 @@ namespace :deputi_cashe do
       date = d[0]
       vote_id =  d[1].map{|v| v.id }
       @mp.each do |m|
-        rebellions_month = Division.joins(:whips, :votes).where('votes.deputy_id = ? and votes.division_id  in (?)', m.deputy_id, vote_id ).where('whips.party = ?', m.faction).where("votes.vote != 'absent'").where('votes.vote != whips.whip_guess').count
+        if Mp.where(faction: m.faction).count >= 5
+          rebellions_month = Division.joins(:whips, :votes).where('votes.deputy_id = ? and votes.division_id  in (?)', m.deputy_id, vote_id ).where('whips.party = ?', m.faction).where("votes.vote != 'absent'").where('votes.vote != whips.whip_guess').count
+        else
+          rebellions_month = nil
+        end
         v_month =  Vote.where(deputy_id: m.deputy_id, division_id: vote_id ).map {|v| v}
 
         hash_month = {
@@ -29,7 +33,11 @@ namespace :deputi_cashe do
   task mp: :environment do
     @mp = Mp.all
       @mp.each do |m|
-      rebellions = Division.joins(:whips, :votes).where('votes.deputy_id = ?', m.deputy_id ).where('whips.party = ?', m.faction).where("votes.vote != 'absent'").where('votes.vote != whips.whip_guess').count
+      if Mp.where(faction: m.faction).count >= 5
+        rebellions = Division.joins(:whips, :votes).where('votes.deputy_id = ?', m.deputy_id ).where('whips.party = ?', m.faction).where("votes.vote != 'absent'").where('votes.vote != whips.whip_guess').count
+      else
+        rebellions = nil
+      end
       v =  Vote.where(deputy_id: m.deputy_id).map {|v| v}
       hash = {
           not_voted: v.count{|v| v.vote == "not_voted"},
