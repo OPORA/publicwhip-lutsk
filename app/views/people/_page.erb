@@ -21,11 +21,7 @@
                     <p class="card-percent"><%= fraction_to_percentage_display(m.mp_info.attendance_fraction) %> засідань</p></div>
                   <div class="col-6 text-uppercase">
                     <p class="checkin">проти фракції</p>
-                    <% if m.mp_info.rebellions_fraction %>
                     <p class="card-percent"><%= fraction_to_percentage_display(m.mp_info.rebellions_fraction) %> голосувань</p>
-                    <% else %>
-                        <p class="card-percent">Індекс голосувань проти фракції неможливо встановити</p>
-                    <% end %>
                   </div>
                 </div>
               </div>
