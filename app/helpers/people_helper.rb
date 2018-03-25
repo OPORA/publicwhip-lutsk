@@ -31,7 +31,7 @@ module PeopleHelper
       if percentage == 0
         return "0%"
       else
-        percentage.to_i
+        "#{percentage.to_i}" + "%"
         #number_to_percentage(percentage, options)
       end
     else
