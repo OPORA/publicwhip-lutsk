@@ -1,17 +1,19 @@
 namespace :deputi_cashe do
   desc "Update mp cashe"
   task mp_month: :environment do
-    @mp = Mp.all
+
     Division.all.to_a.group_by{|d| d.date.strftime("%Y-%m")}.each do |d|
       date = d[0]
       vote_id =  d[1].map{|v| v.id }
-      @mp.each do |m|
-        if Mp.where(faction: m.faction).count >= 5
-          rebellions_month = Division.joins(:whips, :votes).where('votes.deputy_id = ? and votes.division_id  in (?)', m.deputy_id, vote_id ).where('whips.party = ?', m.faction).where("votes.vote != 'absent'").where('votes.vote != whips.whip_guess').count
+      date_query = Date.strptime(date, "%Y-%m")
+      mp = Mp.where("? >= start_date and end_date > ?", date_query, date_query)
+      mp.each do |m|
+        if mp.where(faction: m.faction).count >= 5
+          rebellions_month = Division.joins(:whips, :votes).where('votes.deputy_id = ? and votes.division_id  in (?)', m.id, vote_id ).where('whips.party = ?', m.faction).where("votes.vote != 'absent'").where('votes.vote != whips.whip_guess').count
         else
           rebellions_month = nil
         end
-        v_month =  Vote.where(deputy_id: m.deputy_id, division_id: vote_id ).map {|v| v}
+        v_month =  Vote.where(deputy_id: m.id, division_id: vote_id ).map {|v| v}
 
         hash_month = {
             not_voted: v_month.count{|v| v.vote == "not_voted"},
@@ -25,7 +27,7 @@ namespace :deputi_cashe do
         p hash_month
         votes_possible_month = hash_month.sum{|k,v| v}
         votes_attended_month = votes_possible_month - hash_month[:absent]
-        save_update_mp_ifo(m.deputy_id, Date.strptime(date, '%Y-%m'), rebellions_month, hash_month[:not_voted], hash_month[:absent], hash_month[:against],hash_month[:aye], hash_month[:abstain], votes_possible_month, votes_attended_month)
+        save_update_mp_ifo(m.id, Date.strptime(date, '%Y-%m'), rebellions_month, hash_month[:not_voted], hash_month[:absent], hash_month[:against],hash_month[:aye], hash_month[:abstain], votes_possible_month, votes_attended_month)
       end
     end
   end
@@ -34,11 +36,11 @@ namespace :deputi_cashe do
     @mp = Mp.all
       @mp.each do |m|
       if Mp.where(faction: m.faction).count >= 5
-        rebellions = Division.joins(:whips, :votes).where('votes.deputy_id = ?', m.deputy_id ).where('whips.party = ?', m.faction).where("votes.vote != 'absent'").where('votes.vote != whips.whip_guess').count
+        rebellions = Division.joins(:whips, :votes).where('votes.deputy_id = ?', m.id ).where('whips.party = ?', m.faction).where("votes.vote != 'absent'").where('votes.vote != whips.whip_guess').count
       else
         rebellions = nil
       end
-      v =  Vote.where(deputy_id: m.deputy_id).map {|v| v}
+      v =  Vote.where(deputy_id: m.id).map {|v| v}
       hash = {
           not_voted: v.count{|v| v.vote == "not_voted"},
           absent: v.count{|v| v.vote == "absent"},
@@ -48,7 +50,7 @@ namespace :deputi_cashe do
       }
       votes_possible = hash.sum{|k,v| v}
       votes_attended = votes_possible - hash[:absent]
-      save_update_mp_ifo(m.deputy_id, '9999-12-31', rebellions, hash[:not_voted], hash[:absent], hash[:against],hash[:aye], hash[:abstain], votes_possible, votes_attended)
+      save_update_mp_ifo(m.id, '9999-12-31', rebellions, hash[:not_voted], hash[:absent], hash[:against],hash[:aye], hash[:abstain], votes_possible, votes_attended)
       end
   end
   desc "Update mp friend cashe"

@@ -39,7 +39,7 @@
     </ul>
     <ul class="social col-4 pull-right text-uppercase">
       <li>
-        <%= link_to api_mp_path(deputy_id: mp.deputy_id, format: :csv) do %>
+        <%= link_to api_mp_path(deputy_id: mp.id, format: :csv) do %>
                     <span class="fa-stack ">
                       <i class="fa fa-square-o fa-stack-2x"></i>
                       <i class="fa  fa-download  fa-stack-1x"></i>
@@ -63,7 +63,6 @@
       </li>
     </ul>
   </div>`
-
   <div class="row center-justified first">
     <div class="col-4 text-uppercase">
       <div id="attendance-fraction"
