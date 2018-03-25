@@ -55,25 +55,31 @@ namespace :deputi_cashe do
   end
   desc "Update mp friend cashe"
   task friends_month: :environment do
+    mps = Mp.distinct.pluck(:deputy_id)
     Division.all.to_a.group_by{|d| d.date.strftime("%Y-%m")}.each do |d|
       date = d[0]
       vote_id =  d[1].map{|v| v.id }
-      Mp.all.find_each do |m1|
+      mps.each do |m1|
         sql = %Q{
-       SELECT
-        votes2.deputy_id, count(*)
-       FROM
-        public.votes AS votes1
-       LEFT JOIN
-        public.votes AS votes2 ON votes1.division_id = votes2.division_id AND votes1.vote = votes2.vote AND votes1.deputy_id != votes2.deputy_id
-       WHERE
-        votes1.deputy_id = #{m1.deputy_id} AND votes1.division_id IN (#{vote_id.join(',')}) AND votes2.deputy_id is not null AND votes1.vote != 'absent'
-       GROUP BY
-        votes2.deputy_id
+
+      SELECT
+          mps2.deputy_id, count(*)
+         FROM
+          public.votes AS votes1
+         LEFT JOIN
+          public.votes AS votes2 ON votes1.division_id = votes2.division_id AND votes1.vote = votes2.vote AND votes1.deputy_id != votes2.deputy_id
+         LEFT JOIN
+          public.mps AS mps1 ON  votes1.deputy_id =  mps1.id
+         LEFT JOIN
+          public.mps AS mps2 ON  votes2.deputy_id =  mps2.id
+         WHERE
+           mps1.deputy_id = #{m1} AND votes1.division_id IN (#{vote_id.join(',')}) AND votes2.deputy_id is not null AND votes1.vote != 'absent'
+         GROUP BY
+          mps2.deputy_id
         }
         ActiveRecord::Base.connection.execute(sql).each do |q|
           p q
-          friend = MpFriend.find_or_initialize_by(deputy_id:  m1.deputy_id, friend_deputy_id: q["deputy_id"], date_mp_friend:  Date.strptime(date, '%Y-%m') )
+          friend = MpFriend.find_or_initialize_by(deputy_id:  m1, friend_deputy_id: q["deputy_id"], date_mp_friend:  Date.strptime(date, '%Y-%m') )
           friend.count = q["count"]
           friend.save
           p friend
@@ -83,22 +89,27 @@ namespace :deputi_cashe do
   end
   desc "Update mp friend cashe"
   task friends: :environment do
-        Mp.all.find_each do |m1|
+    mps = Mp.distinct.pluck(:deputy_id)
+        mps.each do |m1|
          sql = %Q{
          SELECT
-          votes2.deputy_id, count(*)
+          mps2.deputy_id, count(*)
          FROM
           public.votes AS votes1
          LEFT JOIN
           public.votes AS votes2 ON votes1.division_id = votes2.division_id AND votes1.vote = votes2.vote AND votes1.deputy_id != votes2.deputy_id
+         LEFT JOIN
+          public.mps AS mps1 ON  votes1.deputy_id =  mps1.id
+         LEFT JOIN
+          public.mps AS mps2 ON  votes2.deputy_id =  mps2.id
          WHERE
-          votes1.deputy_id = #{m1.deputy_id}  AND votes2.deputy_id is not null AND votes1.vote != 'absent'
+           mps1.deputy_id = #{m1}  AND votes2.deputy_id is not null AND votes1.vote != 'absent'
          GROUP BY
-          votes2.deputy_id
+          mps2.deputy_id
           }
           ActiveRecord::Base.connection.execute(sql).each do |q|
             p q
-            friend = MpFriend.find_or_initialize_by(deputy_id:  m1.deputy_id, friend_deputy_id: q["deputy_id"], date_mp_friend: "9999-12-31")
+            friend = MpFriend.find_or_initialize_by(deputy_id:  m1, friend_deputy_id: q["deputy_id"], date_mp_friend: "9999-12-31")
             friend.count = q["count"]
             friend.save
             p friend
