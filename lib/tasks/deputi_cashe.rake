@@ -35,7 +35,7 @@ namespace :deputi_cashe do
   task mp: :environment do
     @mp = Mp.all
       @mp.each do |m|
-      if Mp.where(faction: m.faction).count >= 5
+      if Mp.where(faction: m.faction, end_date: '9999-12-31').count >= 5
         rebellions = Division.joins(:whips, :votes).where('votes.deputy_id = ?', m.id ).where('whips.party = ?', m.faction).where("votes.vote != 'absent'").where('votes.vote != whips.whip_guess').count
       else
         rebellions = nil
