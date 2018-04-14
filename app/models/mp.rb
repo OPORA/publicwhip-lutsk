@@ -1,7 +1,7 @@
 class Mp < ApplicationRecord
   has_many :votes
   has_many :divisions, through: :votes
-  has_many :mp_friends, primary_key: :deputy_id, foreign_key: :deputy_id
+  has_many :mp_friends, primary_key: :id, foreign_key: :deputy_id
   has_one :mp_info, primary_key: :id, foreign_key: :deputy_id
   has_many :mp_infos, primary_key: :id, foreign_key: :deputy_id
 

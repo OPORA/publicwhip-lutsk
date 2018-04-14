@@ -94,7 +94,7 @@ class PeopleController < ApplicationController
     p @mp
     if @mp
       if params[:vote] == "friends"
-        return get_friends(@mp.deputy_id)
+        return get_friends(@mp.id)
       else
         return get_divisions(@mp.id, @mp.faction)
       end
