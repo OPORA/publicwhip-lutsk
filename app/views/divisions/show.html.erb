@@ -7,29 +7,34 @@
         <div class="col">
             <ul class="social text-uppercase">
                 <li>
-                    <span class="fa-stack ">
-                      <i class="fa fa-square-o fa-stack-2x"></i>
-                      <i class="fa  fa-download  fa-stack-1x"></i>
-                    </span>
-                    <a href="" >текст рішення</a></li>
+                    <!--<span class="fa-stack ">-->
+                      <!--<i class="fa fa-square-o fa-stack-2x"></i>-->
+                      <!--<i class="fa  fa-download  fa-stack-1x"></i>-->
+                    <!--</span>-->
+                    <!--<a href="" >текст рішення</a>-->
+                </li>
             </ul></div>
         <ul class="social col-4 pull-right text-uppercase">
             <li>
+              <%= link_to divisions_show_path(@divisions.first.date, @divisions.first.number, format: :csv) do %>
                     <span class="fa-stack ">
                       <i class="fa fa-square-o fa-stack-2x"></i>
                       <i class="fa  fa-download  fa-stack-1x"></i>
-                    </span>
-                <a href="" >csv</a></li>
-            <li><span class="fa-stack ">
-                      <i class="fa fa-square-o fa-stack-2x"></i>
-                      <i class="fa  fa-download  fa-stack-1x"></i>
-                    </span>
-                <a href="" >png</a></li>
+                    </span>csv
+              <% end %>
+            </li>
+            <li>
+              <!--<span class="fa-stack ">-->
+                      <!--<i class="fa fa-square-o fa-stack-2x"></i>-->
+                      <!--<i class="fa  fa-download  fa-stack-1x"></i>-->
+              <!--</span>-->
+              <!--<a href="" >png</a>-->
+            </li>
             <li>
                     <span class="fa-stack ">
                     <i class="fa  fa-share-alt  fa-stack-1x"></i>
                         </span>
-                <a href="" >поширити</a>
+              <a href="https://www.facebook.com/sharer/sharer.php?u=<%= request.protocol  + request.host +  request.fullpath %>" target="_blank">поширити</a>
             </li>
         </ul>
     </div>

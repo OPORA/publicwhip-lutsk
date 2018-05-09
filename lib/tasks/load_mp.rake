@@ -5,7 +5,13 @@ namespace :load_mp do
   task :all => :environment do
     data_mps = JSON.load(open("http://#{Settings.name_site}mp.oporaua.org/"))
     data_mps.each do |m|
-      Mp.find_or_create_by(deputy_id: m["deputy_id"], first_name: m["first_name"], middle_name: m["middle_name"], last_name: m["last_name"], faction: m["faction"],  okrug: m["okrug"], end_date: m["end_date"])
+      if m["end_date"].nil?
+        end_date = "9999-12-31"
+      else
+        end_date = m["end_date"]
+      end
+      mp = Mp.find_or_create_by(deputy_id: m["deputy_id"], first_name: m["first_name"], middle_name: m["middle_name"], last_name: m["last_name"], faction: m["faction"],  okrug: m["okrug"], start_date: m["start_date"])
+      mp.update(end_date: end_date)
     end
   end
   desc "Load picture image deputy"
