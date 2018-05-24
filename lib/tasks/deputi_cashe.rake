@@ -33,14 +33,14 @@ namespace :deputi_cashe do
   end
   desc "Update mp cashe"
   task mp: :environment do
-    @mp = Mp.all
+    @mp = Mp.where(end_date: '9999-12-31')
       @mp.each do |m|
       if Mp.where(faction: m.faction, end_date: '9999-12-31').count >= 5
         rebellions = Division.joins(:whips, :votes).where('votes.deputy_id = ?', m.id ).where('whips.party = ?', m.faction).where("votes.vote != 'absent'").where('votes.vote != whips.whip_guess').count
       else
         rebellions = nil
       end
-      v =  Vote.where(deputy_id: m.id).map {|v| v}
+      v =  Vote.joins(:mp).where("mps.deputy_id = ?", m.deputy_id).map {|v| v}
       hash = {
           not_voted: v.count{|v| v.vote == "not_voted"},
           absent: v.count{|v| v.vote == "absent"},
