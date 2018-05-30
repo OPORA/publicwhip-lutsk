@@ -1,5 +1,9 @@
 namespace :division_cashe do
+  desc 'Update all the caches'
+  task all: [:whip, :info, :party_voted]
+
   desc "Update party statistick"
+
   task whip: :environment do
     Division.all.find_each do |d|
       Vote.joins(:mp).where(division_id: d.id).to_a.group_by{|m| m.mp.faction}.each do |f|

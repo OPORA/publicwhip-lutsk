@@ -1,4 +1,6 @@
 namespace :deputi_cashe do
+  desc 'Update all the caches'
+  task all: [:mp, :mp_month, :friends, :friends_month]
   desc "Update mp cashe"
   task mp_month: :environment do
 
