@@ -21,7 +21,7 @@
   <%= stylesheet_link_tag 'bootstrap', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag 'style', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag 'media', media: 'all', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag body_class, media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag body_class, media: 'all', 'data-turbolinks-track' => true  %>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.3/css/bootstrap-select.min.css">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -38,8 +38,14 @@ gtag('config', '<%= Settings.gtag %>');
   <%= csrf_meta_tags %>
 </head>
 <body id = "<%=  body_class %>" >
-    <%#= notice  %>
-    <%#= alert  %>
+<% if notice or alert %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <p><%= notice %>  <%= alert %></p>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% end %>
     <% unless request.path == "/500" %>
     <header class="container-fluid">
       <nav class="navbar navbar-toggleable-md navbar-light mb-4">
@@ -58,6 +64,9 @@ gtag('config', '<%= Settings.gtag %>');
               <%= link_to "Голосування", divisions_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
+              <%= link_to "Політики", policies_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
               <%= link_to "Сумісні голосування", sumisne_holosuvannia_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
@@ -68,6 +77,20 @@ gtag('config', '<%= Settings.gtag %>');
               <i class="fa fa-search" aria-hidden="true"></i>
               <input type="button" value="Пошук" class="btn btn-primary" data-toggle="modal" data-target="#ModalSearch" >
           </div>
+          <ul class="navbar-nav">
+            <% if user_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to current_user.user_name, edit_user_registration_path, class: "nav-link"  %>
+                </li>
+            <% else %>
+             <li class="nav-item">
+                <%= link_to "Вхід",  new_user_session_path, class: "nav-link"  %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Реєстрація", new_user_registration_path, class: "nav-link"  %>
+              </li>
+            <% end %>
+          </ul>
         </div>
       </nav>
       <% if controller.controller_path == "home" %>
@@ -120,6 +143,7 @@ gtag('config', '<%= Settings.gtag %>');
           </div>
       <% end %>
     <% end %>
+
   <%= yield %>
 <% unless request.path == "/500" %>
 <footer>

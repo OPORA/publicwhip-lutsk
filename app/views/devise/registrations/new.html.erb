@@ -1,0 +1,57 @@
+<div id="first-block" class="container">
+  <div class="row justify-content-lg-center">
+    <h1 class="text-uppercase center-justified text-xs-center">РЕЄСТРАЦІЯ</h1>
+  </div>
+</div>
+<div class="container-fluid team">
+  <div class="container">
+    <div class="row">
+      <p>
+        Приєднуйся до спільноти, яка розбудовує цей сайт. Додавай нові Політики,
+        редагуй та покращуй описи голосувань, а також підписуйся на оновлення.<br>
+        Політик, які тебе цікавлять.
+      </p>
+      <p>
+        Жодна інформація, яку ти тут надаєш, не буде надана стороннім особам.
+      </p>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="field">
+        <strong><%= f.label :email %></strong><br />
+        <span>Для активації або відновлення облікового запису</span><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="field">
+        <strong><%= f.label :user_name, "Ім'я користувача" %></strong><br />
+        <span>Відображається якщо створюєш політики або редагуєш публічні дані</span><br />
+        <%= f.text_field :user_name, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <strong><%= f.label :password, "Пароль" %></strong><br />
+        <% if @minimum_password_length %>
+            <span>Надійний пароль містить не меньше <%= @minimum_password_length %> знаків, ціфри та спеціальні символи</span>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <!--<div class="field">-->
+        <%#= f.label :password_confirmation %><br />
+        <!--<%#= f.password_field :password_confirmation, autocomplete: "off" %>-->
+      <!--</div>-->
+
+      <div class="actions">
+        <%= f.submit "ЗАРЕЄСТРУВАТИСЯ" %>
+        <%= button_tag "СКАСУВАТИ", type: "submit", name: "cancel", value: true %>
+      </div>
+  <% end %>
+</div>
+  <%#= render "devise/shared/links" %>
+
+

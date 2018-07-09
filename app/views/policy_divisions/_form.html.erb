@@ -1,0 +1,46 @@
+<div class="container">
+  <strong class="first">Депутати, які за</strong>
+  <%= form_with(model: policy_division, local: true) do |form| %>
+      <% if policy_division.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(policy_division.errors.count, "error") %> prohibited this policy_division from being saved:</h2>
+
+            <ul>
+              <% policy_division.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <div class="field">
+        <%= form.label :policy_id, "Будь-ласка, прочитай опис політики та голосування перед пов’язанням" %>
+        <%= form.collection_select(:policy_id, @policy,:id, :name, {prompt: "Виберіть політику"}, {class: "form-control mr-sm-2" ,  id: :policy_division_policy_id} ) %>
+      </div>
+      <div class="field">
+        <%= form.hidden_field :division_id, value: @division.id %>
+      </div>
+      <strong class="last">Проголосували б</strong>
+      <div class="field-radio">
+        <%= form.radio_button(:support, "aye_strong") %>
+        <%= form.label(:support, "ТВЕРДО ЗА") %>
+        <%= form.radio_button(:support, "against_strong") %>
+        <%= form.label(:support, "СУВОРО ПРОТИ") %>
+        <%= form.radio_button(:support, "aye") %>
+        <%= form.label(:support, "ЗА") %>
+        <%= form.radio_button(:support, "against") %>
+        <%= form.label(:support, "ПРОТИ") %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit("ПОВ’ЯЗАТИ З ПОЛІТИКОЮ") %>
+      </div>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  policy: one
+  mp: one
+  assume: 1
+  possible: 1
+  support: 1
+
+two:
+  policy: two
+  mp: two
+  assume: 1
+  possible: 1
+  support: 1

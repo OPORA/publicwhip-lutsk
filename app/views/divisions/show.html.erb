@@ -14,22 +14,24 @@
                     <!--<a href="" >текст рішення</a>-->
                 </li>
             </ul></div>
-        <ul class="social col-4 pull-right text-uppercase">
+        <ul class="social col-6 pull-right text-uppercase">
             <li>
-              <%= link_to divisions_show_path(@divisions.first.date, @divisions.first.number, format: :csv) do %>
+              <%= link_to divisions_show_path(@division.date, @division.number, format: :csv) do %>
                     <span class="fa-stack ">
                       <i class="fa fa-square-o fa-stack-2x"></i>
                       <i class="fa  fa-download  fa-stack-1x"></i>
                     </span>csv
               <% end %>
             </li>
+
             <li>
-              <!--<span class="fa-stack ">-->
-                      <!--<i class="fa fa-square-o fa-stack-2x"></i>-->
-                      <!--<i class="fa  fa-download  fa-stack-1x"></i>-->
-              <!--</span>-->
-              <!--<a href="" >png</a>-->
+              <span class="fa-stack ">
+                      <i class="fa fa-square-o fa-stack-2x"></i>
+                      <i class="fa  fa-download  fa-stack-1x"></i>
+              </span>
+              <%= link_to "Пов’язані політики", new_policy_division_path(@division.date, @division.number) %>
             </li>
+
             <li>
                     <span class="fa-stack ">
                     <i class="fa  fa-share-alt  fa-stack-1x"></i>
@@ -41,31 +43,27 @@
 
     <div class="row">
         <div class="container">
-            <% @divisions.each do |d| %>
             <div class="col-12 pull-right card">
                 <div class="row">
                     <div class="col text-uppercase text-xs-center">
                         <p class="approve col-12">
-                            <i class="fa <%=  d.result.gsub(/[[:space:]]/, '') == "Прийнято" ? "fa-check-circle" : "fa-times-circle"  %>" aria-hidden="true"></i>
-                            <span><%= d.result %></span></p>
-                        <p class="card-date"><%= d.date.strftime('%d.%m.%Y') %>, <%= Time.parse(d.clock_time).strftime('%H:%M') %>  </p>
+                            <i class="fa <%=  @division.result.gsub(/[[:space:]]/, '') == "Прийнято" ? "fa-check-circle" : "fa-times-circle"  %>" aria-hidden="true"></i>
+                            <span><%= @division.result %></span></p>
+                        <p class="card-date"><%= @division.date.strftime('%d.%m.%Y') %>, <%= Time.parse(@division.clock_time).strftime('%H:%M') %>  </p>
                     </div>
                     <div class="col-10 card-text">
 
-                        <p><%=  d.name  %></p>
+                        <p><%=  @division.name  %></p>
                     </div>
                 </div>
             </div>
-            <% end %>
         </div>
     </div>
 
 <div class="container-fluid">
-  <% @divisions.each do |d| %>
-
       <h2 class="text-uppercase center-justified ">Статистика голосування </h2>
-      <% if d.division_info.rebellions > 0 %>
-        <p>Відбулося <span class="rebel"><%= d.division_info.rebellions %> голосування</span> проти лінії фракції.</p>
+      <% if @division.division_info.rebellions > 0 %>
+        <p>Відбулося <span class="rebel"><%= @division.division_info.rebellions %> голосування</span> проти лінії фракції.</p>
       <% else %>
         <p>Ніхто не голосував проти лінії фракції</p>
       <% end %>
@@ -139,23 +137,23 @@
         <h3 class="panel-title text-uppercase">Всього</h3>
 
     <div class="row golos detail">
-        <div class="col text-uppercase ">Так  <span ><%=  d.division_info.aye_votes %> </span></div>
-        <div class="col text-uppercase ">Ні <span>  <%=  d.division_info.against %> </span></div>
-        <div class="col text-uppercase  ">Утрималися <span><%=  d.division_info.abstain %> </span></div>
-        <div class="col text-uppercase ">Не голосували <span><%=  d.division_info.no_votes %> </span></div>
+        <div class="col text-uppercase ">Так  <span ><%=  @division.division_info.aye_votes %> </span></div>
+        <div class="col text-uppercase ">Ні <span>  <%=  @division.division_info.against %> </span></div>
+        <div class="col text-uppercase  ">Утрималися <span><%=  @division.division_info.abstain %> </span></div>
+        <div class="col text-uppercase ">Не голосували <span><%=  @division.division_info.no_votes %> </span></div>
         <div class="col-4 text-uppercase">
             <div class="row">
                 присутність
                 <div class="progress col-8">
                     <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                        <%= fraction_to_percentage_display(d.division_info.attendance_division) %>
+                        <%= fraction_to_percentage_display(@division.division_info.attendance_division) %>
                     </div>
                 </div>
                 <script type="text/javascript">
                     //<![CDATA[
                     $( document ).ready(function(){
                         $(".all .progress-bar").animate({
-                            width: "<%= fraction_to_percentage_display(d.division_info.attendance_division) %>"
+                            width: "<%= fraction_to_percentage_display(@division.division_info.attendance_division) %>"
                         }, 2500);
                     });
                     //]]>
@@ -165,5 +163,4 @@
         </div>
     </div>
 </div>
-<% end %>
 </div>

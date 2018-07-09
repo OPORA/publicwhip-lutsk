@@ -1,0 +1,47 @@
+<%- if controller_name != 'sessions' %>
+  <div class="col col-5">
+    <%= link_to "Вхід", new_session_path(resource_name) %>
+  </div>
+<% end -%>
+
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+    <div class="row justify-content-center">
+      <div class="col col-5">
+        <%= link_to "Зареєструватися", new_registration_path(resource_name) %>
+      </div>
+    </div>
+<% end -%>
+
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+    <div class="row justify-content-center">
+    <div class="col col-5">
+  <%= link_to "Відновити пароль?", new_password_path(resource_name) %>
+      </div>
+    </div>
+<% end -%>
+
+<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+    <div class="row justify-content-center">
+      <div class="col col-5">
+  <%= link_to "Не отримали інструкції з підтвердження?", new_confirmation_path(resource_name) %>
+      </div>
+    </div>
+<% end -%>
+
+<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+    <div class="row justify-content-center">
+      <div class="col col-5">
+  <%= link_to "Не отримали інструкції щодо розблокування?", new_unlock_path(resource_name) %>
+    </div>
+    </div>
+<% end -%>
+
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+        <div class="row justify-content-center">
+          <div class="col col-5">
+    <%= link_to "Увійдіть, використовуючи #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+        </div>
+        </div>
+  <% end -%>
+<% end -%>

@@ -1,0 +1,47 @@
+<%= form_with(model: policy, local: true) do |form| %>
+  <% if policy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(policy.errors.count, "error") %> prohibited this policy from being saved:</h2>
+
+      <ul>
+      <% policy.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <strong>Якщо ти за</strong>
+  <div class="field">
+    <%= form.label :name, "Заверши речення, надавши короткий, конкретний опис" %> <br>
+    <%= form.text_field :name, id: :policy_name, placeholder: "напр., За реформування системи охорони дитинства" %>
+  </div>
+    <strong>Ти віриш, що</strong>
+    <div class="field">
+      <%= form.label :description, "Опиши переконання, яке має депутат, який підтримує Політику" %> <br>
+      <%= form.text_area :description, id: :description, placeholder: "напр., парламент повинен адаптувати до нових реалій застарілу і неповоротку систему охорони дитинства, що мала б ефективно вирішувати питання сирітства та соціального захисту тощо" %>
+    </div>
+
+    <div>
+      <p>Після того, як політика створена, ти зможеш підв'язувати до неї голосування і бачити, як ті депутати, які
+        підтримують таку політику, могли голосувати. Rada4you порівнює справжнє голосування депутатів з твоїм вибором і
+        вираховує бали щодо підтримки чи непідтримки політики.</p>
+
+      <a href="">Дізнайся більше про те, як формуються Політики</a>
+
+
+      <p>Пам'ятай, що всі політики є публічними. Це ресурс, який можна редагувати та оновлювати будь-кому (як
+        Вікіпедія)</p>
+      <ul>
+        <li>Приватність — Створивши політику, вона буде закріплена за тобою <%= current_user.user_name %> як за автором</li>
+        <li>Ліцензування — Ти згідний/на, що все, що ти створюєш на цьому сайті підпадає під Creative Commons Attribution License
+          <a href=""><u>Чому?</u></a></li>
+      </ul>
+
+    </div>
+
+
+  <div class="actions">
+    <%= form.submit "Зберігти проект політики"%>
+    <%= link_to 'Скасувати', policies_path %>
+  </div>
+<% end %>

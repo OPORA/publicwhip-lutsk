@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Policy:</strong>
+  <%= @policy_division.policy %>
+</p>
+
+<p>
+  <strong>Vote:</strong>
+  <%= @policy_division.vote %>
+</p>
+
+<p>
+  <strong>Support:</strong>
+  <%= @policy_division.support %>
+</p>
+
+<%= link_to 'Edit', edit_policy_division_path(@policy_division) %> |
+<%= link_to 'Back', policy_divisions_path %>

@@ -541,3 +541,12 @@ footer span+span{
 #png_div {
     background-color: white;
 }
+.alert {
+    margin-bottom: 0 !important;
+}
+.alert-dismissible .close {
+    top: -3rem !important;
+}
+footer {
+    margin-top: 30px;
+}

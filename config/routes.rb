@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'policy_divisions/:date/:id' => 'policy_divisions#new', as: :new_policy_division
+  get 'policy_divisions/:date/:id/policy' => 'policy_divisions#policy', as: :get_policy_division
+  resources :policy_divisions
+  get 'policies/policy', as: :policies_next
+  resources :policies
+  #devise_for :users
+  devise_for :users, controllers: { sessions: 'users/sessions', passwords: 'users/passwords', registrations: 'users/registrations', confirmations: 'users/confirmations'  }, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
+  devise_scope :user do
+    get '/auth/new_reg', to: "users/registrations#new_reg"
+  end
   get 'api/divisions'
   get 'api/division'
   get 'api/mp'
@@ -28,6 +38,7 @@ Rails.application.routes.draw do
   get 'people/:mp' => 'people#show', as: :show_people
   get 'people/:mp/divisions' => 'people#divisions', as: :people_divisions
   get 'people/:mp/friends' => 'people#friends', as: :people_friends
+  get 'people/:mp/policy' => 'people#policy', as: :people_policy
   get 'people/detal/:mp' => 'people#detal', as: :people_detal
 
   get 'about' => 'about#index', as: :about

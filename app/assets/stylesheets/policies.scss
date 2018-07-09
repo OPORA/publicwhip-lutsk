@@ -1,0 +1,228 @@
+// Place all the styles related to the Policies controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "heder";
+.new-policy:link, .new-policy:visited {
+  margin-left: 342px;
+  background-color: #009FE2;
+  border-radius: 12px;
+  color: white;
+  padding: 7px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+}
+.actions  a:link,
+.actions  a:link :visited
+{
+  border: 1px solid #009FE2;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.new-policy:hover, .new-policy:active {
+  background-color: #009FE2;
+}
+.team {
+  background-color: #F5F5F5;
+  padding: 30px 0;
+  margin-bottom: 40px;
+}
+#divisionshow .card {
+  border: none;
+  outline: none;
+  margin-bottom: 60px;
+}
+#divisionshow .fa-times-circle,  #divisionshow .fa-check-circle{
+  font-size: 58px;
+  margin-left: 30%;
+}
+#divisionshow h1{
+  margin-bottom: 80px;
+}
+#divisionshow h2 {
+  color: #282828;
+  font-family: GothaProMed;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: center;
+  margin-bottom: 80px;
+}
+#divisionshow a{
+  text-decoration: unset;
+}
+#divisionshow .social{
+  margin-bottom: 65px
+}
+#divisionshow h3{
+  color: #4A4A4A;
+  font-family: GothaProMed;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 11px;
+  margin-bottom: 15px;
+  margin-top: 30px;
+  padding-left: 0;
+  margin-left: -15px;
+}
+#divisionshow [class*="row"] .row .col, .panel-group a{
+  color: #4A4A4A;
+  font-family: GothaProReg;
+  font-size: 11px;
+  line-height: 11px;
+}
+#divisionshow [class*="row"] .row .col span{
+  color: #4A4A4A;
+  font-family: GothaProMed;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 11px;
+  text-align: center;
+  /*padding: 0 35%;*/
+}
+/*#divisionshow .card-date{
+  padding: 0 40%;
+}*/
+#divisionshow .panel-group, #divisionshow .member-row{
+  border-bottom: 1px solid #E5E5E5;
+  padding-bottom: 20px;
+}
+#divisionshow .member-row:last-child{
+  border:none;
+}
+#divisionshow .panel-group:last-child{
+  border-bottom:2px solid #949393;
+}
+#divisionshow .col, .golos{
+  padding-left: 0;
+}
+#divisionshow .detail a{
+  color:#4A4A4A;
+}
+#divisionshow .detail{
+  font-size: 12px;
+  line-height: 15px;
+  margin-top: 30px;
+}
+#divisionshow .member-row{
+  margin-top: 15px;
+}
+#divisionshow .all{
+  margin-bottom: 120px;
+}
+select {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.field-radio {
+  margin-top: 40px!important;
+}
+label[for="policy_name"],
+label[for="policy_description"] {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+input[type="submit"] {
+  height: 25px;
+  width: 158px;
+  border-radius: 12px;
+  border: 0!important;
+  background-color: #009FE2;
+  color: #FFFFFF;
+  //font-family: Roboto;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 11px;
+  margin-right: 39px;
+  margin-bottom: 80px;
+  margin-top: 60px;
+}
+#policy_name {
+  height: 50px;
+  width: 500px;
+  border-radius: 4px!important;
+  border: 0!important;
+  background-color: #F5F5F5;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  padding: 20px;
+}
+#description{
+  height: 143px;
+  width: 621px;
+  border-radius: 4px;
+  border: 0;
+  background-color: #F5F5F5;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  padding: 20px;
+}
+.check >div > svg{
+  height: 80px;
+}
+circle {
+  fill: #C3D7A5;
+  stroke-width: 1;
+  width:52px;
+  height:52px
+}
+.against circle {
+fill: #FEB0B0;
+}
+#list_mp .row{
+  display: table;
+  table-layout: fixed;
+}
+.card-mp {
+  display: inline-block;
+  outline: 0px solid transparent;
+  height: 185px;
+  width: 140px;
+  margin-right: 20px;
+  padding: 15px 20px;
+  border: 3px none;
+
+  border-radius: 4px;
+}
+.card-mp:hover {
+  outline: 0px solid transparent;
+  display: inline-block;
+  height: 185px;
+  width: 140px;
+  margin-right: 20px;
+  padding: 15px 20px;
+  border: 3px solid #009FE2;
+  border-radius: 4px;
+  text-decoration: none;
+}
+.card-mp img {
+  height: 100px;
+  width: 100px;
+  clip-path: circle(50px at center);
+  border-radius: 50px;
+}
+
+
+a .card-mp p,  a .card-mp  p:hover{
+  height: 30px;
+  width: 100px;
+  color: #282828;
+  font-family: Roboto;
+  font-size: 8px;
+  font-weight: 500;
+  line-height: 10px;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  text-decoration: none!important;
+}

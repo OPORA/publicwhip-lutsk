@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+        <% if policies.blank? %>
+          <div class="col col 12 center-justified">
+            <p class="text-center">Наданий момент не має даних політик</p>
+          </div>
+        <% else %>
+          <% policies.each do |p| %>
+          <div class="col-6" style="margin-bottom: 25px">
+              <%= link_to policy_path(p.id), class: "" do %>
+              <div class="col-12 pull-right card" style="padding: 25px 30px">
+                  <div class="row text-uppercase">
+
+                  </div>
+                  <div class="row card-text">
+                      <p><%=  p.name  %></p>
+                  </div>
+                  <div class="row check">
+                      <div class="col-6 text-uppercase float-left">
+                          <p class="checkin">оновлення даних</p>
+                          <p class="card-percent"><%= p.updated_at.strftime('%d.%m.%Y / %H:%M') %></p>
+                      </div>
+                      <div class="col-6 text-uppercase">
+                          <p class="checkin">голосувань</p>
+                          <p class="card-percent"><%= p.policy_divisions.size %></p>
+                      </div>
+
+                  </div>
+              </div>
+              <% end %>
+          </div>
+          <% end %>
+        <% end %>
+    </div>
+</div>
+<% unless policies.last_page? or policies.blank? %>
+    <% if controller.controller_path=="people" %>
+    <%= link_to('<h4 class="text-uppercase text-center">Більше <i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i></h4>'.html_safe, people_policy_path(params.merge(page: policies.current_page + 1)), remote: true, id: "load_more_link" ) %>
+     <% elsif controller.controller_path=="policy_divisions" %>
+        <%= link_to('<h4 class="text-uppercase text-center">Більше <i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i></h4>'.html_safe, get_policy_division_path(params.merge(page: policies.current_page + 1)), remote: true, id: "load_more_link" ) %>
+     <% else %>
+        <%= link_to('<h4 class="text-uppercase text-center">Більше <i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i></h4>'.html_safe, policies_next_path(params.merge(page: policies.current_page + 1)), remote: true, id: "load_more_link" ) %>
+    <% end %>
+<% end %>

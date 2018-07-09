@@ -1,0 +1,25 @@
+<% content_for :title, "Політика — Як Голосує Твій Депутат?" %>
+
+<div id="divisionshow" class="container">
+  <h1 class="text-uppercase center-justified text-xs-center">Політика <%= Settings.name_rada %></h1>
+</div>
+<div class="container-fluid team">
+  <div class="container">
+    <%#= link_to 'Edit', edit_policy_path(@policy) %>
+
+    <p><strong><%= @policy.name %></strong></p>
+
+    <p><%= @policy.description %></p>
+
+  </div>
+
+</div>
+<div id="detal">
+  <%= render "show" %>
+</div>
+
+
+
+
+
+<%#= link_to 'Back', policies_path %>

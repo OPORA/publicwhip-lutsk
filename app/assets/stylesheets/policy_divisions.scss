@@ -1,0 +1,119 @@
+// Place all the styles related to the PolicyDivisions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "heder";
+
+#divisionshow .card {
+  border: none;
+  outline: none;
+  margin-bottom: 60px;
+}
+#divisionshow .fa-times-circle,  #divisionshow .fa-check-circle{
+  font-size: 58px;
+  margin-left: 30%;
+}
+#divisionshow h1{
+  margin-bottom: 80px;
+}
+#divisionshow h2 {
+  color: #282828;
+  font-family: GothaProMed;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: center;
+  margin-bottom: 80px;
+}
+#divisionshow a{
+  text-decoration: unset;
+}
+#divisionshow .social{
+  margin-bottom: 65px
+}
+#divisionshow h3{
+  color: #4A4A4A;
+  font-family: GothaProMed;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 11px;
+  margin-bottom: 15px;
+  margin-top: 30px;
+  padding-left: 0;
+  margin-left: -15px;
+}
+#divisionshow [class*="row"] .row .col, .panel-group a{
+  color: #4A4A4A;
+  font-family: GothaProReg;
+  font-size: 11px;
+  line-height: 11px;
+}
+#divisionshow [class*="row"] .row .col span{
+  color: #4A4A4A;
+  font-family: GothaProMed;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 11px;
+  text-align: center;
+  /*padding: 0 35%;*/
+}
+/*#divisionshow .card-date{
+  padding: 0 40%;
+}*/
+#divisionshow .panel-group, #divisionshow .member-row{
+  border-bottom: 1px solid #E5E5E5;
+  padding-bottom: 20px;
+}
+#divisionshow .member-row:last-child{
+  border:none;
+}
+#divisionshow .panel-group:last-child{
+  border-bottom:2px solid #949393;
+}
+#divisionshow .col, .golos{
+  padding-left: 0;
+}
+#divisionshow .detail a{
+  color:#4A4A4A;
+}
+#divisionshow .detail{
+  font-size: 12px;
+  line-height: 15px;
+  margin-top: 30px;
+}
+#divisionshow .member-row{
+  margin-top: 15px;
+}
+#divisionshow .all{
+  margin-bottom: 120px;
+}
+select {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.field-radio {
+  margin-top: 40px!important;
+}
+label[for="policy_division_policy_id"]{
+  margin-top: 40px;
+}
+input[type="submit"] {
+  height: 25px;
+  width: 158px;
+  border-radius: 12px;
+  border: 0!important;
+  background-color: #009FE2;
+  color: #FFFFFF;
+  //font-family: Roboto;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 11px;
+  margin-right: 39px;
+  margin-bottom: 80px;
+  margin-top: 60px;
+}
+.team {
+  background-color: #F5F5F5;
+  padding: 30px 0;
+  margin-bottom: 40px;
+}

@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="col-12 list-filters clearfix">
+    <ul class="sort-first text-uppercase">
+      <li <%= params[:vote].blank? ? "class=disabled": "" %>><%= link_to "Підтримка політики", policy_path(@policy.id, vote: nil ), remote: true %></li>
+      <li <%= params[:vote] == "true" ? "class=disabled": "" %>><%= link_to "Пов’язані голосування (" + @policy.policy_divisions.size.to_s + ")", policy_path(vote: true), remote: true %></li>
+
+    </ul>
+  </div>
+  <% if params[:vote].blank? %>
+      <div class="col-11 list-filters">
+        <ul class="sort-fraction text-uppercase">
+          <li <%= params[:policy].blank? ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Максимально підтримує", policy_path(@policy.id), remote: true %></li>
+          <li <%= params[:policy] == "2" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Послідовно підтримує", policy_path(@policy.id, policy: 2), remote: true %></li>
+          <li <%= params[:policy] == "3" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Переважно підтримує", policy_path(@policy.id, policy: 3 ), remote: true %></li>
+          <li <%= params[:policy] == "4" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Як підтримує, так і ні", policy_path(@policy.id, policy:4 ), remote: true %></li>
+          <li <%= params[:policy] == "5" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Переважно не підтримує", policy_path(@policy.id, policy:5 ), remote: true %></li>
+          <li <%= params[:policy] == "6" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Ніколи не підтримує", policy_path(@policy.id, policy:6 ), remote: true %></li>
+        </ul>
+      </div>
+      <div id="list_mp">
+        <%= render "mp", mps: @policy.policy_person_distances %>
+
+      </div>
+  <% else %>
+      <div id="list_vote">
+        <%= render "voted", division: @policy.policy_divisions %>
+
+      </div>
+  <% end %>
+
+
+</div>

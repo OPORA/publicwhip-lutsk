@@ -84,17 +84,18 @@ class PeopleController < ApplicationController
   end
   def get_mp
     mp_find = params[:mp].split("_")
-    if params[:month] != "full"
+    if not params[:month].nil? and params[:month] != "full"
       mp_date = (Date.strptime(params[:month], '%Y-%m'))
       p mp_date
     else
       mp_date = "9999-12-31"
     end
     @mp = Mp.includes(:mp_info).where(last_name: mp_find[0], first_name: mp_find[1], middle_name: mp_find[2]).where('mp_infos.date_mp_info = ?',  mp_date).references(:mp_info).last
-    p @mp
     if @mp
       if params[:vote] == "friends"
         return get_friends(@mp.id)
+      elsif params[:vote] == "policy"
+        return get_policy(@mp.deputy_id)
       else
         return get_divisions(@mp.id, @mp.faction)
       end
@@ -102,9 +103,12 @@ class PeopleController < ApplicationController
       #redirect_to people_path, :notice => "Не занйдено #{params[:mp]}"
     end
   end
+  def get_policy(deputy_id)
+    @policies = Policy.includes(:policy_divisions).page(params[:page]).per(6)
+  end
   def get_divisions(deputy_id, faction)
     division = Division.includes(:division_info).joins(:votes, :whips).where('votes.deputy_id =? and whips.party=?', deputy_id, faction ).order(date: :desc, id: :desc).references(:division_info)
-    if params[:month] != "full"
+    if not params[:month].nil? and params[:month] != "full"
     division = division.where("date >= ? AND date < ?", Date.strptime(params[:month], '%Y-%m'), Date.strptime(params[:month], '%Y-%m') + 1.month)
     end
     divisions =
@@ -117,7 +121,7 @@ class PeopleController < ApplicationController
     return divisions
   end
   def get_friends(deputy_id)
-    if params[:month] != "full"
+    if not params[:month].nil? and params[:month] != "full"
       friends = MpFriend.where(deputy_id: deputy_id, date_mp_friend: Date.strptime(params[:month], '%Y-%m') ).order(count: :desc)
     else
       friends = MpFriend.where(deputy_id: deputy_id, date_mp_friend: "9999-12-31" ).order(count: :desc)
@@ -128,6 +132,9 @@ class PeopleController < ApplicationController
     @division = get_mp()
   end
   def friends
+    @friends = get_mp()
+  end
+  def policy
     @friends = get_mp()
   end
 end

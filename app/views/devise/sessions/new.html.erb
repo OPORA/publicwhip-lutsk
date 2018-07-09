@@ -1,0 +1,39 @@
+ <div id="first-block" class="container">
+    <div class="row justify-content-lg-center">
+      <h1 class="text-uppercase center-justified text-xs-center">Вхід</h1>
+    </div>
+  </div>
+<div class="container">
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="row justify-content-center">
+  <div class="field">
+    <strong><%= f.label :email %></strong><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+        </div>
+      <div class="row justify-content-lg-center">
+  <div class="field">
+    <strong><%= f.label :password, "Пароль" %></strong><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+      </div>
+  <% if devise_mapping.rememberable? -%>
+          <div class="row justify-content-lg-center">
+    <div class="field col col-5">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me , "Запам’ятати мене"%>
+    </div>
+          </div>
+  <% end -%>
+      <div class="row justify-content-lg-center">
+  <div class="col col-5 actions">
+    <%= f.submit "УВІЙТИ" %>
+
+  </div>
+      </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+
+  </div>

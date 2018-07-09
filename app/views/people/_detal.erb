@@ -4,6 +4,7 @@
     <li <%= params[:vote].blank? ? "class=disabled": "" %>><%= link_to "Голосування проти фракції", people_detal_path(@mp.url_name, month: params[:month] ), remote: true %></li>
     <li <%= params[:vote] == "last_vote" ? "class=disabled": "" %>><%= link_to "Останні голосування", people_detal_path(@mp.url_name, vote: "last_vote", month: params[:month]), remote: true %></li>
     <li <%= params[:vote] == "friends" ? "class=disabled": "" %>><%= link_to "Друзі по голосуванню", people_detal_path(@mp.url_name, vote: "friends", month: params[:month] ), remote: true %></li>
+    <li <%= params[:vote] == "policy" ? "class=disabled": "" %>><%= link_to "Політики", people_detal_path(@mp.url_name, vote: "policy" ), remote: true %></li>
   </ul>
 </div>
 
@@ -26,6 +27,23 @@
       </div>
       <div id="list_vote">
         <%= render "friends", friends: @division, mp: @mp  %>
+      </div>
+    </div>
+<% elsif params[:vote] == "policy"  %>
+    <div class="col-11 list-filters">
+      <ul class="sort-fraction text-uppercase">
+        <li <%= params[:policy].blank? ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Максимально підтримує", people_detal_path(@mp.url_name, vote: "policy"  ), remote: true %></li>
+        <li <%= params[:policy] == "2" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Послідовно підтримує", people_detal_path(@mp.url_name, vote: "policy", policy: 2), remote: true %></li>
+        <li <%= params[:policy] == "3" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Переважно підтримує", people_detal_path(@mp.url_name, vote: "policy", policy: 3 ), remote: true %></li>
+        <li <%= params[:policy] == "4" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Як підтримує, так і ні", people_detal_path(@mp.url_name, vote: "policy", policy:4 ), remote: true %></li>
+        <li <%= params[:policy] == "5" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Переважно не підтримує", people_detal_path(@mp.url_name, vote: "policy", policy:5 ), remote: true %></li>
+        <li <%= params[:policy] == "6" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Ніколи не підтримує", people_detal_path(@mp.url_name, vote: "policy", policy:6 ), remote: true %></li>
+      </ul>
+      <div id="list_policy">
+        <%= render "policy", policies: @policies %>
+        <div class="index-pagination">
+
+        </div>
       </div>
     </div>
 <% else %>

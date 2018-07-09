@@ -60,9 +60,9 @@ class DivisionsController < ApplicationController
         end
   end
   def show
-    @divisions = Division.includes(:division_info).where(date: params[:date], number: params[:id])
-    @whips = Whip.where(division_id: @divisions.first.id).order(:party)
-    vote = Vote.includes(:mp, :division).where(division_id: @divisions.first.id).order('mps.faction')
+    @division = Division.includes(:division_info).find_by(date: params[:date], number: params[:id])
+    @whips = Whip.where(division_id: @division.id).order(:party)
+    vote = Vote.includes(:mp, :division).where(division_id: @division.id).order('mps.faction')
     @voted = vote.to_a.map{|v| {name: v.mp.full_name, url: v.mp.url_name,  vote: v.vote, party: v.mp.faction } }.group_by{|f| f[:party]}
     respond_to do |format|
       format.html
