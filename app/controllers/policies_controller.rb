@@ -96,7 +96,11 @@ class PoliciesController < ApplicationController
       unless params[:policies].blank?
         policies =  Policy.find_by_search_query(params[:policies])
       else
-        policies = Policy.all
+        if params[:filter].blank?
+          policies = Policy.where(provisional: true)
+        else
+          policies = Policy.where(provisional: false)
+        end
       end
       return policies.page(params[:page]).per(8)
     end
