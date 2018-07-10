@@ -12,15 +12,19 @@
   <% end %>
     <strong>Якщо ти за</strong>
   <div class="field">
+    <%  if controller.action_name == "new"  %>
     <%= form.label :name, "Заверши речення, надавши короткий, конкретний опис" %> <br>
+     <% end %>
     <%= form.text_field :name, id: :policy_name, placeholder: "напр., За реформування системи охорони дитинства" %>
   </div>
     <strong>Ти віриш, що</strong>
     <div class="field">
+      <%  if controller.action_name == "new"  %>
       <%= form.label :description, "Опиши переконання, яке має депутат, який підтримує Політику" %> <br>
+          <% end %>
       <%= form.text_area :description, id: :description, placeholder: "напр., парламент повинен адаптувати до нових реалій застарілу і неповоротку систему охорони дитинства, що мала б ефективно вирішувати питання сирітства та соціального захисту тощо" %>
     </div>
-
+    <%  if controller.action_name == "new"  %>
     <div>
       <p>Після того, як політика створена, ти зможеш підв'язувати до неї голосування і бачити, як ті депутати, які
         підтримують таку політику, могли голосувати. Rada4you порівнює справжнє голосування депутатів з твоїм вибором і
@@ -38,11 +42,17 @@
       </ul>
 
     </div>
+        <% end %>
 
 
 
   <div class="actions">
-    <%= form.submit "Зберігти проект політики"%>
+    <%  if controller.action_name == "new"  %>
+        <%= form.submit "Зберігти проект політики"%>
+    <% else %>
+        <%= form.submit "Зберігти зміни"%>
+        <%= form.submit "Зберігти проект політики", class: "no_act" %>
+    <% end %>
     <%= link_to 'Скасувати', policies_path %>
   </div>
 <% end %>
