@@ -1,6 +1,6 @@
 class PoliciesController < ApplicationController
   before_action :set_policy, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [ :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [ :edit, :update, :destroy, :create]
   before_action :set_paper_trail_whodunnit
 
   # GET /policies

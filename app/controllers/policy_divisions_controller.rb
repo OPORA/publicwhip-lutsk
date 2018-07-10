@@ -1,6 +1,6 @@
 class PolicyDivisionsController < ApplicationController
   before_action :set_policy_division, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [ :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [ :edit, :update, :destroy, :create]
   before_action :set_paper_trail_whodunnit
   # GET /policy_divisions
   # GET /policy_divisions.json
