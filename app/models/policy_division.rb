@@ -5,6 +5,8 @@ class PolicyDivision < ApplicationRecord
   validates :division_id, presence: true, uniqueness:  { scope: :policy_id}
   after_create :create_person_distanse
   before_destroy :destroy_person_distanse
+  before_update :destroy_person_distanse
+  after_update :create_person_distanse
   def destroy_person_distanse
     not_agre = ["absent","abstain", "not_voted"]
     if self.support == "aye_strong"
