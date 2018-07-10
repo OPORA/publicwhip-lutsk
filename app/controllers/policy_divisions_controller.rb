@@ -53,7 +53,7 @@ class PolicyDivisionsController < ApplicationController
   def update
     respond_to do |format|
       if @policy_division.update(policy_division_params)
-        format.html { redirect_to policy_path(@policy_division.division_id), notice: 'Голосування в політиці оновлено' }
+        format.html { redirect_to policy_path(@policy_division.policy_id), notice: 'Голосування в політиці оновлено' }
         format.json { render :show, status: :ok, location: @policy_division }
       else
         @division = Division.find(@policy_division.division_id)
@@ -78,6 +78,7 @@ class PolicyDivisionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_policy_division
       @policy_division = PolicyDivision.find(params[:id])
+      @policy = Policy.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

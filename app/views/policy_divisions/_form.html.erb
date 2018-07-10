@@ -13,11 +13,15 @@
           </div>
       <% end %>
       <div class="field">
-        <%= form.label :policy_id, "Будь-ласка, прочитай опис політики та голосування перед пов’язанням" %>
-        <%= form.collection_select(:policy_id, @policy,:id, :name, {prompt: "Виберіть політику"}, {class: "form-control mr-sm-2" ,  id: :policy_division_policy_id} ) %>
+        <%= form.label :policy_id, "Будь-ласка, прочитай опис політики та голосування перед пов’язанням"  if controller.action_name == "new" %>
+        <%= form.collection_select(:policy_id, @policy,:id, :name, {prompt: "Виберіть політику"}, {class: "form-control mr-sm-2 ",   disabled: controller.action_name == "edit" ? "disabled": nil,  id: :policy_division_policy_id} ) %>
       </div>
       <div class="field">
-        <%= form.hidden_field :division_id, value: @division.id %>
+        <% if controller.action_name == "new" %>
+          <%= form.hidden_field :division_id, value: @division.id %>
+        <% else %>
+            <%= form.hidden_field :division_id %>
+        <% end %>
       </div>
       <strong class="last">Проголосували б</strong>
       <div class="field-radio">
@@ -74,7 +78,11 @@
         </div>
       </div>
       <div class="actions">
-        <%= form.submit("ПОВ’ЯЗАТИ З ПОЛІТИКОЮ") %>
+        <% if controller.action_name == "new" %>
+          <%= form.submit("ПОВ’ЯЗАТИ З ПОЛІТИКОЮ") %>
+        <% else %>
+            <%= form.submit("ОНОВИТИ") %>
+        <% end %>
       </div>
   <% end %>
 </div>
