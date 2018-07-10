@@ -69,7 +69,7 @@ class PolicyDivisionsController < ApplicationController
   def destroy
     @policy_division.destroy
     respond_to do |format|
-      format.html { redirect_to policy_divisions_url, notice: 'Голосування в політиці видалено' }
+      format.html { redirect_to policies_path, notice: 'Голосування в політиці видалено' }
       format.json { head :no_content }
     end
   end
