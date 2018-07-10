@@ -82,6 +82,7 @@
           <%= form.submit("ПОВ’ЯЗАТИ З ПОЛІТИКОЮ") %>
         <% else %>
             <%= form.submit("ОНОВИТИ") %>
+            <%= link_to 'Скасувати', policies_path %>
         <% end %>
       </div>
   <% end %>
