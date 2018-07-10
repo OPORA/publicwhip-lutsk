@@ -1,6 +1,8 @@
 class Policy < ApplicationRecord
   has_many :policy_divisions
   has_many :policy_person_distances
+  validates :name, presence: true
+  validates :description, presence: true
   has_paper_trail
   def self.find_by_search_query(query)
     where("UPPER(name) like :query_name ", { query_name: "%#{query.upcase}%" })

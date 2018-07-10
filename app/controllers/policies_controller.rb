@@ -25,6 +25,7 @@ class PoliciesController < ApplicationController
   # GET /policies/new
   def new
     @policy = Policy.new
+    @policy.provisional = false
   end
 
   # GET /policies/1/edit
@@ -35,7 +36,7 @@ class PoliciesController < ApplicationController
   # POST /policies.json
   def create
     @policy = Policy.new(policy_params)
-
+    @policy.provisional = provisional? ? false : true
     respond_to do |format|
       if @policy.save
         format.html { redirect_to @policy, notice: ' Політика була успішно створена.' }
@@ -51,7 +52,9 @@ class PoliciesController < ApplicationController
   # PATCH/PUT /policies/1.json
   def update
     respond_to do |format|
+      @policy.provisional = provisional? ? false : true
       if @policy.update(policy_params)
+
         format.html { redirect_to @policy, notice: 'Політика була успішно оновлена' }
         format.json { render :show, status: :ok, location: @policy }
       else
@@ -72,6 +75,9 @@ class PoliciesController < ApplicationController
   end
 
   private
+  def provisional?
+    params[:commit] == "Зберігти проект політики"
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_policy
       @policy = Policy.includes(:policy_divisions).find(params[:id])
