@@ -103,8 +103,10 @@ class PeopleController < ApplicationController
       #redirect_to people_path, :notice => "Не занйдено #{params[:mp]}"
     end
   end
+
   def get_policy(deputy_id)
-    @policies = Policy.includes(:policy_divisions).page(params[:page]).per(6)
+    filter = Policy.filter_polices(params[:policy])
+    @policies = Policy.includes(:policy_divisions).joins(:policy_person_distances).where("policy_person_distances.deputy_id=? and policy_person_distances.support  > ? and policy_person_distances.support <= ? ", deputy_id, filter[:min], filter[:max] ).page(params[:page]).per(6)
   end
   def get_divisions(deputy_id, faction)
     division = Division.includes(:division_info).joins(:votes, :whips).where('votes.deputy_id =? and whips.party=?', deputy_id, faction ).order(date: :desc, id: :desc).references(:division_info)
