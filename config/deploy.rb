@@ -44,7 +44,8 @@ task :setup do
   # command %{rbenv install 2.3.0}
   command %[touch "#{fetch(:shared_path)}/config/database.yml"]
   command %[touch "#{fetch(:shared_path)}/config/secrets.yml"]
-  command %[echo "-----> Be sure to edit '#{fetch(:shared_path)}/config/database.yml' and 'secrets.yml'."]
+  command %[touch "#{fetch(:shared_path)}/config/settings.yml"]
+  command %[echo "-----> Be sure to edit '#{fetch(:shared_path)}/config/database.yml' and 'secrets.yml' and 'settings.yml'."]
 end
 
 desc "Deploys the current version to the server."
