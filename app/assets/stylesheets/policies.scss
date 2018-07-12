@@ -192,6 +192,12 @@ circle {
 .against circle {
 fill: #FEB0B0;
 }
+.aye_strong circle {
+  fill: green;
+}
+.against_strong circle {
+  fill: red;
+}
 #list_mp .row{
   display: table;
   table-layout: fixed;

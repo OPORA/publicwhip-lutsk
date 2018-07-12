@@ -1,4 +1,5 @@
 <div class="row">
+  <% unless @policy.policy_divisions.size == 0 %>
   <% mps.each do |mp| %>
       <%= link_to show_people_path(mp.mp.url_name), class: "" do %>
       <div class="card-mp">
@@ -6,6 +7,6 @@
           <p><%=mp.mp.full_name %></p>
       </div>
          <% end %>
-
+  <% end %>
   <% end %>
 </div>

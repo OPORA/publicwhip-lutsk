@@ -13,7 +13,7 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 set :domain, 'ruby.oporaua.org'
 set :deploy_to, "/home/publicwhip-drohobych/"
 set :repository, "git@github.com:OPORA/publicwhip-drohobych.git"
-set :branch, 'master'
+set :branch, 'policy'
 
 # For system-wide RVM install.
 set :rvm_use_path,  '/usr/local/rvm/scripts/rvm'

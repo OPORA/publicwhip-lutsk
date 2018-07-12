@@ -107,9 +107,13 @@ ActiveRecord::Schema.define(version: 20180709212948) do
   create_table "policy_person_distances", force: :cascade do |t|
     t.bigint "policy_id"
     t.integer "deputy_id"
-    t.integer "assume", default: 0, null: false
-    t.integer "possible", default: 0, null: false
-    t.integer "support", default: 0, null: false
+    t.integer "same", default: 0, null: false
+    t.integer "diff", default: 0, null: false
+    t.integer "absent", default: 0, null: false
+    t.integer "same_strong", default: 0, null: false
+    t.integer "diff_strong", default: 0, null: false
+    t.integer "absent_strong", default: 0, null: false
+    t.float "distance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["policy_id"], name: "index_policy_person_distances_on_policy_id"

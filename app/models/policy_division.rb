@@ -1,3 +1,4 @@
+require 'distance'
 class PolicyDivision < ApplicationRecord
   belongs_to :policy
   belongs_to :division
@@ -9,90 +10,80 @@ class PolicyDivision < ApplicationRecord
   after_update :create_person_distanse
   def destroy_person_distanse
     not_agre = ["absent","abstain", "not_voted"]
-    if self.support == "aye_strong"
-      possible = 50
-      support = "aye"
-      assume_agre = 50
-      assume_against = 0
-      assume_no_agre = 25
-    elsif self.support = "against_strong"
-      possible = 50
-      support = "against"
-      assume_agre = 50
-      assume_against = 0
-      assume_no_agre = 25
+    if self.changed?
+      support = self.changed_attributes[:support]
     else
-      possible = 10
       support = self.support
-      assume_agre = 10
-      assume_against = 0
-      assume_no_agre = 5
     end
+     #p "destroy"
+     #p support
     self.division.votes.each do |v|
-      policy_persone_distanse = PolicyPersonDistance.where(deputy_id: v.mp.deputy_id, policy_id: self.policy_id).first
-      if support == v.vote
-        assume = assume_agre
-        policy_persone_distanse.assume = policy_persone_distanse.assume - assume
-        policy_persone_distanse.possible = policy_persone_distanse.possible - possible
-        policy_persone_distanse.support = (policy_persone_distanse.assume.to_f/policy_persone_distanse.possible) * 100
-        policy_persone_distanse.save
-      elsif not_agre.include?(v.vote)
-        assume = assume_no_agre
-        policy_persone_distanse.assume = policy_persone_distanse.assume - assume
-        policy_persone_distanse.possible = policy_persone_distanse.possible - possible
-        policy_persone_distanse.support = (policy_persone_distanse.assume.to_f/policy_persone_distanse.possible) * 100
-        policy_persone_distanse.save
-      else
-        assume = assume_against
-        policy_persone_distanse.assume = policy_persone_distanse.assume - assume
-        policy_persone_distanse.possible = policy_persone_distanse.possible - possible
-        policy_persone_distanse.support = (policy_persone_distanse.assume.to_f/policy_persone_distanse.possible) * 100
-        policy_persone_distanse.save
+      policy_person_distanse = PolicyPersonDistance.where(deputy_id: v.mp.deputy_id, policy_id: self.policy_id).first
+      case  support
+        when  "aye_strong"
+          if v.vote == "aye"
+            policy_person_distanse.decrement!(:same_strong)
+          elsif not_agre.include?(v.vote)
+            policy_person_distanse.decrement!(:absent_strong)
+          else
+            policy_person_distanse.decrement!(:diff_strong)
+          end
+        when "against_strong"
+          if v.vote == "against"
+            policy_person_distanse.decrement!(:same_strong)
+          elsif not_agre.include?(v.vote)
+            policy_person_distanse.decrement!(:absent_strong)
+          else
+            policy_person_distanse.decrement!(:diff_strong)
+          end
+        else
+          if v.vote == support
+            policy_person_distanse.decrement!(:same)
+          elsif not_agre.include?(v.vote)
+            policy_person_distanse.decrement!(:absent)
+          else
+            policy_person_distanse.decrement!(:diff)
+          end
       end
+      policy_person_distanse.distance = Distance.distance_a(policy_person_distanse.same, policy_person_distanse.diff , policy_person_distanse.absent, policy_person_distanse.same_strong, policy_person_distanse.diff_strong, policy_person_distanse.absent_strong )
+      policy_person_distanse.save
     end
   end
   def create_person_distanse
     not_agre = ["absent","abstain", "not_voted"]
-    if self.support == "aye_strong"
-      possible = 50
-      support = "aye"
-      assume_agre = 50
-      assume_against = 0
-      assume_no_agre = 25
-    elsif self.support = "against_strong"
-      possible = 50
-      support = "against"
-      assume_agre = 50
-      assume_against = 0
-      assume_no_agre = 25
-    else
-      possible = 10
-      support = self.support
-      assume_agre = 10
-      assume_against = 0
-      assume_no_agre = 5
-    end
+    #p "create"
+    # p self.support
+
     self.division.votes.each do |v|
-      policy_persone_distanse = PolicyPersonDistance.where(deputy_id: v.mp.deputy_id, policy_id: self.policy_id).first_or_create
-      if support == v.vote
-         assume = assume_agre
-         policy_persone_distanse.assume = policy_persone_distanse.assume + assume
-         policy_persone_distanse.possible = policy_persone_distanse.possible + possible
-         policy_persone_distanse.support = (policy_persone_distanse.assume.to_f/policy_persone_distanse.possible) * 100
-         policy_persone_distanse.save
-      elsif not_agre.include?(v.vote)
-         assume = assume_no_agre
-         policy_persone_distanse.assume = policy_persone_distanse.assume + assume
-         policy_persone_distanse.possible = policy_persone_distanse.possible + possible
-         policy_persone_distanse.support = (policy_persone_distanse.assume.to_f/policy_persone_distanse.possible) * 100
-         policy_persone_distanse.save
-      else
-         assume = assume_against
-         policy_persone_distanse.assume = policy_persone_distanse.assume + assume
-         policy_persone_distanse.possible = policy_persone_distanse.possible + possible
-         policy_persone_distanse.support = (policy_persone_distanse.assume.to_f/policy_persone_distanse.possible) * 100
-         policy_persone_distanse.save
+      policy_person_distanse = PolicyPersonDistance.where(deputy_id: v.mp.deputy_id, policy_id: self.policy_id).first_or_create
+      case  self.support
+        when "aye_strong"
+          if v.vote == "aye"
+            policy_person_distanse.increment!(:same_strong)
+          elsif not_agre.include?(v.vote)
+            policy_person_distanse.increment!(:absent_strong)
+          else
+            policy_person_distanse.increment!(:diff_strong)
+          end
+        when "against_strong"
+          if v.vote == "against"
+            policy_person_distanse.increment!(:same_strong)
+          elsif not_agre.include?(v.vote)
+            policy_person_distanse.increment!(:absent_strong)
+          else
+            policy_person_distanse.increment!(:diff_strong)
+          end
+        else
+          if v.vote == self.support
+            policy_person_distanse.increment!(:same)
+          elsif not_agre.include?(v.vote)
+            policy_person_distanse.increment!(:absent)
+          else
+            policy_person_distanse.increment!(:diff)
+          end
       end
+      policy_person_distanse.distance = Distance.distance_a(policy_person_distanse.same, policy_person_distanse.diff , policy_person_distanse.absent, policy_person_distanse.same_strong, policy_person_distanse.diff_strong, policy_person_distanse.absent_strong )
+      policy_person_distanse.save
     end
   end
 end

@@ -171,6 +171,14 @@ circle {
 .against  circle{
   fill: #FEB0B0;
 }
+.against-strong circle
+{
+  fill: red;
+}
+.aye_strong circle
+{
+  fill: green;
+}
 svg {
   height: 80px;
   width: 120px;

@@ -82,9 +82,7 @@ class PoliciesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_policy
       @policy = Policy.includes(:policy_divisions).find(params[:id])
-      filter = Policy.filter_polices(params[:policy])
-      @polisy_mp = @policy.policy_person_distances.includes(:mp).where("policy_person_distances.support  > ? and policy_person_distances.support <= ? ", filter[:min], filter[:max] )
-
+      @polisy_mp = @policy.policy_person_distances.includes(:mp).filter_polices(params[:policy])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
