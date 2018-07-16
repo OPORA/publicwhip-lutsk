@@ -13,7 +13,7 @@
           </div>
       <% end %>
       <div class="field">
-        <%= form.label :policy_id, "Будь-ласка, прочитай опис політики та голосування перед пов’язанням"  if controller.action_name == "new" %>
+        <%= form.label :policy_id, "Будь-ласка, прочитай опис політики та голосування перед тим як прив'язувати"  if controller.action_name == "new" %>
         <%= form.collection_select(:policy_id, @policy,:id, :name, {prompt: "Виберіть політику"}, {class: "form-control mr-sm-2 ",   disabled: controller.action_name == "edit" ? "disabled": nil,  id: :policy_division_policy_id} ) %>
       </div>
       <div class="field">
