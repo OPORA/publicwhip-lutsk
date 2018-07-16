@@ -22,7 +22,7 @@
       <%  if controller.action_name == "new"  %>
       <%= form.label :description, "Опиши переконання, яке має депутат, який підтримує Політику" %> <br>
           <% end %>
-      <%= form.text_area :description, id: :description, placeholder: "напр., парламент повинен адаптувати до нових реалій застарілу і неповоротку систему охорони дитинства, що мала б ефективно вирішувати питання сирітства та соціального захисту тощо" %>
+      <%= form.text_area :description, id: :description, placeholder: "напр., міська рада повинна адаптувати до нових реалій застарілу і неповоротку систему охорони дитинства, що мала б ефективно вирішувати питання сирітства та соціального захисту тощо" %>
     </div>
     <%  if controller.action_name == "new"  %>
     <div>
@@ -48,10 +48,10 @@
 
   <div class="actions">
     <%  if controller.action_name == "new"  %>
-        <%= form.submit "Зберігти проект політики"%>
+        <%= form.submit "Зберегти проект політики"%>
     <% else %>
-        <%= form.submit "Зберігти зміни"%>
-        <%= form.submit "Зберігти проект політики", class: "no_act" %>
+        <%= form.submit "Зберегти зміни"%>
+        <%= form.submit "Зберегти проект політики", class: "no_act" %>
     <% end %>
     <%= link_to 'Скасувати', policies_path %>
   </div>
