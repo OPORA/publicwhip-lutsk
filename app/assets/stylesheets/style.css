@@ -608,7 +608,7 @@ footer {
 }
 
 #forkongithub a {
-    background:#000;
+    background:#919992;
     color:#fff;
     text-decoration:none;
     font-family:arial, sans-serif;
@@ -650,9 +650,9 @@ footer {
         height:200px;
         z-index:1;}
     #forkongithub a{
-        width:500px;
+        width:440px;
         position:absolute;
-        top:85px;
+        top:40px;
         right:-360px;
         transform:rotate(-45deg);
         -webkit-transform:rotate(-45deg);
