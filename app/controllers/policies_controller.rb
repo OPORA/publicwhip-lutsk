@@ -37,7 +37,7 @@ class PoliciesController < ApplicationController
   # POST /policies.json
   def create
     @policy = Policy.new(policy_params)
-    @policy.provisional = provisional? ? false : true
+    @policy.provisional = false
     respond_to do |format|
       if @policy.save
         format.html { redirect_to @policy, notice: ' Політика була успішно створена.' }
@@ -77,7 +77,7 @@ class PoliciesController < ApplicationController
 
   private
   def provisional?
-    params[:commit] == "Зберігти проект політики"
+    params[:commit] == "Зберегти проект політики"
   end
     # Use callbacks to share common setup or constraints between actions.
     def set_policy
