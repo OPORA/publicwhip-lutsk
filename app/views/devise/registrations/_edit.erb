@@ -8,6 +8,10 @@
   </ul>
 </div>
   <% if  params[:sort].nil?  %>
+    <div id="list_history">
+      <%= render 'layouts/history' %>
+    </div>
+
 
   <% elsif params[:sort] == "subscription" %>
 

@@ -4,7 +4,7 @@ class Policy < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
-  has_paper_trail
+  has_paper_trail(meta: {policy_id: :id})
   scope :very_strongly_for,     -> { where("policy_person_distances.distance >= ? AND policy_person_distances.distance < ?", 0.00, 0.05) }
   scope :strongly_for,          -> { where("policy_person_distances.distance >= ? AND policy_person_distances.distance < ?", 0.05, 0.15) }
   scope :moderately_for,        -> { where("policy_person_distances.distance >= ? AND policy_person_distances.distance < ?", 0.15, 0.40) }

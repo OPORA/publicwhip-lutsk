@@ -4,11 +4,13 @@ Rails.application.routes.draw do
   get 'policy_divisions/:date/:id/policy' => 'policy_divisions#policy', as: :get_policy_division
   resources :policy_divisions
   get 'policies/policy', as: :policies_next
+  get 'policies/history/:id' => 'policies#history', as: :history_policy
   resources :policies
   #devise_for :users
   devise_for :users, controllers: { sessions: 'users/sessions', passwords: 'users/passwords', registrations: 'users/registrations', confirmations: 'users/confirmations'  }, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
   devise_scope :user do
     get '/auth/new_reg', to: "users/registrations#new_reg"
+    get '/auth/history', to: "users/registrations#history"
   end
   get 'api/divisions'
   get 'api/division'

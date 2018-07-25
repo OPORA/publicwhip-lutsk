@@ -2,7 +2,12 @@ require 'distance'
 class PolicyDivision < ApplicationRecord
   belongs_to :policy
   belongs_to :division
-  has_paper_trail
+  has_paper_trail(
+      meta: {
+          policy_id: :policy_id,
+          division_id: :division_id
+      }
+  )
   validates :division_id, presence: true, uniqueness:  { scope: :policy_id}
   after_create :create_person_distanse
   before_destroy :destroy_person_distanse
