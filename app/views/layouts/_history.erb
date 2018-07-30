@@ -1,24 +1,24 @@
 <% @history.each do |r|  %>
     <div class="col-12">
       <% if r.item_type == "PolicyDivision" %>
-          <p>В політиці: <strong><%= policy_name(r.policy_id) %></strong></p>
+          <p>В політиці: <strong><%= link_to policy_name(r.policy_id), policy_path(r.policy_id) %></strong></p>
           <% if r.event == "create" %>
-              <p>Додано голосування: "<%= divisions_name(r.division_id)%>"</p>
+              <p>Додано голосування: "<%= link_to divisions_name(r.division_id), divisions_show_path(div_path(r.division_id)) %>"</p>
               <p>Голосування щодо політики визначене як “<%=  display_support(r.changeset["support"].second)  %>”.</p>
           <% elsif  r.event == "update"  %>
-              <p>Оновлено голосування: "<%= divisions_name(r.division_id)%>"</p>
+              <p>Оновлено голосування: "<%= link_to divisions_name(r.division_id), divisions_show_path(div_path(r.division_id)) %>"</p>
               <p>Голосування щодо політики визначене з “<%=  display_support(r.changeset["support"].first)  %>” на “<%=  display_support(r.changeset["support"].second)  %>”.</p>
           <% else %>
-              <p>Видалено голосування: "<%= divisions_name(r.division_id)%>"</p>
+              <p>Видалено голосування: "<%= link_to divisions_name(r.division_id), divisions_show_path(div_path(r.division_id)) %>"</p>
               <p>Голосування щодо політики визначалось як “<%=  display_support(most_recent_version(r.item_type, r.item_id ).changeset["support"].second)  %>”.</p>
           <% end %>
       <% else %>
           <% if r.event == "create" %>
-              <p>Створено проект політики <strong>"<%= r.changeset["name"].second %>"</strong> з описом “<%= r.changeset["description"].second %>”.</p>
+              <p>Створено проект політики <strong>"<%=  link_to r.changeset["name"].second,  policy_path(r.policy_id) %>"</strong> з описом “<%= r.changeset["description"].second %>”.</p>
           <% else %>
-              <p>Оновлено <strong>"<%= policy_name(r.item_id)%>"</strong> </p>
+              <p>Оновлено <strong>"<%= link_to policy_name(r.item_id), policy_path(r.policy_id) %>"</strong> </p>
               <% if r.changeset["name"] %>
-                  <p>Назву змінено з <strong>"<%= r.changeset["name"].first %>"</strong> на <strong>"<%= r.changeset["name"].second %>"</strong></p>
+                  <p>Назву змінено з <strong>"<%=  link_to r.changeset["name"].first, policy_path(r.policy_id) %>"</strong> на <strong>"<%= link_to r.changeset["name"].second, policy_path(r.policy_id) %>"</strong></p>
               <% end %>
               <% if r.changeset["description"] %>
                   <p>Опис змінено з <strong>"<%= r.changeset["description"].first %>"</strong> на <strong>"<%= r.changeset["description"].second %>"</strong></p>

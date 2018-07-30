@@ -8,6 +8,10 @@ module PolicyDivisionsHelper
   def divisions_name(division_id)
     Division.find(division_id).name
   end
+  def div_path(division_id)
+    div = Division.find(division_id)
+    {date: div.date, id: div.number }
+  end
   def display_support(item)
     case item
       when "aye_strong"
