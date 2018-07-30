@@ -8,7 +8,7 @@ class PolicyDivision < ApplicationRecord
           division_id: :division_id
       }
   )
-  validates :division_id, presence: true, uniqueness:  { scope: :policy_id}
+  validates :division_id, presence: { message: "Поле політика є обовязуове" }, uniqueness:  { scope: :policy_id, message: ->(object, data) do "Голосування вже було добавлене до цієї політики!" end}
   after_create :create_person_distanse
   before_destroy :destroy_person_distanse
   before_update :destroy_person_distanse

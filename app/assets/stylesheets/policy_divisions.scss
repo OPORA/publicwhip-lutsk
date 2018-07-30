@@ -119,7 +119,13 @@ input[type="submit"] {
 }
 
 input[type=radio] {
-  display: none;
+  //display: none;
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+input[type="radio"]:invalid +label {
+  position: relative;
 }
 
 input[type=radio]+label {
