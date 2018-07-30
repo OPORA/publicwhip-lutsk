@@ -36,7 +36,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    history()
+    if  params[:sort].nil?
+      history()
+    end
     super
 
   end
@@ -63,7 +65,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   end
   def history
-    @history = PaperTrail::Version.where(whodunnit: current_user.id).order(created_at: :desc ).page(params[:page]).per(4)
+    if params[:user_id]
+      user = params[:user_id].to_i
+    else
+      user = current_user.id
+    end
+    @history = PaperTrail::Version.where(whodunnit: user).order(created_at: :desc ).page(params[:page]).per(4)
   end
 
   protected

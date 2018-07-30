@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/auth/new_reg', to: "users/registrations#new_reg"
     get '/auth/history', to: "users/registrations#history"
+    get '/auth/histories/:user_id', to: "users/registrations#history", as: :user_history
   end
   get 'api/divisions'
   get 'api/division'
