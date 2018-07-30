@@ -26,7 +26,7 @@
       <%= f.label :password, "Новий пароль" %> <br />
       <% if @minimum_password_length %>
           <br />
-          <em>Надійний пароль містить не меньше <%= @minimum_password_length %> знаків, ціфри та спеціальні символи</em>
+          <em>Надійний пароль містить не менше <%= @minimum_password_length %> знаків, цифри та спеціальні символи</em>
       <% end %>
       <%= f.password_field :password, autocomplete: "off" %>
     </div>
@@ -39,7 +39,7 @@
 
 
     <div class="actions">
-      <%= f.submit "Зберігти зміни" %>
+      <%= f.submit "Зберегти зміни" %>
     </div>
 <% end %>
 
