@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   end
   get 'api/divisions'
   get 'api/division'
+  get 'api/policies'
+  get 'api/policy'
   get 'api/mp'
   get 'api/mps'
 

@@ -33,8 +33,16 @@ class Policy < ApplicationRecord
       never_voted
     end
   end
+
   def self.find_by_search_query(query)
     where("UPPER(name) like :query_name ", { query_name: "%#{query.upcase}%" })
   end
-
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << ['id', 'name', 'description', 'provisional']
+      all.each do |mp|
+        csv << [mp.id, mp.name, mp.description, mp.provisional]
+      end
+    end
+  end
 end

@@ -9,7 +9,9 @@ class PolicyPersonDistance < ApplicationRecord
   scope :strongly_against,      -> { where(distance: (0.85...0.95)) }
   scope :very_strongly_against, -> { where(distance: (0.95..1.0)) }
   scope :never_voted,           -> { where(same: 0, same_strong: 0, diff: 0, diff_strong: 0) }
-
+  def agreement
+    (1 - self.distance) * 100.to_f
+  end
   def self.filter_polices(param)
     if param.nil?
       very_strongly_for
