@@ -12,6 +12,13 @@ class PolicyPersonDistance < ApplicationRecord
   def agreement
     (1 - self.distance) * 100.to_f
   end
+  def voted
+    if same == 0 and same_strong == 0 and diff == 0 and diff_strong == 0
+      return false
+    else
+      return true
+    end
+  end
   def self.filter_polices(param)
     if param.nil?
       very_strongly_for

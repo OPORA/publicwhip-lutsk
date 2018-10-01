@@ -16,13 +16,13 @@ class ApiController < ApplicationController
   def policy
     @policy = Policy.find(params[:policy_id])
     respond_to do |format|
-      format.json  {render :json => @policy.to_json(except: [:created_at,  :updated_at ],
+      format.json  {render :json => @policy.as_json(except: [:created_at,  :updated_at ],
                                                     :include  => {
-                                                            policy_person_distances: {except: [:id, :policy_id, :distance, :created_at,  :updated_at ], :methods => :agreement},
+                                                            policy_person_distances: {except: [:id, :policy_id, :distance, :created_at,  :updated_at ], :methods => [:agreement, :voted]} ,
                                                                   policy_divisions: {except: [:id, :policy_id, :created_at,  :updated_at ]}
                                                     }
 
-      )}
+      ).tap{|hash| hash["people_comparison"] = hash.delete "policy_person_distances"}}
       #format.csv  { send_data  @polisies.to_csv  }
     end
   end
