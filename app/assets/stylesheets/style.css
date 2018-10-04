@@ -668,3 +668,10 @@ footer {
         box-shadow:4px 4px 10px rgba(0,0,0,0.8);
     }
 }
+.radial-progress__text {
+    color: #4A4A4A;
+    font-family: Roboto;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 30px;
+}
