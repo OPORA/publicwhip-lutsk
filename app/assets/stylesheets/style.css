@@ -97,11 +97,17 @@ header{
 /*#navbarCollapse{
     padding-top: .25rem;
 }*/
+.navbar-nav > li.span {
+    padding-top: 0.5rem;
+}
 .navbar-nav > li > a{
     padding-left: 49px !important;
     line-height: 28px;
     font-size: 14px;
     color: #fff!important;
+}
+.navbar-nav > li > a.reg-link {
+    padding-left: 7px!important;
 }
 .navbar{
     padding: 1.5rem 1rem;
