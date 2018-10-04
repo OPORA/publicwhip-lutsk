@@ -18,9 +18,9 @@ en:
       unconfirmed: "You have to confirm your email address before continuing."
     mailer:
       confirmation_instructions:
-        subject: "Confirmation instructions"
+        subject: "Інструкції з підвердження акаунту rada4you"
       reset_password_instructions:
-        subject: "Reset password instructions"
+        subject: "Інструкція з відновлення паролю rada4you"
       unlock_instructions:
         subject: "Unlock instructions"
       email_changed:
