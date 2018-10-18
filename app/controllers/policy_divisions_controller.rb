@@ -37,7 +37,7 @@ class PolicyDivisionsController < ApplicationController
 
     respond_to do |format|
       if @policy_division.save
-        format.html { redirect_to policy_path(@policy_division.policy_id), notice: 'Голосування в політику було добавлено' }
+        format.html { redirect_to policy_path(@policy_division.policy_id), notice: 'Голосування було додано у політику' }
         format.json { render :show, status: :created, location: @policy_division }
       else
         @division = Division.find(@policy_division.division_id)
