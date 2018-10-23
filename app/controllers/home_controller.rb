@@ -9,8 +9,13 @@ class HomeController < ApplicationController
     end
   end
   def search_mp
-    mp = params[:mp].gsub(" ", "_")
-    redirect_to show_people_path(mp)
+    mps = Mp.find_by_search_query params[:mp]
+    unless mps[0].blank?
+      mp = mps[0].full_name.gsub(" ", "_")
+      redirect_to show_people_path(mp)
+    else
+      redirect_to errors_not_found_path, :status => '404'
+    end
   end
   def search
     unless params[:query].blank?
