@@ -92,7 +92,7 @@ class ApiController < ApplicationController
                                                                  :abstain,
                                                                  :votes_possible,
                                                                  :votes_attended,
-                                                                 :date_mp_infodist_a
+                                                                 :date_mp_info
                                                                   ]
                                                           },
                                                       mp_friends: {except: [
