@@ -20,9 +20,6 @@ class DivisionsController < ApplicationController
     divisions = Division.includes(:division_info)
     unless params[:divisions].blank?
       divisions = divisions.find_by_search_query(params[:divisions])
-      if params[:sort].blank?
-        params[:sort] = "attendance"
-      end
     end
     @divisions =
         case params[:sort]

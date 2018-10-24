@@ -1,6 +1,6 @@
 <div class="list-filters clearfix">
   <ul class="sort-first text-uppercase">
-    <li <%= params[:sort].nil? ? "class=disabled": "" %> ><%= link_to "За Датою", params.merge(sort: nil), remote: true %></li>
+    <li <%= params[:sort].nil? ? "class=disabled": "" %> ><%= link_to "За Датою", params.merge(sort: nil, filter_min: nil, filter_max: nil), remote: true %></li>
     <li <%= params[:sort] == "attendance" ? "class=disabled": "" %> ><%= link_to "За Присутністю", params.merge(sort: :attendance), remote: true %></li>
     <li <%= params[:sort] == "rebellions" ? "class=disabled": "" %> ><%= link_to "ЗА ФРАКЦІЙНОЮ ДИСЦИПЛІНОЮ", params.merge(sort: :rebellions), remote: true %></li>
   </ul>
