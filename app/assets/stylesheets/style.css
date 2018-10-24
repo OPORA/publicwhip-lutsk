@@ -56,7 +56,7 @@ body{
     font-family: GothaProReg;
 }
 .center-justified {
-    text-align: justify;
+    text-align: center;
     -moz-text-align-last: center;
     text-align-last: center;
 }
