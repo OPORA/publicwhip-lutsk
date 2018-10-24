@@ -14,7 +14,7 @@ class HomeController < ApplicationController
       mp = mps[0].full_name.gsub(" ", "_")
       redirect_to show_people_path(mp)
     else
-      redirect_to errors_not_found_path, :status => '404'
+      redirect_to people_path, :notice => "Нажаль депутата не було знайдено, спробуйте виконати інший пошуковий запит"
     end
   end
   def search
