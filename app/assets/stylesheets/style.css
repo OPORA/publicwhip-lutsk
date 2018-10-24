@@ -237,6 +237,7 @@ header{
     height: 57px;
     font-size: 48px;
     line-height: 57px!important;
+    margin-bottom: 25px;
 }
 .modal-body input::placeholder{
     color: #949393;
