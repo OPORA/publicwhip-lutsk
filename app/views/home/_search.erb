@@ -24,7 +24,7 @@
                           <div class="list-group">
                           <% @mps.each do |m| %>
                               <%= link_to show_people_path(m.url_name), class: "list-group-item" do %>
-                                  <h2 class="media-heading"><%=  m.full_name  %></h2>
+                                  <h2 class="media-heading"><%=  m.full_name  %></h2>&nbsp;
                                   <p><%= member_role(m.faction, m.okrug) %></p>
                               <% end %>
                           <% end %>
