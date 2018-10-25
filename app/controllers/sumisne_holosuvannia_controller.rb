@@ -1,5 +1,11 @@
 class SumisneHolosuvanniaController < ApplicationController
   def init
+    unless params[:party].nil? or params[:party].blank?
+      part_ser = PartyFriend.where(party: params[:party])
+      if part_ser.blank?
+        redirect_to sumisne_holosuvannia_path, :notice => "Нажаль партії не було знайдено, спробуйте виконати інший пошуковий запит"
+      end
+    end
      if params[:month].nil? or params[:month].blank?
        params[:month] = "full"
      end
