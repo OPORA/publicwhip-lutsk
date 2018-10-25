@@ -7,19 +7,24 @@
     </ul>
   </div>
   <% if params[:vote].blank? %>
+      <script>
+          $(function () {
+              $('[data-toggle="tooltip"]').tooltip()
+          })
+      </script>
       <div class="col-11 list-filters">
         <ul class="sort-fraction text-uppercase">
-          <div style="display: flex; justify-content: space-around">
-          <li <%= params[:policy].blank? ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Максимально голосує за", policy_path(@policy.id), remote: true %></li>
-          <li <%= params[:policy] == "2" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Послідовно голосує за", policy_path(@policy.id, policy: 2), remote: true %></li>
-          <li <%= params[:policy] == "3" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Переважно голосує за", policy_path(@policy.id, policy: 3 ), remote: true %></li>
-          <li <%= params[:policy] == "4" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Суміш за та проти", policy_path(@policy.id, policy:4 ), remote: true %></li>
+          <div style="display: flex; justify-content: space-between">
+          <li <%= params[:policy].blank? ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Максимально голосує за", policy_path(@policy.id), remote: true, "data-toggle": "tooltip", "data-placement": "top", title: "між 95% та 100%" %></li>
+          <li <%= params[:policy] == "2" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Послідовно голосує за", policy_path(@policy.id, policy: 2), remote: true, "data-toggle": "tooltip", "data-placement": "top", title: "між 85% та 95%" %></li>
+          <li <%= params[:policy] == "3" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Переважно голосує за", policy_path(@policy.id, policy: 3 ), remote: true, "data-toggle": "tooltip", "data-placement": "top", title: "між 60% та 85%" %></li>
+          <li <%= params[:policy] == "4" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Суміш за та проти", policy_path(@policy.id, policy:4 ), remote: true, "data-toggle": "tooltip", "data-placement": "top", title: "між 40% та 60%%" %></li>
           </div>
-            <div style="display: flex; justify-content: space-around">
-          <li <%= params[:policy] == "5" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Переважно голосує проти", policy_path(@policy.id, policy:5 ), remote: true %></li>
-          <li <%= params[:policy] == "6" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Послідовно голосує проти", policy_path(@policy.id, policy:6 ), remote: true %></li>
-          <li <%= params[:policy] == "7" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Максимально голосує проти", policy_path(@policy.id, policy:7 ), remote: true %></li>
-          <li <%= params[:policy] == "8" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Ніколи не голосує", policy_path(@policy.id, policy:8 ), remote: true %></li>
+      <div style="display: flex; justify-content: space-between">
+          <li <%= params[:policy] == "5" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Переважно голосує проти", policy_path(@policy.id, policy:5 ), remote: true, "data-toggle": "tooltip", "data-placement": "top", title: "між 15% та 40%" %></li>
+          <li <%= params[:policy] == "6" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Послідовно голосує проти", policy_path(@policy.id, policy:6 ), remote: true, "data-toggle": "tooltip", "data-placement": "top", title: "між 5,0% та 15%" %></li>
+          <li <%= params[:policy] == "7" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Максимально голосує проти", policy_path(@policy.id, policy:7 ), remote: true, "data-toggle": "tooltip", "data-placement": "top", title: "між 0,0% та 5,0%" %></li>
+          <li <%= params[:policy] == "8" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Ніколи не голосує", policy_path(@policy.id, policy:8 ), remote: true,  "data-toggle": "tooltip", "data-placement": "top", title: "У разі відсутності депутата та/або його неголосування" %></li>
             </div>
         </ul>
       </div>
@@ -27,6 +32,7 @@
         <%= render "mp", mps: @polisy_mp %>
 
       </div>
+
   <% else %>
       <div id="list_vote">
         <%= render "voted", division: @policy.policy_divisions %>
