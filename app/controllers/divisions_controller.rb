@@ -24,20 +24,28 @@ class DivisionsController < ApplicationController
     @divisions =
         case params[:sort]
           when "attendance"
-            if params[:filter_min].nil?
+            if params[:filter_min].nil? and params[:divisions].blank?
               params[:filter_min] = 30
+            elsif params[:filter_min].nil? and params[:divisions]
+              params[:filter_min] = 0
             end
-            if params[:filter_max].nil?
+            if params[:filter_max].nil? and params[:divisions].blank?
               params[:filter_max] = 90
+            elsif params[:filter_max].nil? and params[:divisions]
+              params[:filter_max] = 100
             end
             divi = divisions.to_a.find_all{|m| m.division_info.attendance_division.to_f >= params[:filter_min].to_f/100 and m.division_info.attendance_division.to_f <= params[:filter_max].to_f/100 }.sort_by{ |m| [-(m.division_info.attendance_division || -1), m.date, m.number ]}
             Kaminari.paginate_array(divi).page(params[:page]).per(params[:per])
           when "rebellions"
-            if params[:filter_min].nil?
+            if params[:filter_min].nil? and params[:divisions].blank?
               params[:filter_min] = 20
+            elsif params[:filter_min].nil? and params[:divisions]
+              params[:filter_min] = 0
             end
             if params[:filter_max].nil?
               params[:filter_max] = 90
+            elsif params[:filter_max].nil? and params[:divisions]
+              params[:filter_max] = 100
             end
             divi =divisions.to_a.find_all{|m| m.division_info.rebellions_fraction.to_f >= params[:filter_min].to_f/100 and m.division_info.rebellions_fraction.to_f <= params[:filter_max].to_f/100 }.sort_by{ |m| [-(m.division_info.rebellions_fraction || -1), m.date, m.number ]}
             Kaminari.paginate_array(divi).page(params[:page]).per(params[:per])
