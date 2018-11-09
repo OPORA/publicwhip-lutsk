@@ -20,6 +20,9 @@ class DivisionsController < ApplicationController
     divisions = Division.includes(:division_info)
     unless params[:divisions].blank?
       divisions = divisions.find_by_search_query(params[:divisions])
+      if params[:sort].nil?
+        params[:sort] = "attendance"
+      end
     end
     @divisions =
         case params[:sort]
@@ -43,7 +46,7 @@ class DivisionsController < ApplicationController
               params[:filter_min] = 0
             end
             if params[:filter_max].nil?
-              params[:filter_max] = 90
+              params[:filter_max] = 90 and params[:divisions].blank?
             elsif params[:filter_max].nil? and params[:divisions]
               params[:filter_max] = 100
             end
