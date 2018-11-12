@@ -63,8 +63,15 @@
       </li>
     </ul>
   </div>`
+  <div class="row center-justified d-block d-sm-none">
+  <div class="col">
+    <img class="media-object circle-photo " src="/image/<%= mp.deputy_id %>.png" alt="<%=  mp.full_name %>" height="200">
+    <p class="frac"><%= member_role(mp.faction, mp.okrug).html_safe %></p>
+    <p><!--Обрано за списком партії з --></p>
+  </div>
+  </div>
   <div class="row center-justified first">
-    <div class="col-4 text-uppercase">
+    <div class="col text-uppercase">
       <div id="attendance-fraction"
            data-percentage="<%= fraction_to_percentage_display(mp.mp_info.attendance_fraction)  %>"
            data-track-width="4"
@@ -82,12 +89,12 @@
             CreateRadialBar(wrapper);
         });
     </script>
-    <div class="col-4">
+    <div class="col d-none d-sm-block">
       <img class="media-object circle-photo " src="/image/<%= mp.deputy_id %>.png" alt="<%=  mp.full_name %>" height="200">
       <p class="frac"><%= member_role(mp.faction, mp.okrug).html_safe %></p>
       <p><!--Обрано за списком партії з --></p>
     </div>
-    <div class="col-4 text-uppercase">
+    <div class="col text-uppercase">
       <% if  mp.mp_info.rebellions_fraction %>
       <div id="rebellions-fraction"
            data-percentage="<%=  fraction_to_percentage_display(mp.mp_info.rebellions_fraction) %>"
