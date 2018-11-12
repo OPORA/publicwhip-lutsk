@@ -63,7 +63,7 @@
       </li>
     </ul>
   </div>`
-  <div class="row center-justified d-block d-sm-none">
+  <div class="row center-justified d-block d-md-none">
   <div class="col">
     <img class="media-object circle-photo " src="/image/<%= mp.deputy_id %>.png" alt="<%=  mp.full_name %>" height="200">
     <p class="frac"><%= member_role(mp.faction, mp.okrug).html_safe %></p>
@@ -89,7 +89,7 @@
             CreateRadialBar(wrapper);
         });
     </script>
-    <div class="col d-none d-sm-block">
+    <div class="col d-none d-md-block">
       <img class="media-object circle-photo " src="/image/<%= mp.deputy_id %>.png" alt="<%=  mp.full_name %>" height="200">
       <p class="frac"><%= member_role(mp.faction, mp.okrug).html_safe %></p>
       <p><!--Обрано за списком партії з --></p>
