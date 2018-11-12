@@ -100,15 +100,20 @@ header{
 .navbar-nav > li.span {
     padding-top: 0.5rem;
 }
-.navbar-nav > li > a{
+.navbar-nav > li  {
     padding-left: 49px !important;
+}
+.navbar-nav > li > a{
     line-height: 28px;
     font-size: 14px;
     color: #fff!important;
 }
-.navbar-nav > li > a.reg-link {
-    padding-left: 7px!important;
+@media (min-width: 768px) {
+    .navbar-nav > li > a.reg-link {
+        padding-left: 7px !important;
+    }
 }
+
 .navbar{
     padding: 1.5rem 1rem;
 }
