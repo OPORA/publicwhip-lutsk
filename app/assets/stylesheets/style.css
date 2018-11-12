@@ -113,6 +113,12 @@ header{
         padding-left: 7px !important;
     }
 }
+@media (max-width: 768px) {
+ header.container-fluid {
+     padding-left: 0;
+     padding-right: 0;
+ }
+}
 
 .navbar{
     padding: 1.5rem 1rem;

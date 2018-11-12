@@ -13,13 +13,18 @@ header{
 #navbarCollapse{
   background-color: #000;
 }
+#navbarCollapse.collapse.show {
+  margin-top: 42px;
+  z-index: 100;
+}
 .navbar-inverse .navbar-nav .nav-link{
   line-height: 28px;
   font-size: 14px;
   height: 3.51%;
 }
 .navbar {
-  padding: 0 0 0 15rem;
+  //padding: 0 0 0 15rem;
+  padding: 0;
 }
 #first-block .notfound h1{
   color: #252525;
