@@ -87,11 +87,11 @@ gtag('config', '<%= Settings.gtag %>');
                   <%= link_to current_user.user_name, edit_user_registration_path, class: "nav-link"  %>
                 </li>
             <% else %>
-             <li class="nav-item">
+             <li class="nav-item reg-link">
                 <%= link_to "Вхід",  new_user_session_path, class: "nav-link"  %>
               </li>
-                <li class="nav-item span d-none d-sm-block"><span>/</span></li>
-              <li class="nav-item">
+                <li class="nav-item span d-none d-md-block" style="padding-left: 0; padding-right: 0"><span>/</span></li>
+              <li class="nav-item reg-link">
                 <%= link_to "Реєстрація", new_user_registration_path, class: "nav-link reg-link"  %>
               </li>
             <% end %>

@@ -101,8 +101,9 @@ header{
     padding-top: 0.5rem;
 }
 .navbar-nav > li  {
-    padding-left: 49px !important;
+    padding-left: 49px;
 }
+
 .navbar-nav > li > a{
     line-height: 28px;
     font-size: 14px;
@@ -111,6 +112,9 @@ header{
 @media (min-width: 768px) {
     .navbar-nav > li > a.reg-link {
         padding-left: 7px !important;
+    }
+    .navbar-nav > li.reg-link {
+        padding-left: 0!important;
     }
 }
 @media (max-width: 768px) {
