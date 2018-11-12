@@ -15,7 +15,7 @@ class DivisionsController < ApplicationController
   end
   def division
     if params[:per].nil?
-      params[:per] = 5
+      params[:per] = 6
     end
     divisions = Division.includes(:division_info)
     unless params[:divisions].blank?
