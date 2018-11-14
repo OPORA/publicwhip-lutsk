@@ -13,7 +13,9 @@ header{
 #navbarCollapse{
   background-color: #000;
 }
-#navbarCollapse.collapse.show {
+#navbarCollapse.collapse.show,
+#navbarCollapse.collapsing
+{
   margin-top: 42px;
   z-index: 100;
 }
