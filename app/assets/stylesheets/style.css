@@ -359,6 +359,15 @@ h3.background-line {
     padding-left: 40px;
     height: 45px;
 }
+@media (max-width: 768px) {
+    .check > div:nth-child(2){
+        padding-left: 10px;
+    }
+    .card-name {
+        font-size: 16px!important;
+    }
+}
+
 .approve {
     color: #282828;
     font-family: GothaProMed;
@@ -492,9 +501,9 @@ footer > div [class*="row"] p{
     height: 40px;
     width: 40px;
 }*/
-footer span+span{
-    margin-left: 16.666667%;
-}
+/*footer span+span{*/
+    /*margin-left: 16.666667%;*/
+/*}*/
 /*.dropdown-toggle.btn-default {*/
 /*color: #292b2c;*/
 /*background-color: #fff;*/

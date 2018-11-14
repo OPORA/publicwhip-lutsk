@@ -41,7 +41,7 @@ module PeopleHelper
   def result_voted(res)
     case res
       when "not_voted"
-        '<svg class="svg col" >
+        '<svg class="svg" >
         <g>
         <circle cx=50 cy=50 r=25></circle>
                                 <g id="002-signs-lenguage-r" transform="translate(43.000000, 35.000000)">
@@ -50,9 +50,9 @@ module PeopleHelper
                             </g>
         </svg><p class="text-xs-center">не голосував</p>'.html_safe
       when "absent"
-         '<svg class="svg col"><circle cx="50" cy="50" r="25"></circle></svg><p class="text-xs-center">відсутній</p>'.html_safe
+         '<svg class="svg"><circle cx="50" cy="50" r="25"></circle></svg><p class="text-xs-center">відсутній</p>'.html_safe
       when "against"
-        '<svg class="svg col" >
+        '<svg class="svg" >
         <g>
         <circle cx=50 cy=50 r=25></circle>
                                 <g transform="translate(34.062731, 29.000000) scale(1, -1) translate(-31.062731, -33.000000) translate(35.000000, 0.000000)">
@@ -61,7 +61,7 @@ module PeopleHelper
                             </g>
         </svg><p class="text-xs-center">проти</p>'.html_safe
       when "aye"
-        '<svg class="svg col" >
+        '<svg class="svg" >
         <g>
         <circle cx=50 cy=50 r=25></circle>
                                 <g transform="translate(35.000000, 35.000000)">
@@ -70,7 +70,7 @@ module PeopleHelper
                             </g>
         </svg><p  class="text-xs-center">за</p>'.html_safe
       when "abstain"
-        '<svg class="svg col" >
+        '<svg class="svg" >
                             <g>
                                 <circle cx=50 cy=50 r=25></circle>
                                 <g id="001-present" transform="translate(43.000000, 35.000000)">

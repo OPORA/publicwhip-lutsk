@@ -12,16 +12,16 @@
                     <p><%=  d.name  %></p>
                 </div>
                 <div class="row check">
-                    <div class="col-4 text-uppercase float-left">
+                    <div class="col-6 col-md-4 text-uppercase float-left">
                         <p class="checkin">присутність</p>
                         <p class="card-percent"><%= fraction_to_percentage_display(d.division_info.attendance_division) %></p>
                     </div>
-                    <div class="col-4 text-uppercase">
+                    <div class="col-6 col-md-4 text-uppercase">
                         <p class="checkin">проти фракції</p>
                         <p class="card-percent"><%= d.division_info.rebellions %>  голосувань</p>
                     </div>
 
-                    <div class="col-4 text-uppercase" style="top: -30px;color:#000;font-size: 8px;line-height: 18px;">
+                    <div class="col-6 col-md-4 text-uppercase" style="color:#000;font-size: 8px;line-height: 18px;">
                       <%= result_voted(d.votes.find_mp(mp.id )) %>
                     </div>
 
