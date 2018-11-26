@@ -704,3 +704,6 @@ footer {
 .panel-search {
     margin-bottom: 25px;
 }
+.date-pointer {
+    pointer-events: none;
+}
