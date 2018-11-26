@@ -23,6 +23,10 @@ class DivisionsController < ApplicationController
       if params[:sort].nil?
         params[:sort] = "attendance"
       end
+    else
+      if params[:sort].nil?
+        params[:sort] = "date"
+      end
     end
     @divisions =
         case params[:sort]
