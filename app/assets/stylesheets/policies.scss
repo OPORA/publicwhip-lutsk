@@ -224,12 +224,12 @@ fill: #FEB0B0;
   border-radius: 4px;
   text-decoration: none;
 }
-.card-mp img {
-  height: 100px;
-  width: 100px;
-  clip-path: circle(50px at center);
-  border-radius: 50px;
-}
+//.card-mp img {
+//  height: 100px;
+//  width: 100px;
+//  clip-path: circle(50px at center);
+//  border-radius: 50px;
+//}
 
 
 a .card-mp p,  a .card-mp  p:hover{
@@ -244,4 +244,12 @@ a .card-mp p,  a .card-mp  p:hover{
   margin-top: 15px;
   margin-bottom: 25px;
   text-decoration: none!important;
+}
+div.img {
+  display: block;
+  padding-bottom: 100%;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: top center;
+  //margin: 35px 0;
 }

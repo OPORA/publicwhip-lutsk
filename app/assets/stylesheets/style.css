@@ -109,7 +109,7 @@ header{
     font-size: 14px;
     color: #fff!important;
 }
-@media (min-width: 768px) {
+@media (min-width: 991px) {
     .navbar-nav > li > a.reg-link {
         padding-left: 7px !important;
     }
@@ -335,12 +335,13 @@ h3.background-line {
     margin: 25px 0 0 0;
 }
 #first-block .card{
-    min-height: 297px;
+
     padding: 25px;
 }
 .card{
     outline: 1px solid rgba(0,0,0,.125);
     border: 3px solid transparent;
+    min-height: 100%;
 }
 .card:hover {
     outline: 0px solid transparent;
@@ -379,9 +380,9 @@ h3.background-line {
     margin: 0;
     line-height: 22px;
 }
-.card i{
-    float: left;
-    margin-right: 14px;
+#divisionshow .card i{
+    /*float: left;*/
+    margin-right: 35px;
     margin-bottom: 20px;
 }
 .card-date {
@@ -707,3 +708,4 @@ footer {
 .date-pointer {
     pointer-events: none;
 }
+

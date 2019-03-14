@@ -2,11 +2,12 @@
     <div class="container">
       <div class="row">
         <% division.each do |d| %>
-            <%= link_to divisions_show_path(d.date, d.number), class: "col-12 col-md-6" do %>
+            <%= link_to divisions_show_path(d.date, d.number), class: "col-12 col-lg-6" do %>
                 <div class="col pull-right card">
                   <div class="row">
                     <div class="col-3 text-uppercase">
-                      <p class="approve"><i class="fa <%=  d.result.gsub(/[[:space:]]/, '') == "Прийнято" ? "fa-check-circle" : "fa-times-circle"  %>" aria-hidden="true"></i> <%= d.result %></p>
+                      <div class="col-12"><i class="fa <%=  d.result.gsub(/[[:space:]]/, '') == "Прийнято" ? "fa-check-circle" : "fa-times-circle"  %>" aria-hidden="true"></i></div>
+                      <p class="approve"><%= d.result %></p>
                       <p class="card-date"><%= d.date.strftime('%d.%m.%Y') %>, <%= Time.parse(d.clock_time).strftime('%H:%M') %> </p>
                     </div>
                     <div class="col-9 card-text">

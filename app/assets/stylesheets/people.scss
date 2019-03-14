@@ -84,3 +84,10 @@ circle {
 .check >div > svg{
    height: 80px;
  }
+div.img {
+  padding-bottom: 100%;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: top center;
+  margin: 35px 0;
+}

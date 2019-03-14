@@ -104,10 +104,14 @@ ul.dropdown-menu{
   font-family: GothaProBol;
   color: #292b2c;
   width: 100%;
-  padding: 10px 0 10px 10px;
+  //padding: 10px 0 10px 10px;
 }
 .sort-first .dropdown.show ul.dropdown-menu li:hover {
   background-color: #ccc;
+}
+.sort-first .dropdown.show ul.dropdown-menu li a {
+  display: block;
+  padding: 10px 0 10px 10px;
 }
 ul li a{
   color: #4A4A4A;
@@ -241,4 +245,15 @@ ul.sort-month li{
 }
 #calendar .ui-datepicker td span, .ui-datepicker td a{
   padding: 4px 5px;
+}
+#navbarCollapse {
+  justify-content: space-between;
+}
+a.col-12 {
+  margin-top: 25px;
+}
+@media (min-width: 992px) {
+  .col-lg-6 {
+    margin-top: 25px
+  }
 }
