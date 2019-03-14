@@ -720,3 +720,6 @@ footer {
     width: 100%;
     max-height: 350px;
 }
+a.dropdown-toggle {
+    cursor: pointer;
+}
