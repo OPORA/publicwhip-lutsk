@@ -5,7 +5,7 @@ namespace :load_division do
     save_votes = Division.pluck(:date).uniq.to_a.map{|d| d.strftime('%Y-%m-%d')}
     date_votes = load_votes - save_votes
     date_votes.each do |date|
-      divisions = JSON.load(open("http://#{Settings.name_site}voted.oporaua.org/votes_events/#{date}"))
+      divisions = JSON.load(open("http://#{Settings.name_site}voted.oporaua.org/votes_events/#{date}.json"))
       divisions.each do |d|
             date_vote =  DateTime.parse(d[0]["date_vote"]).strftime("%F")
             mps =  Mp.where("? >= start_date and end_date >= ?", date, date).to_a.uniq(&:deputy_id)
