@@ -1,5 +1,5 @@
 
-== README
+**README**
 
  *Дана інструкція є коротким описом тільки як запустити проект, вона не є заміною офіційної документаї мови програмування Ruby та фреймворку RubyOnRails, та не має настанов з адміністрування та конфігурації веб серверу, чи серверу баз даних*
 
@@ -23,22 +23,22 @@
 
 `lib/tasks/load_mp.rake`
 
- 6 та 19 стрічка JSON.load(open("http://#{Settings.name_site}mp.oporaua.org/"))
-http://#{Settings.name_site}mp.oporaua.org/ - вказуємо свій працюючий uri з датасетом депутатів
-датасет депутатів повинен мати ідентичну структуру з ось таким JSON https://kyivmp.oporaua.org/
+ 6 та 19 стрічка `JSON.load(open("http://#{Settings.name_site}mp.oporaua.org/"))`
+`http://#{Settings.name_site}mp.oporaua.org/` - вказуємо свій працюючий uri з датасетом депутатів
+датасет депутатів повинен мати ідентичну структуру з ось таким JSON [https://kyivmp.oporaua.org/]
 
 та `lib/tasks/load_division.rake`
 
-4 строчка  JSON.load(open("http://#{Settings.name_site}voted.oporaua.org/votes_events"))
-вказуємор свій uri http://#{Settings.name_site}voted.oporaua.org/votes_events
-датасет повинен мати ідентичну структуру з ось таким JSON https://kyivvoted.oporaua.org/votes_events/
+4 стрічка  `JSON.load(open("http://#{Settings.name_site}voted.oporaua.org/votes_events"))`
+вказуємор свій uri `http://#{Settings.name_site}voted.oporaua.org/votes_events`
+датасет повинен мати ідентичну структуру з ось таким JSON [https://kyivvoted.oporaua.org/votes_events/]
 
-і 8 строчка відповідно JSON.load(open("http://#{Settings.name_site}voted.oporaua.org/votes_events/#{date}.json"))
+і 8 стрічка відповідно `JSON.load(open("http://#{Settings.name_site}voted.oporaua.org/votes_events/#{date}.json"))`
 
 зміна #{date} є індитифікатором дати сесії формат uri може бути інший головне щоб можна було отримати данні
-датасет повинен мати ідентичну структуру з ось таким JSON https://kyivvoted.oporaua.org/votes_events/2015-12-01.json
+датасет повинен мати ідентичну структуру з ось таким JSON [https://kyivvoted.oporaua.org/votes_events/2015-12-01.json]
 
-Змінюємо налаштування пошти під свої потреби, зміні Settings.email, Settings.email_password можна вказати в файлі  ./shared/config/settings.yml під час деплою
+Змінюємо налаштування пошти під свої потреби, зміні `Settings.email, Settings.email_password` можна вказати в файлі  ./shared/config/settings.yml під час деплою
 
 для цього правимо:
  
@@ -63,7 +63,7 @@ config.action_mailer.smtp_settings = {
 
 
 
-Для deploy проекту використовуємо gem mina, йдем config/deploy.rb
+Для deploy проекту використовуємо gem mina, в `config/deploy.rb`
 
 і відповідно до наших параметрів правимо файл конфігурації
 
@@ -135,10 +135,10 @@ production:
  * голосувань `mina rake[load_division:votes]`
 
 
-після завантаження нових данних потрібно виконати оновлення статичтичних даних командами
+після завантаження нових данних потрібно виконати оновлення статичтичних даних командами:
 
-`mina rake[division_cashe:all]`
+* `mina rake[division_cashe:all]`
 
-`mina rake[deputi_cashe:all]`
+* `mina rake[deputi_cashe:all]`
 
 
