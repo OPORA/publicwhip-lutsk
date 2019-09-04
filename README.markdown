@@ -41,9 +41,11 @@ http://#{Settings.name_site}mp.oporaua.org/ - вказуємо свій прац
 Змінюємо налаштування пошти під свої потреби, зміні Settings.email, Settings.email_password можна вказати в файлі  ./shared/config/settings.yml під час деплою
 
 для цього правимо:
+ 
  `config/environments/production.rb`
+ 
 ```
-  config.action_mailer.smtp_settings = {
+config.action_mailer.smtp_settings = {
       address: 'mail.oporaua.org',
       port: 2525,
       domain: 'oporaua.org',
@@ -52,10 +54,12 @@ http://#{Settings.name_site}mp.oporaua.org/ - вказуємо свій прац
       password: Settings.email_password,
       enable_starttls_auto: true
   }
-
-```
- та `config/initializers/devise.rb`
-`config.mailer_sender = 'postmaster@oporaua.org'`
+  ```
+ 
+ та 
+ 
+  `config/initializers/devise.rb`
+  `config.mailer_sender = 'postmaster@oporaua.org'`
 
 
 
@@ -63,12 +67,14 @@ http://#{Settings.name_site}mp.oporaua.org/ - вказуємо свій прац
 
 і відповідно до наших параметрів правимо файл конфігурації
 
+ ```
  set :domain, 'ruby.oporaua.org'  # вказуєм домене імя чи IP адрес серверу
  set :deploy_to, "/home/publicwhip-kyiv/" # де саме буде знаходитись проект
  set :repository, "git@github.com:OPORA/publicwhip-kyiv.git" #Ваш gitрепозиторій
  set :branch, 'policy' #Ветка
  set :user, 'root'          # Username in the server to SSH to.
  set :port, '1122'           # SSH port number.
+ ```
 
  УВАГА! Всі зміни відправляємо в свій git репозиторій!
 
@@ -79,7 +85,7 @@ http://#{Settings.name_site}mp.oporaua.org/ - вказуємо свій прац
 `mina setup`
 
 пісдя того як виконали `mina setup` на сервері потрібно відредагувати файли конфігурації
-./shared/config/database.yml, ./shared/config/secrets.yml та ./shared/config/settings.yml
+`./shared/config/database.yml`, `./shared/config/secrets.yml` та `./shared/config/settings.yml`
 
 * `./shared/config/database.yml`
 
