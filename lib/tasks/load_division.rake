@@ -18,8 +18,7 @@ namespace :load_division do
         )
         division.votes.destroy_all
         d[1]["votes"].each do |v|
-          p  v["voter_id"]
-          mp = mps.find{|m| m["deputy_id"] == v["voter_id"].to_i }.id
+              mp = mps.find{|m| m["deputy_id"] == v["voter_id"].to_i }.id
           division.votes.create(deputy_id: mp, vote: v["result"] )
         end
       end
