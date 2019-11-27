@@ -100,7 +100,7 @@ class PeopleController < ApplicationController
         return get_divisions(@mp.id, @mp.faction)
       end
     else
-      #redirect_to people_path, :notice => "Не занйдено #{params[:mp]}"
+      redirect_to people_path, :notice => "Не занйдено #{mp_find.join(" ")}"
     end
   end
 

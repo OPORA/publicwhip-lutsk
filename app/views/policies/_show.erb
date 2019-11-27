@@ -1,7 +1,7 @@
 <div class="container">
   <div class="col-12 list-filters clearfix">
     <ul class="sort-first text-uppercase">
-      <li <%= params[:vote].blank? ? "class=disabled": "" %>><%= link_to "Підтримка політики", policy_path(@policy.id, vote: nil ), remote: true %></li>
+      <li <%= params[:vote].blank? ? "class=disabled": "" %>><%= link_to "Підтримка політики", policy_path(@policy.id, vote: nil,  policy: @policy_level_up.first ), remote: true %></li>
       <li <%= params[:vote] == "true" ? "class=disabled": "" %>><%= link_to "Пов’язані голосування (" + @policy.policy_divisions.size.to_s + ")", policy_path(vote: true), remote: true %></li>
 
     </ul>
@@ -15,16 +15,37 @@
       <div class="col-11 list-filters">
         <ul class="sort-fraction text-uppercase">
           <div style="display: flex; justify-content: space-between">
-          <li <%= params[:policy].blank? ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Максимально голосує за", policy_path(@policy.id), remote: true, "data-toggle": "tooltip", "data-placement": "top", title: "між 95% та 100%" %></li>
+        
+          <% if @policy_level_up.include?(1)  %>
+          <li <%= params[:policy] == "1" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Максимально голосує за", policy_path(@policy.id, policy: 1), remote: true, "data-toggle": "tooltip", "data-placement": "top", title: "між 95% та 100%" %></li>
+          <% end %>
+          <% if @policy_level_up.include?(2) %>
           <li <%= params[:policy] == "2" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Послідовно голосує за", policy_path(@policy.id, policy: 2), remote: true, "data-toggle": "tooltip", "data-placement": "top", title: "між 85% та 95%" %></li>
+            <% end %>
+          <% if  @policy_level_up.include?(3) %>
           <li <%= params[:policy] == "3" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Переважно голосує за", policy_path(@policy.id, policy: 3 ), remote: true, "data-toggle": "tooltip", "data-placement": "top", title: "між 60% та 85%" %></li>
+            <% end %>
+          <% if  @policy_level_up.include?(4) %>
           <li <%= params[:policy] == "4" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Суміш за та проти", policy_path(@policy.id, policy:4 ), remote: true, "data-toggle": "tooltip", "data-placement": "top", title: "між 40% та 60%%" %></li>
+          <% end %>
+
           </div>
+    
       <div style="display: flex; justify-content: space-between">
+      <% if  @policy_level_up.include?(5) %>
           <li <%= params[:policy] == "5" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Переважно голосує проти", policy_path(@policy.id, policy:5 ), remote: true, "data-toggle": "tooltip", "data-placement": "top", title: "між 15% та 40%" %></li>
+            <% end %>
+          <% if  @policy_level_up.include?(6) %>
           <li <%= params[:policy] == "6" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Послідовно голосує проти", policy_path(@policy.id, policy:6 ), remote: true, "data-toggle": "tooltip", "data-placement": "top", title: "між 5,0% та 15%" %></li>
+            <% end %>
+          <% if  @policy_level_up.include?(7) %>
           <li <%= params[:policy] == "7" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Максимально голосує проти", policy_path(@policy.id, policy:7 ), remote: true, "data-toggle": "tooltip", "data-placement": "top", title: "між 0,0% та 5,0%" %></li>
+            <% end %>
+          <% if  @policy_level_up.include?(8) %>
           <li <%= params[:policy] == "8" ? "class=active-fon-fraction col col-4": "col col-4" %>><%= link_to "Ніколи не голосує", policy_path(@policy.id, policy:8 ), remote: true,  "data-toggle": "tooltip", "data-placement": "top", title: "У разі відсутності депутата та/або його неголосування" %></li>
+          
+          <% end %>
+      
             </div>
         </ul>
       </div>

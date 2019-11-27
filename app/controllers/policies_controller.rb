@@ -21,6 +21,7 @@ class PoliciesController < ApplicationController
     if params[:history] == '1'
       history()
     end
+    
   end
   def detal
 
@@ -88,8 +89,18 @@ class PoliciesController < ApplicationController
   end
     # Use callbacks to share common setup or constraints between actions.
     def set_policy
+    
       @policy = Policy.includes(:policy_divisions).find(params[:id])
-      @polisy_mp = @policy.policy_person_distances.includes(:mp).filter_polices(params[:policy])
+      @policy_level_up = []
+      (1..8).each do |l|
+        if  @policy.policy_person_distances.filter_polices(l.to_s).count > 0
+          @policy_level_up << l
+        end
+      end
+      if params[:policy].nil?
+        params[:policy] = @policy_level_up.first.to_s
+      end
+      @polisy_mp = @policy.policy_person_distances.includes(:mp).filter_polices(params[:policy]).where(mps: {end_date: "9999-12-31"})
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
