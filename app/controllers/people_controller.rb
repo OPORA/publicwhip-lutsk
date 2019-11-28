@@ -105,6 +105,9 @@ class PeopleController < ApplicationController
   end
 
   def get_policy(deputy_id)
+    if params[:policy].nil?
+      params[:policy] = "1"
+    end
     @policies = Policy.includes(:policy_divisions).joins(:policy_person_distances).where("policy_person_distances.deputy_id=?", deputy_id ).filter_polices(params[:policy]).page(params[:page]).per(6)
   end
   def get_divisions(deputy_id, faction)
