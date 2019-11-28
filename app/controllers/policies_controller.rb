@@ -1,12 +1,12 @@
 class PoliciesController < ApplicationController
-  before_action :set_policy, only: [:show, :edit, :update, :destroy]
+  before_action :set_policy, only: [:edit, :update, :destroy]
+  before_action :set_policy_with_mps, only: [:show]
   before_action :authenticate_user!, only: [ :new, :edit, :update, :destroy, :create]
   before_action :set_paper_trail_whodunnit
 
   # GET /policies
   # GET /policies.json
   def index
-
     @policies =  policies()
   end
   def policy
@@ -89,7 +89,10 @@ class PoliciesController < ApplicationController
   end
     # Use callbacks to share common setup or constraints between actions.
     def set_policy
-    
+      @policy = Policy.includes(:policy_divisions).find(params[:id])
+    end
+
+    def set_policy_with_mps
       @policy = Policy.includes(:policy_divisions).find(params[:id])
       @policy_level_up = []
       (1..8).each do |l|
