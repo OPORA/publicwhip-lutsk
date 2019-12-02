@@ -2,6 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "heder";
+.media-heading{
+  margin-bottom: 80px;
+    color: #252525;
+    font-family: GothaProBol;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 24px;
+    text-align: center;
+}
 div.img {
     padding-bottom: 100%;
     border-radius: 50%;

@@ -14,8 +14,8 @@
 </div>  
 <div id="stat" class="container-fluid ">
   <div class="container">
-    <div class="row ">
-    <h1 class="center-justified"><%= for_policy(@policy.policy_person_distances.find_by(deputy_id: @mp.deputy_id)) %>:</h1>  
+    <div class="row">
+    <h1 class="media-heading center-justified"><%= for_policy(@policy.policy_person_distances.find_by(deputy_id: @mp.deputy_id)) %>:</h1>  
     <h2><%= link_to @policy.name,  policy_path(@policy.id)   %></h2>
     </div>
   </div>
