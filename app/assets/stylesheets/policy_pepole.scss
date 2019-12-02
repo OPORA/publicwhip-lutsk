@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "heder";
 div.img {
-    // padding-bottom: 100%;
+    padding-bottom: 100%;
     border-radius: 50%;
     background-size: cover;
     background-position: top center;
@@ -57,4 +57,11 @@ div.img {
   } 
   #stat{
     background-color: #F5F5F5;
+  }
+  #det, #stat{
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .first{
+    margin-bottom: 50px;
   }
