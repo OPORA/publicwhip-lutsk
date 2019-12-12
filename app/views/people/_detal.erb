@@ -1,5 +1,5 @@
 
-<div class="col-12 list-filters clearfix">
+<div class="col-12 list-filters clearfix d-none d-sm-none d-md-none d-lg-block">
   <ul class="sort-first text-uppercase">
     <li <%= params[:vote].blank? ? "class=disabled": "" %>><%= link_to "Голосування проти фракції", people_detal_path(@mp.url_name, month: params[:month] ), remote: true %></li>
     <li <%= params[:vote] == "last_vote" ? "class=disabled": "" %>><%= link_to "Останні голосування", people_detal_path(@mp.url_name, vote: "last_vote", month: params[:month]), remote: true %></li>
@@ -7,6 +7,13 @@
     <li <%= params[:vote] == "policy" ? "class=disabled": "" %>><%= link_to "Політики", people_detal_path(@mp.url_name, vote: "policy" ), remote: true %></li>
   </ul>
 </div>
+  <select class="mobile_select d-block d-md-none" onchange="window.location.href=this.value;">
+      <option  <%= params[:vote].blank? ? 'selected="selected"': ''%> value="<%=people_detal_path(@mp.url_name, month: params[:month]) %>">Голосування проти фракції</option>
+      <option <%= params[:vote] == "last_vote" ? 'selected="selected"': ''%> value="<%=people_detal_path(@mp.url_name, vote: "last_vote", month: params[:month])%>">Останні голосування</option>
+      <option <%= params[:sort] == "friends" ? 'selected="selected"': ''%> value="<%=people_detal_path(@mp.url_name, vote: "friends", month: params[:month])%>">Друзі по голосуванню</option>
+      <option <%= params[:vote] == "policy" ? 'selected="selected"': ''%> value="<%=people_detal_path(@mp.url_name, vote: "policy" )%>">Політики</option>	
+  </select>
+
 
 
 <% if params[:vote] == "last_vote" %>

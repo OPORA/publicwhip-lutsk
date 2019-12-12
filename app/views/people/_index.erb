@@ -7,7 +7,6 @@
     <li <%= params[:sort] == "rebellions" ? "class=disabled": "" %> ><%= link_to "За Дотриманням фракційної дисципліни", people_path(sort: :rebellions), :remote => true %></li>
   </ul>
   <select class="mobile_select d-block d-md-none" onchange="window.location.href=this.value;">
-
       <option  <%= params[:sort].nil? ? 'selected="selected"': ''%> value="<%= people_path()%>">За прізвищем</option>
       <option <%= params[:sort] == "faction" ? 'selected="selected"': ''%> value="<%=people_path(sort: :faction)%>">За Фракцією</option>
       <option <%= params[:sort] == "distric" ? 'selected="selected"': ''%> value="<%=people_path(sort: :distric)%>">За Округом</option>
