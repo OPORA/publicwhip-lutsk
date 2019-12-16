@@ -44,6 +44,13 @@
           </datalist>
         <% end %>
     </div>
+    <script>  
+    $(document).ready(function($) {
+      $('#party').change(function() {
+        $('#search-main').submit();
+      });
+  });
+  </script>
 </div>
 
 <div class="container">
