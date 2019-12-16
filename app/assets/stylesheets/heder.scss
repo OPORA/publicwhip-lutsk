@@ -205,7 +205,7 @@ ul.sort-distric li{
 #slider-range.ui-widget.ui-widget-content{
   height: 2px ;
   border-color: #E5E5E5;
-  width: 60%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
 
@@ -266,5 +266,8 @@ a.col-12 {
 @media (min-width: 992px) {
   .col-lg-6 {
     margin-top: 25px
+  }
+  #slider-range.ui-widget.ui-widget-content {
+    width: 60%;
   }
 }

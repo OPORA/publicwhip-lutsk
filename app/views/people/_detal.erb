@@ -38,7 +38,7 @@
     </div>
 <% elsif params[:vote] == "policy"  %>
     <div class="col-11 list-filters">
-      <ul class="sort-fraction text-uppercase">
+      <ul class="sort-fraction text-uppercase d-none d-sm-none d-md-none d-lg-block">
         <div style="display: flex; justify-content: left; -webkit-flex-flow: row wrap">
           <li class="<%= params[:policy] == "1"  ? "active-fon-fraction": "non-active-fon-fraction" %>"><%= link_to "Максимально голосує за", people_detal_path(@mp.url_name, vote: "policy"  ), remote: true %></li>
           <li class="<%= params[:policy] == "2" ? "active-fon-fraction": "non-active-fon-fraction" %>"><%= link_to "Послідовно голосує за", people_detal_path(@mp.url_name, vote: "policy", policy: 2), remote: true %></li>
@@ -50,6 +50,16 @@
          <li class="<%= params[:policy] == "8" ? "active-fon-fraction": "non-active-fon-fraction" %>"><%= link_to "Ніколи не голосує", people_detal_path(@mp.url_name, vote: "policy", policy:8), remote: true %></li>
        </div>
       </ul>
+      <select class="mobile_select_fraction d-block d-md-none" onchange="window.location.href=this.value;">
+        <option <%= params[:policy] == "1"  ? 'selected="selected"' : "" %> value="<%=  people_detal_path(@mp.url_name, vote: "policy"  ) %>">Максимально голосує за</option>
+        <option <%= params[:policy] == "2"  ? 'selected="selected"' : "" %> value="<%=  people_detal_path(@mp.url_name, vote: "policy", policy: 2 ) %>">Послідовно голосує за</option>
+        <option <%= params[:policy] == "3"  ? 'selected="selected"' : "" %> value="<%=  people_detal_path(@mp.url_name, vote: "policy", policy: 3 ) %>">Переважно голосує за</option>
+        <option <%= params[:policy] == "4"  ? 'selected="selected"' : "" %> value="<%=  people_detal_path(@mp.url_name, vote: "policy", policy: 4 ) %>">Суміш за та проти</option>
+        <option <%= params[:policy] == "5"  ? 'selected="selected"' : "" %> value="<%=  people_detal_path(@mp.url_name, vote: "policy", policy: 5 ) %>">Переважно голосує проти</option>
+        <option <%= params[:policy] == "6"  ? 'selected="selected"' : "" %> value="<%=  people_detal_path(@mp.url_name, vote: "policy", policy: 6 ) %>">Послідовно голосує проти</option>
+        <option <%= params[:policy] == "7"  ? 'selected="selected"' : "" %> value="<%=  people_detal_path(@mp.url_name, vote: "policy", policy: 7 ) %>">Максимально голосує проти</option>
+        <option <%= params[:policy] == "8"  ? 'selected="selected"' : "" %> value="<%=  people_detal_path(@mp.url_name, vote: "policy", policy: 8 ) %>">Ніколи не голосує</option>  
+      </select>
       <div id="list_policy">
         <%= render "policy", policies: @policies %>
         <div class="index-pagination">
