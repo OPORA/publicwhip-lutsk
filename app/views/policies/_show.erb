@@ -1,10 +1,13 @@
 <div class="container">
   <div class="col-12 list-filters clearfix">
-    <ul class="sort-first text-uppercase">
+    <ul class="sort-first text-uppercase d-none d-sm-none d-md-none d-lg-block">
       <li <%= params[:vote].blank? ? "class=disabled": "" %>><%= link_to "Підтримка політики", policy_path(@policy.id, vote: nil,  policy: @policy_level_up.first ), remote: true %></li>
       <li <%= params[:vote] == "true" ? "class=disabled": "" %>><%= link_to "Пов’язані голосування (" + @policy.policy_divisions.size.to_s + ")", policy_path(vote: true), remote: true %></li>
-
     </ul>
+    <select class="mobile_select d-block d-md-none" onchange="window.location.href=this.value;">
+      <option value="<%=policy_path(@policy.id, vote: nil,  policy: @policy_level_up.first )%>">Підтримка політики</option>
+      <option <%= params[:vote] == "true" ? 'selected="selected"': ''%> value="<%=policy_path(@policy.id, vote: true)%>">Пов’язані голосування ( <%= @policy.policy_divisions.size %> )</option>
+    </select>
   </div>
   <% if params[:vote].blank? %>
       <script>
@@ -13,7 +16,7 @@
           })
       </script>
       <div class="col-11 list-filters">
-        <ul class="sort-fraction text-uppercase">
+        <ul class="sort-fraction text-uppercase d-none d-sm-none d-md-none d-lg-block">
           <div style="display: flex; justify-content: left; -webkit-flex-flow: row wrap">
         
           <% if @policy_level_up.include?(1)  %>
@@ -48,6 +51,32 @@
       
             </div>
         </ul>
+        <select class="mobile_select_fraction d-block d-md-none" onchange="window.location.href=this.value;">
+        <% if @policy_level_up.include?(1)  %>
+        <option <%= params[:policy] == "1"  ? 'selected="selected"' : "" %> value="<%=   policy_path(@policy.id, policy:1 ) %>">Максимально голосує за</option>
+        <% end %>
+        <% if @policy_level_up.include?(2)  %>
+        <option <%= params[:policy] == "2"  ? 'selected="selected"' : "" %> value="<%=   policy_path(@policy.id, policy:2 ) %>">Послідовно голосує за</option>
+        <% end %>
+        <% if @policy_level_up.include?(3)  %>
+        <option <%= params[:policy] == "3"  ? 'selected="selected"' : "" %> value="<%=   policy_path(@policy.id, policy:3 ) %>">Переважно голосує за</option>
+        <% end %>
+        <% if @policy_level_up.include?(4)  %>
+        <option <%= params[:policy] == "4"  ? 'selected="selected"' : "" %> value="<%=   policy_path(@policy.id, policy:4 ) %>">Суміш за та проти</option>
+        <% end %>
+        <% if @policy_level_up.include?(5)  %>
+        <option <%= params[:policy] == "5"  ? 'selected="selected"' : "" %> value="<%=   policy_path(@policy.id, policy:5 ) %>">Переважно голосує проти</option>
+        <% end %>
+        <% if @policy_level_up.include?(6)  %>
+        <option <%= params[:policy] == "6"  ? 'selected="selected"' : "" %> value="<%=   policy_path(@policy.id, policy:6 )  %>">Послідовно голосує проти</option>
+        <% end %>
+        <% if @policy_level_up.include?(7)  %>
+        <option <%= params[:policy] == "7"  ? 'selected="selected"' : "" %> value="<%=   policy_path(@policy.id, policy:7 ) %>">Максимально голосує проти</option>
+        <% end %>
+        <% if @policy_level_up.include?(8)  %>
+        <option <%= params[:policy] == "8"  ? 'selected="selected"' : "" %> value="<%=  policy_path(@policy.id, policy:8 )%>">Ніколи не голосує</option>  
+        <% end %>
+      </select>
       </div>
       <div id="list_mp">
         <%= render "mp", mps: @polisy_mp %>
