@@ -11,12 +11,18 @@ namespace :load_division do
       divisions.each do |d|
         date_vote = DateTime.parse(d[0]['date_vote']).strftime('%F')
         mps = Mp.where('? >= start_date and end_date >= ?', date, date).to_a.uniq(&:deputy_id)
+        if d[0]['option']=="Прийнятий"
+          option = "Прийнято"
+        else
+          option = "Не прийнято"  
+        end    
+        
         division = Division.find_or_create_by(
           date: date_vote,
           number: d[0]['number'],
           name: d[0]['name'],
           clock_time: DateTime.parse(d[0]['date_vote']).strftime('%T'),
-          result: d[0]['option']
+          result: option
         )
         division.votes.destroy_all
         d[1]['votes'].each do |v|
