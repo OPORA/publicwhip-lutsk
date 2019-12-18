@@ -103,7 +103,9 @@ class PoliciesController < ApplicationController
       if params[:policy].nil?
         params[:policy] = @policy_level_up.first.to_s
       end
-      @polisy_mp = @policy.policy_person_distances.includes(:mp).filter_polices(params[:policy]).where(mps: {end_date: "9999-12-31"})
+      if !@policy.policy_person_distances.blank?
+        @polisy_mp = @policy.policy_person_distances.includes(:mp).filter_polices(params[:policy]).where(mps: {end_date: "9999-12-31"})
+      end  
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
